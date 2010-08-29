@@ -41,5 +41,5 @@ group :development, :test do
 
   gem "steak",  git: "git://github.com/cavalle/steak.git", ref: "894084dcca885ccef09627c3ff898c675936335a", require: nil
   gem "capybara", "0.3.9", require: nil
-  gem "timecop", "0.3.5", require: nil
+  gem "timecop", "0.3.5"
 end

@@ -1,4 +1,4 @@
-Scrumastic::Application.routes.draw do
+Scrumastic::Application.routes.draw do |map|
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -10,6 +10,23 @@ Scrumastic::Application.routes.draw do
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
+  resources :projects do
+    resources :sprints
+    resources :user_stories do
+      member do
+        post :move_to_backlog
+        post :move_to_incubator
+        post :move_to_sprint
+      end
+      collection do
+        post :sort
+      end
+      resources :comments
+    end
+  end
+  
+  resources :user_searches, only: [:create]
+  
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
@@ -50,9 +67,12 @@ Scrumastic::Application.routes.draw do
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
 
+  root :to => "projects#index"
+  
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
+  devise_for :users
 end

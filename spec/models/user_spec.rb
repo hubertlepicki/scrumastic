@@ -12,3 +12,4 @@ describe "User" do
     user.gravatar_url.should eql("http://gravatar.com/avatar/6bf9328eef0afadd9c9d05334f8dd42b.png?r=PG")
   end
 end
+
