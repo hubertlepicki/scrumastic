@@ -1,0 +1,2 @@
+class PermissionDenied < StandardError
+end
