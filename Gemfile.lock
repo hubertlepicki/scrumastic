@@ -61,9 +61,27 @@ GIT
       thor (~> 0.14.0)
 
 GIT
+  remote: git://github.com/rspec/rspec-core.git
+  revision: 001e600
+  specs:
+    rspec-core (2.0.0.beta.20)
+
+GIT
+  remote: git://github.com/rspec/rspec-expectations.git
+  revision: 6634a7c
+  specs:
+    rspec-expectations (2.0.0.beta.20)
+      diff-lcs (>= 1.1.2)
+
+GIT
+  remote: git://github.com/rspec/rspec-mocks.git
+  revision: f0fdfca
+  specs:
+    rspec-mocks (2.0.0.beta.20)
+
+GIT
   remote: git://github.com/rspec/rspec-rails.git
   revision: 56579e0
-  ref: 56579e09bd329cc9247d04f9cf06f057b03caf1d
   specs:
     rspec-rails (2.0.0.beta.20)
       rspec (= 2.0.0.beta.20)
@@ -71,7 +89,6 @@ GIT
 GIT
   remote: git://github.com/rspec/rspec.git
   revision: 8f9dfb1
-  ref: 8f9dfb1ce27a8b2ebd5a91af6b3cfd82a3ad8ec4
   specs:
     rspec (2.0.0.beta.20)
       rspec-core (= 2.0.0.beta.20)
@@ -137,10 +154,6 @@ GEM
       rack (>= 1.0)
     rake (0.8.7)
     rmagick (2.13.1)
-    rspec-core (2.0.0.beta.20)
-    rspec-expectations (2.0.0.beta.20)
-      diff-lcs (>= 1.1.2)
-    rspec-mocks (2.0.0.beta.20)
     rubyzip (0.9.4)
     selenium-webdriver (0.0.28)
       ffi (>= 0.6.1)
@@ -171,6 +184,9 @@ DEPENDENCIES
   rails!
   rmagick (= 2.13.1)
   rspec!
+  rspec-core!
+  rspec-expectations!
+  rspec-mocks!
   rspec-rails!
   steak!
   timecop (= 0.3.5)

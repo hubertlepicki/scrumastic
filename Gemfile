@@ -11,7 +11,7 @@ gem "gravtastic", "2.2.0"
 gem "haml", "3.0.17"
 gem "googlecharts", "1.6.0"
 
-# gem 'sqlite3-ruby', :require => 'sqlite3'
+#gem 'sqlite3-ruby', :require => 'sqlite3'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -33,8 +33,12 @@ gem "googlecharts", "1.6.0"
 # and rake tasks are available in development mode:
 group :development, :test do
   gem "diff-lcs", "1.1.2", require: nil
-  gem "rspec", git: "git://github.com/rspec/rspec.git", ref: "8f9dfb1ce27a8b2ebd5a91af6b3cfd82a3ad8ec4", require: nil
-  gem "rspec-rails", git: "git://github.com/rspec/rspec-rails.git", ref: "56579e09bd329cc9247d04f9cf06f057b03caf1d", require: nil
+  gem "rspec-rails",        :git => "git://github.com/rspec/rspec-rails.git"
+  gem "rspec",              :git => "git://github.com/rspec/rspec.git"
+  gem "rspec-core",         :git => "git://github.com/rspec/rspec-core.git"
+  gem "rspec-expectations", :git => "git://github.com/rspec/rspec-expectations.git"
+  gem "rspec-mocks",        :git => "git://github.com/rspec/rspec-mocks.git"
+
   gem "steak",  git: "git://github.com/cavalle/steak.git", ref: "894084dcca885ccef09627c3ff898c675936335a", require: nil
   gem "capybara", "0.3.9", require: nil
   gem "timecop", "0.3.5", require: nil
