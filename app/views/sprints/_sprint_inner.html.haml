@@ -12,9 +12,9 @@
     %table
       %tr
         %td
-          = link_to icon_tag("pencil"), "#", "data-toggle" => "#edit_#{sprint.id}_form_wrapper"
+          = link_to icon_tag("pencil"), "#", "data-toggle" => "#edit_#{sprint.id}_form_wrapper", title: "#{t("edit")} #{sprint.name}"
         %td
-          = link_to icon_tag("trash"), project_sprint_path(@project, sprint), method: "delete", remote: true
+          = link_to icon_tag("trash"), project_sprint_path(@project, sprint), title: "#{t("delete")} #{sprint.name}", method: "delete", remote: true
 
 .clear
 

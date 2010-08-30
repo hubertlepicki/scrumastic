@@ -10,6 +10,7 @@ en:
   attachment: "Attachment"
   content: Content
   delete: Delete
+  edit: Edit
   state: State
   burn_down_chart: Burn Down Chart
   burn_down_info: "*please note that it can take up to couple of minutes for this chart to be updated after you make changes"

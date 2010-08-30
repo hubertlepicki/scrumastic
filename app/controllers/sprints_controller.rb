@@ -35,6 +35,6 @@ class SprintsController < ProjectScopedController
   protected
 
   def find_sprint
-    @sprint = @project.sprints.find(:first, :conditions => {:id => params[:id]})
+    @sprint = @project.sprints.find(params[:id])
   end
 end
