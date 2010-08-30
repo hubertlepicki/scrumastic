@@ -1,5 +1,124 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  welcome: Welcome
+  your_projects: Your projects
+  submit: Submit
+  cancel: Cancel
+  as_a: As a
+  I_want_to: I want to
+  so_that: so that
+  back_to: "Back to %{name}"
+  attachment: "Attachment"
+  content: Content
+  delete: Delete
+  state: State
+  burn_down_chart: Burn Down Chart
+  burn_down_info: "*please note that it can take up to couple of minutes for this chart to be updated after you make changes"
+  people:
+    search: "Search by name, login or email:"
+    nobody_found: Couldn't find any people matching given criteria.
+  projects:
+    your_role_in_project: You are %{role} in this project
+    this_project: this project
+    available_people: Available people
+    you_are_involved_in: Projects you are involved in
+    you_own: Projects you own
+    new_project: New project
+    none_involved_in: You are not involved in any project yet.
+    none_owned: You don't own any project yet.
+    edit_project: Edit project
+    logo: Project logo
+    remove_logo: Remove current logo?
+    delete: Delete this project?
+    confirm_delete: Do you want to remove this project?
+    sprints: Sprint Backlogs
+    product_backlog: Product Backlog
+    user_stories_incubator: User Stories Incubator
+  comments:
+    comments: Comments
+    new_comment: New comment
+    delete_comment: Delete comment
+  sprints:
+    new: Create new sprint
+  user_stories:
+    new: New user story
+  models:
+    sprint:
+      name: Name
+      goal: Sprint goal
+      start_date: Start date
+      end_date: End date
+    user:
+      email: Email
+      password: Password
+      remember_me: Remember me
+      nickname: Nickname (can consist only of lowercase letters)
+    project:
+      name: Project name
+      description: Project description
+      roles:
+        scrum_master: Scrum Master
+        product_owner: Product Owner
+        team_member: Team Member
+        stakeholder: Stakeholder
+      other_stakeholders: Other Stakeholders
+      team_members: Team Members
+    user_story:
+      name: User Story
+      states:
+        open: Open
+        in_progress: In progress
+        resolved: Resolved
+        closed: Closed
+      assigned_to: Assigned to
+      story_points: Story Points
+  errors:
+    messages:
+      not_found: "not found"
+      already_confirmed: "was already confirmed"
+      not_locked: "was not locked"
+  devise:
+    failure:
+      unauthenticated: 'You need to sign in or sign up before continuing.'
+      unconfirmed: 'You have to confirm your account before continuing.'
+      locked: 'Your account is locked.'
+      invalid: 'Invalid email or password.'
+      invalid_token: 'Invalid authentication token.'
+      timeout: 'Your session expired, please sign in again to continue.'
+      inactive: 'Your account was not activated yet.'
+    sessions:
+      link: 'Sign in'
+      sign_out: 'Sign out'
+      edit: 'Your profile'
+      signed_in: 'Signed in successfully.'
+      signed_out: 'Signed out successfully.'
+      hello: 'Hello, %{user}!'
+    passwords:
+      link: 'Forgot password?'
+      send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
+      updated: 'Your password was changed successfully. You are now signed in.'
+      send_me: "Send me reset password instructions"
+      change_my_password: "Change my password"
+      change_password_instructions: "Someone has requested a link to change your password, and you can do this through the link below. If you didn't request this, please ignore this email. Your password won't change until you access the link below and create a new one."
+    confirmations:
+      link: "Didn't receive confirmation instructions?"
+      send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
+      confirmed: 'Your account was successfully confirmed. You are now signed in.'
+      resend_confirmation: "Resend confirmation instructions"
+      confirmation_instructions: "You can confirm your account through the link below:"
+      confirm_my_account: 'Confirm my account'
+    registrations:
+      link: 'Sign up'
+      signed_up: 'You have signed up successfully. Please confirm your email address by following instructions we sent you.'
+      updated: 'You updated your account successfully.'
+      destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+    unlocks:
+      link: "Didn't receive unlock instructions?"
+      send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
+      unlocked: 'Your account was successfully unlocked. You are now signed in.'
+      unlock_instructions: 'Your account has been locked due to an excessive amount of unsuccessful sign in attempts. Click the link below to unlock your account:'
+      unlock_my_account: 'Unlock my account'
+    mailer:
+      confirmation_instructions: 'Confirmation instructions'
+      reset_password_instructions: 'Reset password instructions'
+      unlock_instructions: 'Unlock Instructions'
+
