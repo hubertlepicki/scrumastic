@@ -38,6 +38,12 @@ class User
     super
   end
 
+  # Returns link to 64x64 user avatar using gravatar.com service
+  def big_gravatar_url
+    gravatar_url + "&size=64"
+  end
+
+
   # Returns link to 24x24 user avatar using gravatar.com service
   def medium_gravatar_url
     gravatar_url + "&size=24"

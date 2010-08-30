@@ -17,9 +17,9 @@ end
 def validate_project_details(project, users)
     project.product_owner.id.should eql(users[:deborah].id)
     project.scrum_master.id.should eql(users[:hubert].id)
-    project.stakeholder_ids.should include(users[:alex].id)
-    project.team_member_ids.should include(users[:lukasz].id)
-    project.team_member_ids.should include(users[:wojtek].id)
+    project.stakeholder_ids.should include(users[:alex].id.to_s)
+    project.team_member_ids.should include(users[:lukasz].id.to_s)
+    project.team_member_ids.should include(users[:wojtek].id.to_s)
     project.name.should eql("My first project")
     project.description.should eql("Hello world project!")
     project.logo.should be_present

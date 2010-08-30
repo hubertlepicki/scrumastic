@@ -8,7 +8,7 @@ class CommentsController < ProjectScopedController
 
   def index
     Can.see?(current_user, @project) do
-      @comments = @user_story.comments.find(:all, conditions: {}, sort: [:created_at, :asc])
+      @comments = @user_story.comments.all(sort: [:created_at, :asc])
     end
   end
 
@@ -56,11 +56,11 @@ class CommentsController < ProjectScopedController
   protected
   
   def find_comment
-    @comment = @user_story.comments.find(:first, conditions: {id: params[:id]})
+    @comment = @user_story.comments.find(params[:id])
   end
 
   # Finds user story in given project
   def find_user_story
-    @user_story = @project.user_stories.find(:first, conditions: {id: params[:user_story_id] })
+    @user_story = @project.user_stories.find(params[:user_story_id])
   end
 end

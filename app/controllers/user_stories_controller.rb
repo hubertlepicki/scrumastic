@@ -65,7 +65,7 @@ class UserStoriesController < ProjectScopedController
   def sort
     Can.edit_user_stories_for?(current_user, @project) do
       params[:items].each_with_index do |item, index|
-        @project.user_stories.find(:first, conditions: {id: item}).update_attributes position: index
+        @project.user_stories.find(item).update_attributes position: index
       end
     end
     head :ok
@@ -74,7 +74,7 @@ class UserStoriesController < ProjectScopedController
   protected
 
   def find_user_story
-    @user_story = @project.user_stories.find(:first, conditions: {id: params[:id]})
+    @user_story = @project.user_stories.find(params[:id])
   end
 
 end
