@@ -1,0 +1,26 @@
+%div{"data-id" => user_story.id, "data-project-id" => user_story.project_id, :class => "user-story #{user_story.state}" }
+  - unless user_story.user.nil?
+    .left
+      = image_tag user_story.user.small_gravatar_url, title: user_story.user.name
+
+  - unless action_name == "edit"
+    - if Can.edit_user_stories_for?(current_user, @project)
+      = link_to icon_tag("trash"),                          |
+                [user_story.project, user_story],           |
+                method: "delete",                           |
+                remote: true,                               |
+                class: "right"                              |
+    - if Can.see?(current_user, @project)
+      = link_to icon_tag("arrowthick-1-e"), [user_story.project, user_story], class: "right"
+  - else
+    - if Can.edit_user_stories_for?(current_user, @project)
+      = link_to icon_tag("pencil"), "#", :'data-toggle' => "#edit_story_form_wrapper", |
+                                         class: "right"                                |
+
+  = t("as_a")
+  = user_story.who
+  = t("I_want_to")
+  = user_story.what
+  - unless user_story.reason.blank?
+    = t("so_that")
+    = user_story.reason

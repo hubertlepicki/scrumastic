@@ -1,0 +1,20 @@
+= render :partial => "devise/shared/links"
+%h2
+  = t("devise.sessions.link")
+
+- form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  %p
+    = f.label :email, t("models.user.email")
+  %p
+    = f.text_field :email
+  %p
+    = f.label :password, t("models.user.password")
+  %p
+    = f.password_field :password
+  - if devise_mapping.rememberable?
+    %p
+      = f.check_box :remember_me
+      = f.label :remember_me, t("models.user.remember_me")
+  %p
+    = f.submit t("devise.sessions.link")
+

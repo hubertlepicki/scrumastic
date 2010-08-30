@@ -1,0 +1,21 @@
+- form_for [@project, sprint], remote: true do |f|
+  = f.error_messages
+  %table
+    %p
+      = f.label :name, t("models.sprint.name")
+      = f.text_field :name, :size => 30, :id => "sprint_#{sprint.id}_name"
+    %p
+      = f.label :goal, t("models.sprint.goal")
+      = f.text_area :goal, class: "resizable-textarea", :rows => 3, :id => "sprint_#{sprint.id}_goal"
+    %tr
+      %td
+        = f.label :formatted_start_date, t("models.sprint.start_date")
+        = f.text_field :formatted_start_date, class: "date-picker", size: 10, :id => "sprint_#{sprint.id}_start_date"
+      %td
+        = f.label :formatted_end_date, t("models.sprint.end_date")
+        = f.text_field :formatted_end_date, class: "date-picker", size: 10, :id => "sprint_#{sprint.id}_end_date"
+      %td
+  %p
+    .right
+      = loader_icon "sprint_#{sprint.id}"
+    = f.submit t("submit")

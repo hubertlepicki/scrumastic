@@ -1,0 +1,13 @@
+= render :partial => "devise/shared/links"
+
+%h2
+  = t("devise.passwords.link")
+
+- form_for(resource_name, resource, url: password_path(resource_name)) do |f|
+  = f.error_messages
+  %p
+    = f.label :email, t("models.user.email")
+  %p
+    = f.text_field :email
+  %p
+    = f.submit t("devise.passwords.send_me")

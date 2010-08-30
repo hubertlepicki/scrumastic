@@ -1,0 +1,40 @@
+.projects
+  %h2= t("projects.you_are_involved_in")
+  - @projects.each do |project|
+    - div_for project do
+      = thumb_of project
+      %h3= link_to project.name, project
+      %p
+        = project.description
+      %p
+        = t("projects.your_role_in_project",                                           |
+             role: t("models.project.roles.#{current_user.role_in_project(project)}")) |
+      .clear
+  - if @projects.empty?
+    = t("projects.none_involved_in")
+
+.owned_projects
+  .right
+    %a{:href => new_project_path }
+      %span{:class => "ui-icon ui-icon-plus inline-block"}
+    %a{:href => new_project_path }
+      = t("projects.new_project")
+
+  %h2= t("projects.you_own")
+  - @owned_projects.each do |project|
+    - div_for project do
+      = thumb_of project
+      .right
+        %a.hidden{:href => edit_project_path(project) }
+          %span{:class => "ui-icon ui-icon-wrench inline-block"}
+        %a.hidden{:href => edit_project_path(project) }
+          = t("projects.edit_project")
+
+      %h3= link_to project.name, project
+      %p
+        = project.description
+      .clear
+  - if @projects.empty?
+    = t("projects.none_owned")
+
+.clear

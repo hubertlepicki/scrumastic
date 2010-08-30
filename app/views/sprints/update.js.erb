@@ -1,0 +1,12 @@
+<% if !@sprint.errors.empty? %>
+  $("#edit_<%= @sprint.id %>_form_wrapper").html("<%= escape_javascript(
+    render(partial: "form", locals: {sprint: @sprint})
+  ) %>");
+<% else %>
+  $("#sprint_<%= @sprint.id %>_wrapper").html("<%= escape_javascript(
+    render(partial: "sprint_inner", locals: {sprint: @sprint})
+  ) %>");
+  $("#sprint_<%= @sprint.id %>_name_header").html("<%= escape_javascript(
+    @sprint.name
+  ) %>");
+<% end %>

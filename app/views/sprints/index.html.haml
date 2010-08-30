@@ -1,0 +1,4 @@
+= render partial: "new", locals: {sprint: Sprint.new(project: @project)}
+#sprints_accordion
+  = render partial: "sprint", collection: @sprints
+

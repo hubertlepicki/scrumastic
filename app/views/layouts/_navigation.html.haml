@@ -1,0 +1,14 @@
+#global_navigation
+  = yield :extra_navigation
+
+  - if current_user
+    %li
+      = link_to image_tag(current_user.medium_gravatar_url, alt: current_user.name, title: current_user.name), |
+        edit_user_registration_path                                                                            |
+    %li
+      = button_to t("devise.sessions.sign_out"), destroy_user_session_path, method: "get"
+  - else
+    %li
+      = button_to t("devise.registrations.link"), new_user_registration_path, method: "get"
+    %li
+      = button_to t("devise.sessions.link"), new_user_session_path, method: "get"

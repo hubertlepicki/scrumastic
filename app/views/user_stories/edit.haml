@@ -1,0 +1,11 @@
+= render partial: "projects/project_header", locals: {project: @user_story.project}
+
+%h3= t("models.user_story.name")
+
+= render partial: "user_story", locals: {user_story: @user_story}
+
+- if Can.edit_user_stories_for?(current_user, @project)
+  #edit_story_form_wrapper
+    = render partial: "form", locals: {user_story: @user_story}
+
+#story_comments{:'data-populate-with' => project_user_story_comments_path(@project, @user_story)}

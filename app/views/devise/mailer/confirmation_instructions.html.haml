@@ -1,0 +1,7 @@
+%p
+  = t("devise.sessions.hello", user: @resource.email)
+
+%p
+  = t("devise.confirmations.confirmation_instructions")
+%p
+  = link_to t("devise.confirmations.confirm_my_account"), confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)

@@ -1,0 +1,13 @@
+- [:error, :warning].each do |what|
+  - if flash[what]
+    %div{ :class => "ui-widget flash-message" }
+      %div{ :class => "ui-state-error ui-corner-all", :style => "padding: 5px" }
+        %span{ :class => "ui-icon ui-icon-alert", :style => "float: left; margin-right: 5px"}
+        = flash[what]
+
+- [:notice, :info].each do |what|
+  - if flash[what]
+    %div{ :class => "ui-widget flash-message" }
+      %div{ :class => "ui-state-highlight ui-corner-all", :style => "padding: 5px" }
+        %span{ :class => "ui-icon ui-icon-info", :style => "float: left; margin-right: 5px"}
+        = flash[what]

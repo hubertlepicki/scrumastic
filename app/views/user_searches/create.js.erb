@@ -1,0 +1,16 @@
+$("#available_people").html(
+  <% if @people.empty? %>
+    "<h3><%= escape_javascript t("people.nobody_found") %></h3>"
+  <% else %>
+    "<%= escape_javascript render(partial: "projects/person", collection: @people) %>"
+  <% end %>
+);
+
+$('#available_people .person-draggable').draggable({
+            revert: 'invalid',
+            containment: 'document',
+            helper: 'clone',
+            cursor: 'move'
+});
+
+$("#people_search_loader").hide();

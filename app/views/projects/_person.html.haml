@@ -1,0 +1,4 @@
+%div{:class => "person-draggable ui-corner-all", :id => "user_#{person.nickname}_draggable", :userId => "#{person.id}"}
+  = person.nickname
+  %br
+  = image_tag person.gravatar_url(size: 64)

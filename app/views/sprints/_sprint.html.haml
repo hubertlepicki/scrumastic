@@ -1,0 +1,3 @@
+%h3{:id => "sprint_#{sprint.id}_name_header"}= sprint.name
+%div{:id => "sprint_#{sprint.id}_wrapper"}
+  = render partial: "sprint_inner", locals: {sprint: sprint}

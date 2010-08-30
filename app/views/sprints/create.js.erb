@@ -1,0 +1,8 @@
+<% if !@sprint.new_record? %>
+  $(".new-sprint-form-wrapper").trigger("reload");
+  $(".new-sprint-form-wrapper").hide("blind");
+<% else %>
+  $(".new-sprint-form-wrapper").html("<%= escape_javascript(
+    render(partial: "form", locals: {sprint: @sprint})
+  ) %>");
+<% end %>

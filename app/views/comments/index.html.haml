@@ -1,0 +1,6 @@
+%h3= t("comments.comments")
+= render partial: "comment", collection: @comments
+
+%h3= link_to t("comments.new_comment"), "#", :"data-toggle" => "#new_comment_wrapper"
+
+#new_comment_wrapper{:"data-populate-with" => new_project_user_story_comment_path(@project, @user_story)}

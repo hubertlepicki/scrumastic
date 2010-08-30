@@ -1,0 +1,32 @@
+- content_for :extra_navigation do
+  #project_buttons
+    %input{:type => "checkbox", :id => "sprints_visible", :checked => "checked"}
+    %label{:for => "sprints_visible"}= t("projects.sprints")
+    %input{:type => "checkbox", :id => "product_backlog_visible", :checked => "checked"}
+    %label{:for => "product_backlog_visible"}= t("projects.product_backlog")
+    %input{:type => "checkbox", :id => "user_stories_incubator_visible", :checked => "checked"}
+    %label{:for => "user_stories_incubator_visible"}= t("projects.user_stories_incubator")
+
+= render partial: "project_header", locals: {project: @project}
+
+#sprints.ui-corner-all
+  - if Can.edit_sprints_for?(current_user, @project)
+    .right
+      %a{"data-toggle" => ".new-sprint-form-wrapper", "href" => "#", "title" => t("sprints.new")}= icon_tag "plus"
+
+  %h2= t("projects.sprints")
+  %div{"data-populate-with" => project_sprints_path(@project)}= loader_icon "sprints", true
+
+#product_backlog.ui-corner-all
+  %h2= t("projects.product_backlog")
+  %div{"data-populate-with" => project_user_stories_path(@project, in_backlog: "true")}= loader_icon "backlog_user_stories", true
+
+#user_stories_incubator.ui-corner-all
+  - if Can.edit_user_stories_for?(current_user, @project)
+    .right
+      %a{"data-toggle" => ".new-user-story-form-wrapper", "href" => "#", "title" => t("user_stories.new")}= icon_tag "plus"
+
+  %h2= t("projects.user_stories_incubator")
+  %div{"data-populate-with" => project_user_stories_path(@project, in_backlog: "false")}= loader_icon "incubator_user_stories", true
+
+.clear

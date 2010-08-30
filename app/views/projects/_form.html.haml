@@ -1,0 +1,75 @@
+- form_for @project, html: {id: "project_form", multipart: true} do |f|
+  = f.error_messages
+  %table
+    %tr
+      %td.description
+        = f.label :name, t("models.project.name")
+      %td.one
+        %label{:for => "product_owner_droppable" }= t("models.project.roles.product_owner")
+      %td.one
+        %label{:for => "scrum_master_droppable" }= t("models.project.roles.scrum_master")
+      %td.last
+        %label{:for => "stakeholders_droppable" }= t("models.project.other_stakeholders")
+    %tr
+      %td.description
+        = f.text_field :name
+      %td
+        %div{:id => "product_owner_droppable", :class => "person-droppable"}
+          = render(partial: "person", object: @project.product_owner) unless @project.product_owner.nil?
+        = f.hidden_field :product_owner_id
+      %td
+        %div{:id=>"scrum_master_droppable", :class => "person-droppable"}
+          = render(partial: "person", object: @project.scrum_master) unless @project.scrum_master.nil?
+        = f.hidden_field :scrum_master_id
+      %td
+        %div{:id => "stakeholders_droppable", :class => "person-droppable"}
+          = render partial: "person", collection: @project.stakeholders
+    %tr
+      %td.description
+        = f.label :description, t("models.project.description")
+      %td{:colspan => 3}
+        %label{:for => "team_members_droppable"}= t("models.project.team_members")
+    %tr
+      %td.description{:rowspan => 3}
+        = f.text_area :description, class: "resizable-textarea"
+      %td{:colspan => 3}
+        %div{:id => "team_members_droppable", :class => "person-droppable"}
+          = render partial: "person", collection: @project.team_members
+    %tr
+      %td{:colspan => 3}
+        %label{:for => "available_people"}= t("projects.available_people")
+    %tr
+      %td{:colspan => 3}
+        = render partial: "search_people"
+        %div{:id => "available_people", :class => "person-droppable"}
+        %div{:id => "available_people_pagination"}
+
+  .vspacer
+
+  %p
+    = f.label :logo, t("projects.logo")
+    .vspacer
+    .left
+      = thumb_of @project
+    - if @project.logo.present?
+      = f.check_box :remove_logo
+      = f.label :remove_logo, t("projects.remove_logo"), style: "display: inline"
+      %br
+    = f.file_field :logo
+    .clear
+
+
+  = f.submit t("submit")
+  = link_to t("cancel"), :projects
+
+- unless @project.new_record?
+  .right
+    %table{:class => "adjusting move-three-up"}
+      %tr
+        %td
+          = icon_tag "trash"
+        %td
+          = button_to t("projects.delete"), @project, "method" => "delete",     |
+              confirm: (Rails.env.test? ? false : t("projects.confirm_delete"))    |
+
+.clear

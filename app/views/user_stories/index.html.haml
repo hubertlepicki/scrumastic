@@ -1,0 +1,7 @@
+- if params[:in_backlog] == "false"
+  = render partial: "new", locals: {user_story: UserStory.new}
+  #incubator_stories{:class => "#{'user-stories-sortable' if Can.edit_user_stories_for?(current_user, @project)}"}
+    = render partial: "user_story", collection: @user_stories
+- elsif params[:in_backlog] == "true"
+  #backlog_stories{:class => "#{'user-stories-sortable' if Can.edit_user_stories_for?(current_user, @project)}"}
+    = render partial: "user_story", collection: @user_stories

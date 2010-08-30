@@ -1,0 +1,18 @@
+.comment{:id => "comment_#{comment.id}_wrapper"}
+  - if Can.edit?(current_user, comment)
+    .right
+      = link_to icon_tag("trash"),                                                                  |
+          project_user_story_comment_path(comment.user_story.project, comment.user_story, comment), |
+                                         method: "delete", remote: true                             |
+  .left
+    = image_tag comment.user.small_gravatar_url, title: comment.user.name
+
+  = raw simple_format sanitize(comment.content)
+  .clear
+  - if comment.attachment.present?
+    .left
+      = icon_tag "document"
+    .left
+    = link_to File.basename(comment.attachment.file.file), comment.attachment.url
+  .clear
+

@@ -1,0 +1,10 @@
+- form_tag project_user_story_comments_path(@project, @user_story), |
+    id: "new_comment_form", multipart: true do                      |
+  %p
+    %label{:for => "comment_content"}= t("content")
+    = text_area_tag "comment[content]"
+  %p
+    %label{:for => "comment_attachment"}= t("attachment")
+    = file_field_tag "comment[attachment]"
+  %p
+    = submit_tag t("submit")

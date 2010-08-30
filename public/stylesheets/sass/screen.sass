@@ -1,0 +1,282 @@
+!darkblue = #3c5368
+!lightblue = #f8fbff
+!lightgrey = #eeeeee
+!grey = #666666
+
+!red = #ff0000
+!lightred = #ffeeee
+
+!green = #00ff00
+!lightgreen = #eeffee
+
+body
+  :font-size 11px
+  :font-family tahoma, sans-serif
+  :color #666
+  :background
+    :color = !darkblue
+    :image url('/images/body_bg.png')
+    :repeat repeat-x
+    :position top left
+
+#overall_container
+  :width 960px
+  :border 1px solid #3c5368
+  :margin auto
+  :background white url('/images/beta.jpg') no-repeat top right
+  :padding 10px
+
+#overall_header
+  :margin-bottom 10px
+  h1
+    :margin 0
+    :padding 0
+    span
+      :display none
+    a
+      :display block
+      :margin 0
+      :padding 0
+      :width 256px
+      :height 50px
+      :background transparent url('/images/logo.jpg') no-repeat center center
+  #global_navigation
+    :float right
+    :list-style-type none
+    :padding-right 30px
+    li
+      :margin 0
+      :padding 0
+      :display inline-block
+      img
+        :padding 2px
+        :border 1px solid #ccc
+        :margin-bottom -10px
+
+a, a:visited, a:hover
+  :text-decoration none
+  :color = !darkblue
+
+.flash-message
+  :margin 10px 0 10px 0
+
+h2
+  :color = !darkblue
+  :font-size 18px
+  :margin 10px 0 5px 0
+  :text-shadow #999 2px 2px 2px
+
+h3
+  :color = !darkblue
+  :font-size 15px
+  :margin 10px 0 5px 0
+  :text-shadow #999 2px 2px 2px
+
+table td
+  :vertical-align top
+
+.text-input, input[type="submit"], input[type="password"], input[type="button"], input[type="text"], textarea
+  :border 1px solid #ccc
+
+.errorExplanation
+  h2, p
+    :display none
+  ul
+    li
+      :padding 5px
+      :margin 5px 0 5px 0
+
+.devise-links
+  :float right
+  a
+    :margin-left 20px
+
+label
+  :display block
+  :font-weight bold
+  :font-size 11px
+
+.right
+  :float right
+
+.left
+  :float left
+
+.clear
+  :clear both
+
+.vspacer
+  :height 10px
+
+.button-to
+  :display inline-block
+
+.person-draggable
+  :width 64px
+  :height 80px
+  :padding 5px
+  :border 1px solid #ccc
+  :background-color white
+  :display inline-block
+  :cursor pointer
+
+.person-droppable
+  :height 95px
+
+#project_form
+  table
+    :width 100%
+    :border 1px solid #eee
+    td
+      :border 1px solid #eee
+      :padding 5px
+    td.description
+      :width 200px
+      :padding-right 20px
+    td.one
+      :width 88px
+      :padding-right 20px
+
+.projects
+  :width 470px
+  :float left
+
+.owned_projects
+  :width 470px
+  :float right
+
+.project
+  :margin-bottom 10px
+  :padding 5px
+  :background-color = !lightblue
+  :border
+    :width 1px
+    :style solid
+    :color = !darkblue
+  .hidden
+    :opacity 0.3
+  .logo_thumb
+    :float left
+    :margin 0 5px 0 0
+  h3
+    :margin-top 0
+
+.project:hover
+  .hidden
+    :opacity 1
+
+.inline-block
+  :display inline-block
+
+.logo_thumb
+  :margin 5px
+  :border
+    :width 1px
+    :style solid
+    :color = !darkblue
+
+table.adjusting
+  :border 0 !important
+  td
+    :border 0 !important
+    :vertical-align middle
+
+#project_buttons
+  :display inline-block
+  :float left
+  :padding-right 20px
+
+#sprints, #product_backlog, #user_stories_incubator
+  :float left
+  :margin 5px
+  :width 300px
+  :padding 0 4px 4px 4px
+  :border
+    :width 1px
+    :style solid
+    :color = !darkblue
+  h2
+    :border-bottom
+      :width 1px
+      :style solid
+      :color = !darkblue
+
+.new-sprint-form-wrapper, .new-user-story-form-wrapper
+  :display none
+  :padding 10px 5px 10px 5px
+
+.ui-accordion .ui-accordion-content
+  :padding 2px 5px 10px 5px
+
+.edit-sprint
+  :display none
+
+.ui-accordion
+  .ui-accordion-content
+    :position static
+  .ui-accordion-header
+    :padding 5px
+    :font-weight bold
+    :color = !darkblue
+    :margin-top 10px
+    .ui-icon
+      :display none
+
+.move-three-up
+  :margin-top -3em
+
+.user-stories-sortable
+  .user-story
+    :cursor move
+
+.user-story
+  :background-color #fffbe9
+  :padding 5px
+  :margin 5px 0 5px 0
+  :border 1px solid #e7daa8
+  :font-size 10px
+  img
+    :position relative
+    :top -3px
+    :left -2px
+
+.in_progress
+  :border-color = !red
+  :background-color = !lightred
+
+.resolved
+  :border-color = !green
+  :background-color = !lightgreen
+
+.closed
+  :text-decoration line-through
+  :background-color = !lightgreen
+  :border-color = !green
+
+.comment
+  :background-color = !lightblue
+  :padding 5px
+  :margin 5px 0 5px 0
+  :border
+    :width 1px
+    :style solid
+    :color = !darkblue
+  img
+    :margin-right 5px
+
+.user-stories-sortable
+  :min-height 40px
+  .ui-state-highlight
+    :height 20px
+
+#edit_story_form_wrapper
+  :display none
+
+#new_comment_wrapper
+  :display none
+
+#comment_content
+  :width 660px
+
+.sprint-backlog-dialog
+  :display none

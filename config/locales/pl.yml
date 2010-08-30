@@ -1,0 +1,124 @@
+pl:
+  welcome: Witamy!
+  your_projects: Twoje projekty
+  submit: Zapisz
+  cancel: Anuluj
+  as_a: Jako
+  I_want_to: chcę
+  so_that: tak aby
+  back_to: "Wróć do %{name}"
+  attachment: "Załącznik"
+  content: Content
+  delete: Usuń
+  state: Stan
+  burn_down_chart: Wykres wypalania
+  burn_down_info: "*aktualizacja wykresu po dokonaniu zmian może zająć do 2 minut"
+  people:
+    search: "Szukaj (imię, nazwisko, nazwa użytkownika bądź e-mail):"
+    nobody_found: Nie znaleziono nikogo spełniającego kryteria wyszukiwania.
+  projects:
+    your_role_in_project: "Twoja rola w tym projekcie to: %{role}"
+    this_project: ten projekt
+    available_people: Dostępni użytkownicy
+    you_are_involved_in: Projekty w które jesteś zaangażowany
+    you_own: Twoje projekty
+    new_project: Nowy projekt
+    none_involved_in: Nie jesteś jeszcze uczestnikiem żadnego projektu.
+    none_owned: Nie posiadasz jeszcze żadnego projektu.
+    edit_project: Edytuj projekt
+    logo: Logo projektu.
+    remove_logo: Usunąć bieżące logo?
+    delete: Usunąć ten projekt?
+    confirm_delete: Czy na pewno chcesz usunąć ten projekt?
+    sprints: Zaległości sprintów
+    product_backlog: Zaległości systemowe
+    user_stories_incubator: Inkubator
+  comments:
+    comments: Komentarze
+    new_comment: Nowy komentarz
+    delete_comment: Usuń komentarz
+  sprints:
+    new: Utwórz nowy sprint
+  user_stories:
+    new: Nowa karta opowieści
+  models:
+    sprint:
+      name: Nazwa
+      goal: Cel Sprintu
+      start_date: Początek
+      end_date: Zakończenie
+    user:
+      email: Email
+      password: Hasło
+      remember_me: Zapamiętaj mnie na tym komputerze
+      nickname: Nazwa użytkownika (*dozwolone jedynie małe litery)
+    project:
+      name: Nazwa projektu
+      description: Opis
+      roles:
+        scrum_master: Scrum Master
+        product_owner: Właściciel Produktu
+        team_member: Członek Zespołu
+        stakeholder: Obserwator
+      other_stakeholders: Obserwatorzy
+      team_members: Członkowie zespołu
+    user_story:
+      name: Opowieść
+      states:
+        open: Otwarta
+        in_progress: W realizacji
+        resolved: Zrealizowana
+        closed: Zamknięta
+      assigned_to: Przypisana do
+      story_points: Punkty opowieści
+  errors:
+    messages:
+      not_found: "nie znaleziono"
+      already_confirmed: "już potwierdzono"
+      not_locked: "nie zablokowano"
+  devise:
+    failure:
+      unauthenticated: 'Musisz się zalogować bądź założyć nowe konto.'
+      unconfirmed: 'Teraz musisz aktywować swoje konto.'
+      locked: 'Twoje konto jest zablokowane.'
+      invalid: 'Niewłaściwy adres e-mail bądź hasło.'
+      invalid_token: 'Niewłaściwy kupon autoryzujący.'
+      timeout: 'Twoja sesja wygasła, zaloguj się ponownie by kontynuować.'
+      inactive: 'Twoje konto nie zostało jeszcze aktywowane.'
+    sessions:
+      link: 'Zaloguj się'
+      sign_out: 'Wyloguj się'
+      edit: 'Twoje konto'
+      signed_in: 'Zalogowano pomyślnie!'
+      signed_out: 'Wylogowano pomyślnie!'
+      hello: 'Witaj, %{user}!'
+    passwords:
+      link: 'Zgubione/zapomniane hasło?'
+      send_instructions: 'Za kilka chwil otrzymasz e-mail z instrukcjami jak zmienić hasło.'
+      updated: 'Twoje hasło zostało zmienione. Zostałeś zalogowany automatycznie.'
+      send_me: "Wyślij instrukcje zmiany hasła"
+      change_my_password: "Zmień moje hasło"
+      change_password_instructions: "Ktoś zażądał zmiany Twojego hasła. Aby kontynować potwierdź zmianę hasła klikając na link poniżej. Możesz również zignorować ten e-mail i Twoje hasło nie ulegnie zmianie."
+    confirmations:
+      link: "Nie otrzymałeś instrukcji aktywacji konta?"
+      send_instructions: 'Otrzymasz e-mail z instrukcjami aktywacji konta za kilka chwil.'
+      confirmed: 'Twoje konto zostało potwierdzone. Jesteś teraz zalogowany.'
+      resend_confirmation: "Wyślij ponownie e-mail z instrukcjami aktywacji konta"
+      confirmation_instructions: "Możesz aktywować Twoje konto poprzez kliknięcie na link poniżej:"
+      confirm_my_account: 'Aktywuj moje konto.'
+    registrations:
+      link: 'Załóż konto'
+      signed_up: 'Twoje konto zostało stworzone. W celu aktywacji konta postępuj zgodnie z instrukcjami które zostały wysłane na podany adres e-mail.'
+      updated: 'Zaktualizowano Twoje konto.'
+      destroyed: 'Żegnaj! Twoje konto zostało usunięte! Jesteśmy bardzo smutni! :('
+    unlocks:
+      link: "Nie otrzymałeś instrukcji odblokowania?"
+      send_instructions: 'W ciągu kilku minut otrzymasz e-mail z instrukcjami.'
+      unlocked: 'Twoje konto zostało odblokowane. Jesteś teraz zalogowany.'
+      unlock_instructions: 'Twoje konto zostało zablokowane z powodu zbyt wielu nieudanych prób dostępu. Kliknij na poniższy link aby je ponownie aktywować:'
+      unlock_my_account: 'Odblokuj moje konto!'
+    mailer:
+      confirmation_instructions: 'Instrukcja aktywacji konta'
+      reset_password_instructions: 'Instrukcja zmiany hasła'
+      unlock_instructions: 'Instrukcja odblokowania konta'
+

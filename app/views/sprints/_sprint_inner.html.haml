@@ -1,0 +1,29 @@
+.vspacer
+
+.left
+  = link_to icon_tag("arrow-4-diag"), "#sprint_#{sprint.id}_burndown", class: "pop-up"
+
+%div{:id => "sprint_#{sprint.id}_burndown", :class => "sprint-backlog-dialog", "data-title" =>  "#{t("burn_down_chart")} - #{sprint.name}" }
+  %canvas{:width => "600", :height => "350", "data-url" => project_sprint_path(sprint.project, sprint), :class => "burn-down-canvas"}
+  = t("burn_down_info")
+
+- if Can.edit_sprints_for?(current_user, sprint.project)
+  .right
+    %table
+      %tr
+        %td
+          = link_to icon_tag("pencil"), "#", "data-toggle" => "#edit_#{sprint.id}_form_wrapper"
+        %td
+          = link_to icon_tag("trash"), project_sprint_path(@project, sprint), method: "delete", remote: true
+
+.clear
+
+%p= simple_format sprint.goal
+
+.clear
+- if Can.edit_sprints_for?(current_user, sprint.project)
+  %div.edit-sprint{:id => "edit_#{sprint.id}_form_wrapper"}
+    = render partial: "form", locals: {sprint: sprint}
+
+%div{:class => "sprint-sortable #{'user-stories-sortable' if Can.edit_user_stories_for?(current_user, @project)}", "data-sprint-id" => sprint.id}
+  = render partial: "user_stories/user_story", collection: sprint.user_stories.find(:all, :conditions => {}, :sort => [:position, :asc])

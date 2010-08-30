@@ -1,0 +1,8 @@
+<% if !@user_story.new_record? %>
+  $(".new-user-story-form-wrapper").trigger("reload");
+  $(".new-user-story-form-wrapper").hide("blind");
+<% else %>
+  $(".new-user-story-form-wrapper").html("<%= escape_javascript(
+    render(partial: "form", locals: {user_story: @user_story})
+  ) %>");
+<% end %>

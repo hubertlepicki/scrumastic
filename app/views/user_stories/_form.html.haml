@@ -1,0 +1,31 @@
+- form_for [@project, user_story], remote: true do |f|
+  = f.error_messages
+  %table
+    %tr
+      %td
+        %p
+          = f.label :who, t("as_a")
+          = f.text_field :who, :size => 50, :id => "user_story_#{user_story.id}_who"
+        %p
+          = f.label :what, t("I_want_to")
+          = f.text_field :what, :size => 50, :id => "user_story_#{user_story.id}_what"
+        %p
+          = f.label :reason, t("so_that")
+          = f.text_field :reason, :size => 50, :id => "user_story_#{user_story.id}_reason"
+      %td
+        - unless user_story.new_record?
+          = f.label :state, t("state")
+          = f.select :state, options_for_select([ |
+              [t("models.user_story.states.open"), "open"],                        |
+              [t("models.user_story.states.in_progress"), "in_progress"],          |
+              [t("models.user_story.states.resolved"), "resolved"],                |
+              [t("models.user_story.states.closed"), "closed"]], user_story.state) |
+          = f.label :user_id, t("models.user_story.assigned_to")
+          = f.collection_select :user_id, user_story.project.assignable_people, |
+                                :id, :name, :include_blank => true              |
+          = f.label :story_points, t("models.user_story.story_points")
+          = f.select :story_points, options_for_select(UserStory::STORY_POINTS_SCALE.collect {|p| [p, p]}, user_story.story_points)
+  %p
+    .right
+      = loader_icon "user_story_#{user_story.id}"
+    = f.submit t("submit")

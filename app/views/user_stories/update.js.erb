@@ -1,0 +1,7 @@
+<% if !@user_story.errors.empty? %>
+  $("#edit_story_form_wrapper").html("<%= escape_javascript(
+    render partial: "form", locals: {user_story: @user_story}
+  ) %>");
+<% else %>
+  location.reload();
+<% end %>
