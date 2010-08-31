@@ -384,3 +384,8 @@ $(".pop-up").live("click", function(event) {
 $(".burn-down-canvas:visible").livequery(function() {
    new BurnDown(this);
 });
+
+$("input[name='user_story[who]']:visible").livequery(function() {
+  var self = this;
+  setTimeout(function() { $(self).focus(); }, 1000);
+});
