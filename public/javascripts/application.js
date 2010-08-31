@@ -278,7 +278,7 @@ var BurnDown = function(canvas) {
 
         for (var i=0; i<data.sprint_log_entries.length; i++) {
             x_ += i+1;
-            y_ += data.sprint_log_entries[i].sprint_log_entry.remaining_points;
+            y_ += data.sprint_log_entries[i].remaining_points;
         }
         x_ = x_ / (data.sprint_log_entries.length + 1);
         y_ = y_ / (data.sprint_log_entries.length + 1);
@@ -287,7 +287,7 @@ var BurnDown = function(canvas) {
         var a_top=(-x_)*total_points;
         var a_bottom=(-x_)*(-x_);
         for (var i=1; i<=data.sprint_log_entries.length; i++) {
-            a_top += (i - x_)*data.sprint_log_entries[i-1].sprint_log_entry.remaining_points;
+            a_top += (i - x_)*data.sprint_log_entries[i-1].remaining_points;
             a_bottom += (i - x_)*(i - x_);
         }
 
@@ -304,9 +304,8 @@ var BurnDown = function(canvas) {
     // load data with json
     $.getJSON($(canvas).attr("data-url"), function(data) {
     //$.getJSON("/fake_data.json", function(data) {
-        data = data.sprint;
         if ( data.sprint_log_entries.length == 0 ||
-             (data.sprint_log_entries.length == 1) && data.sprint_log_entries[0].sprint_log_entry.total_points == 0.0
+             (data.sprint_log_entries.length == 1) && data.sprint_log_entries[0].total_points == 0.0
            ) {
             ctx.font = "24px Arial";
             ctx.fillText("Cannot draw chart - no data yet!", 10, 30);
@@ -323,8 +322,8 @@ var BurnDown = function(canvas) {
         total_points = 0;
 
         $(data.sprint_log_entries).each(function(i, e) {
-          if(e.sprint_log_entry.total_points > total_points)
-            total_points = e.sprint_log_entry.total_points;
+          if(e.total_points > total_points)
+            total_points = e.total_points;
         });
 
         step = ((height-20) / total_points) * total_points / 10;
@@ -344,7 +343,7 @@ var BurnDown = function(canvas) {
         var prev_y = 10;
         self.drawRegressionLine(data);
         for (var i=0; i<data.sprint_log_entries.length; i++) {
-            cur_y = height - 10 - (data.sprint_log_entries[i].sprint_log_entry.remaining_points * (height-20) / total_points);
+            cur_y = height - 10 - (data.sprint_log_entries[i].remaining_points * (height-20) / total_points);
             cur_x = 10 + (i+1)*(width-20)/days;
             self.drawLine(prev_x, prev_y, cur_x, cur_y, "blue");
             prev_x = cur_x;
@@ -355,7 +354,7 @@ var BurnDown = function(canvas) {
             ctx.closePath();
             ctx.stroke();
             ctx.font = "12px Arial";
-            ctx.fillText(data.sprint_log_entries[i].sprint_log_entry.remaining_points + " story points", cur_x+5, cur_y-5);
+            ctx.fillText(data.sprint_log_entries[i].remaining_points + " story points", cur_x+5, cur_y-5);
         }
 
         // add labels
