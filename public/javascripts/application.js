@@ -389,3 +389,4 @@ $("input[name='user_story[who]']:visible").livequery(function() {
   var self = this;
   setTimeout(function() { $(self).focus(); }, 1000);
 });
+
