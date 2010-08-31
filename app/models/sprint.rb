@@ -15,16 +15,18 @@ class Sprint
   
   validates_presence_of :project_id, :start_date, :end_date, :name
   validates_uniqueness_of :name, scope: :project_id
-  validate :proper_dates
+  validates_with NotOverlappingValidator, :if => Proc.new {|s| s.project != nil && 
+                                                               s.start_date && 
+                                                               s.end_date }
 
   # Custom constructor, adds default values to attributes
   def initialize(args={})
     super(args)
 
-    if self.project != nil # beware of association proxy, it's not nil but behaves like one
-      self.name ||= "Sprint #{self.project.sprints.count + 1}" if self.name.blank?
+    if project != nil # beware of association proxy, it's not nil but behaves like one
+      self.name       ||= "Sprint #{project.sprints.count + 1}" if name.blank?
       self.start_date ||= nearest_monday(max_sprint_end_date || Time.zone.now.to_date)
-      self.end_date ||= self.start_date + 11.days
+      self.end_date   ||= start_date + 11.days
     end
   end
 
@@ -87,37 +89,4 @@ class Sprint
     return from_date.next_week
   end
 
-  # Validates that start and end dates don't overlap with other sprints
-  # and that these are in proper order (start_date < end_date).
-  # Sets sprint.errors hash with proper error message and prevents
-  # record from saving
-  def proper_dates
-    if self.project != nil && self.start_date && self.end_date # otherwise validates_presence_of will do the work
-      errors.add :end_date, "must be greater than start date" unless !errors[:end_date].empty? || (self.start_date < self.end_date)
-
-      errors.add(:start_date, "cannot overlap with other sprints") unless !errors[:start_date].empty? || (self.project.sprints.find(:all,
-        :conditions => {
-          "start_date" => {"$lte" => self.start_date}, "end_date" => {"$gte" => self.start_date},
-          "_id" => {"$ne" => self.id}
-        }
-      ).count == 0)
-
-      errors.add(:end_date, "cannot overlap with other sprints") unless !errors[:end_date].empty? || (self.project.sprints.find(:all,
-        :conditions => {
-          "start_date" => {"$lte" => self.end_date}, "end_date" => {"$gte" => self.end_date},
-          "_id" => {"$ne" => self.id}
-        }
-      ).count == 0)
-      
-      unless self.project.sprints.find(:all,
-          :conditions => {
-            "start_date" => {"$gte" => self.start_date}, "end_date" => {"$lte" => self.end_date},
-            "_id" => {"$ne" => self.id}
-          }
-        ).count == 0
-        errors.add(:start_date, "cannot overlap with other sprints") unless !errors[:start_date].empty?
-        errors.add(:end_date, "cannot overlap with other sprints") unless !errors[:end_date].empty?
-      end
-    end
-  end
 end

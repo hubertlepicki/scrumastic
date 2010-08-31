@@ -122,4 +122,14 @@ en:
       confirmation_instructions: 'Confirmation instructions'
       reset_password_instructions: 'Reset password instructions'
       unlock_instructions: 'Unlock Instructions'
+  activemodel:
+    errors:
+      messages:
+        cannot_overlap: "cannot overlap with other sprints"
+      models:
+        sprint:
+          attributes:
+            end_date: 
+              greater_than_start_date: "must be greater than start date"
+
 
