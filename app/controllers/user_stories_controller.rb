@@ -51,7 +51,7 @@ class UserStoriesController < ProjectScopedController
 
   def move_to_sprint
     Can.edit_user_stories_for?(current_user, @project) do
-      @sprint = @project.sprints.find(:first, conditions: {id: params[:sprint_id]})
+      @sprint = @project.sprints.find(params[:sprint_id])
       @user_story.move_to_sprint!(@sprint)
     end
   end

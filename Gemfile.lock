@@ -1,18 +1,15 @@
 GIT
   remote: git://github.com/cavalle/steak.git
-  revision: 894084d
-  ref: 894084dcca885ccef09627c3ff898c675936335a
+  revision: 894084dcca885ccef09627c3ff898c675936335a
   specs:
     steak (0.4.0.beta.1)
       rspec-core (>= 2.0.0.beta.19)
 
 GIT
   remote: git://github.com/evansagge/carrierwave.git
-  revision: 015530b
-  ref: 015530b3cb83cc7988565d2d6f118d6b64b1f83c
+  revision: 424ece96c0bf4d0d0e75feedcf95c3b9ef50c343
   specs:
-    carrierwave (0.5.0.beta2)
-      activesupport (>= 3.0.0.rc)
+    carrierwave (0.4.4)
 
 GIT
   remote: git://github.com/rspec/rspec-core.git
@@ -51,10 +48,9 @@ GIT
 
 GIT
   remote: http://github.com/mongoid/mongoid.git
-  revision: f38e3ef
-  ref: f38e3efa4fb61204cddf8e98595edf966e304c1e
+  revision: fd4059252fb4ea3a0430a1e9824e3d3f4c95160f
   specs:
-    mongoid (2.0.0.beta.16)
+    mongoid (2.0.0.beta.17)
       activemodel (~> 3.0.0)
       bson (= 1.0.4)
       mongo (= 1.0.7)
