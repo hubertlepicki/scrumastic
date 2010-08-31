@@ -21,7 +21,7 @@ class UserStory
 
   # Story point values that you can select when estimating
   # complexity of user story
-  STORY_POINTS_SCALE = [ 0, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100 ]
+  STORY_POINTS_SCALE = [ 0, 1, 2, 4, 8, 16, 32, 64 ]
 
   def initialize(args={})
     super(args)
