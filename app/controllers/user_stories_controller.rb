@@ -41,12 +41,14 @@ class UserStoriesController < ProjectScopedController
     Can.edit_user_stories_for?(current_user, @project) do
       @user_story.move_to_incubator!
     end
+    head :ok
   end
 
   def move_to_backlog
     Can.edit_user_stories_for?(current_user, @project) do
       @user_story.move_to_backlog!
     end
+    head :ok
   end
 
   def move_to_sprint
@@ -54,6 +56,7 @@ class UserStoriesController < ProjectScopedController
       @sprint = @project.sprints.find(params[:sprint_id])
       @user_story.move_to_sprint!(@sprint)
     end
+    head :ok
   end
 
   def show

@@ -9,13 +9,12 @@ feature "User Stories management", %q{
   
   scenario "Creating a new User Story" do
     users = create_standard_users
-    project = Project.create valid_project_attributes("Project 1", "test", users[:hubert])
-    sprint = Sprint.create(:project => project)
-    sign_in_as("Hubert")
+    project = Project.create! valid_project_attributes("Project 1", "test", users[:hubert])
+    sprint = Sprint.create! :project => project
+    sign_in_as "Hubert"
     click_link "Project 1"
-    sleep(1)
+    sleep 1
     click_link "New user story"
-
     fill_in "As a", :with => "someone"
     fill_in "I want to", :with => "do something"
     fill_in "so that", :with => "something happens"
@@ -24,5 +23,27 @@ feature "User Stories management", %q{
     end
     UserStory.count.should eql(1)
   end
+
+  scenario "Moving User Stories between panels" do
+    users = create_standard_users
+    project = Project.create! valid_project_attributes("Project 1", "test", users[:hubert])
+    sprint = Sprint.create! :project => project
+    user_story = UserStory.create! :project => project, :who => "foo", :what => "bar"
+
+    sign_in_as "Hubert"
+    click_link "Project 1"
+    sleep 1
+
+    drag "//*[@data-id='#{user_story.id}']", "//*[@id='backlog_stories']"
+    sleep 1
+    UserStory.first.in_backlog.should eql(true)
+    drag "//*[@data-id='#{user_story.id}']", "//*[@data-sprint-id='#{sprint.id}']"
+    sleep 1
+    UserStory.first.sprint.should eql(sprint)
+    drag "//*[@data-id='#{user_story.id}']", "//*[@id='incubator_stories']"
+    sleep 1
+    UserStory.first.in_backlog.should eql(false)
+  end
+
 
 end
