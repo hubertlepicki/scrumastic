@@ -13,7 +13,7 @@ en:
   edit: Edit
   state: State
   burn_down_chart: Burn Down Chart
-  burn_down_info: "*please note that it can take up to couple of minutes for this chart to be updated after you make changes"
+  burn_down_info: "*please note that it can take a few minutes for this chart to be updated after you make changes"
   people:
     search: "Search by name, login or email:"
     nobody_found: Couldn't find any people matching given criteria.
