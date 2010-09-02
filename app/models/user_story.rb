@@ -7,6 +7,7 @@ class UserStory
   field :who, type: String
   field :what, type: String
   field :reason, type: String
+  field :description, type: String
   field :bug, type: Boolean
   field :in_backlog, type: Boolean
   field :position, type: Integer

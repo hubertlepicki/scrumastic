@@ -12,6 +12,10 @@
         %p
           = f.label :reason, t("so_that"), :for => "user_story_#{user_story.id}_reason"
           = f.text_field :reason, :size => 50, :id => "user_story_#{user_story.id}_reason"
+        %p
+          = f.label :description, t("description"), :for => "user_story_#{user_story.id}_description"
+          = f.text_area :description, :cols => 50, :rows => 3, :id => "user_story_#{user_story.id}_description"
+
       %td
         - unless user_story.new_record?
           = f.label :state, t("state")
