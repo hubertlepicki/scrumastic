@@ -1,9 +1,5 @@
 %div{"data-id" => user_story.id, "data-project-id" => user_story.project_id, :class => "user-story #{user_story.state}",
      "data-story-points" => (user_story.story_points || 0)}
-  - unless user_story.user.nil?
-    .left
-      = image_tag user_story.user.small_gravatar_url, title: user_story.user.name
-
   - unless action_name == "edit"
     - if Can.edit_user_stories_for?(current_user, @project)
       = link_to icon_tag("trash"),                                  |
@@ -17,7 +13,16 @@
   - else
     - if Can.edit_user_stories_for?(current_user, @project)
       = link_to icon_tag("pencil"), "#", :'data-toggle' => "#edit_story_form_wrapper", |
-                                         class: "right"                                |
+        class: "right"                                |
+
+  - if user_story.story_points && user_story.story_points > 0
+    %span.story-points= user_story.story_points
+
+  - unless user_story.user.nil?
+    .right{:style => "clear: right"}
+      = image_tag user_story.user.small_gravatar_url, title: user_story.user.name
+
+
   &ldquo;
   = t("as_a")
   = user_story.who

@@ -116,8 +116,11 @@ label {
   width: 100%;
   border: 1px solid #eeeeee; }
   #project_form table td {
-    border: 1px solid #eeeeee;
-    padding: 5px; }
+    border: 1px solid white;
+    padding: 5px;
+    background: transparent url("/images/semi_transparent.png") repeat top left;
+    border-radius: 5px;
+    -moz-border-radius: 5px; }
   #project_form table td.description {
     width: 200px;
     padding-right: 20px; }
@@ -136,10 +139,10 @@ label {
 .project {
   margin-bottom: 10px;
   padding: 5px;
-  background-color: #fafaff;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #3c5368; }
+  background: transparent url("/images/semi_transparent.png") repeat top left;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-box-shadow: 1px 1px 3px black; }
   .project .hidden {
     opacity: 0.3; }
   .project .logo_thumb {
@@ -179,8 +182,9 @@ table.adjusting {
   border-width: 0px;
   border-style: solid;
   border-color: #3c5368;
-  background-color: #fafaff;
+  background: transparent url("/images/semi_transparent.png") repeat top left;
   border-radius: 5px;
+  -moz-border-radius: 5px;
   box-shadow: 1px 1px 3px black;
   -webkit-box-shadow: 1px 1px 3px black; }
   #sprints h2, #product_backlog h2, #user_stories_incubator h2 {
@@ -271,3 +275,14 @@ table.adjusting {
 
 .sprint-backlog-dialog {
   display: none; }
+
+.story-points {
+  font-weight: bold;
+  color: #3c5368;
+  display: inline-block;
+  background-color: white;
+  padding: 5px 10px;
+  margin: 0 5px 5px 0;
+  box-shadow: 1px 1px 3px black;
+  -webkit-box-shadow: 1px 1px 3px black;
+  font-style: normal; }

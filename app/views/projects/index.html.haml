@@ -34,7 +34,7 @@
       %p
         = project.description
       .clear
-  - if @projects.empty?
+  - if @owned_projects.empty?
     = t("projects.none_owned")
 
 .clear
