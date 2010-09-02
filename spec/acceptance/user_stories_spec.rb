@@ -27,7 +27,7 @@ feature "User Stories management", %q{
   scenario "Moving User Stories between panels" do
     users = create_standard_users
     project = Project.create! valid_project_attributes("Project 1", "test", users[:hubert])
-    sprint = Sprint.create! :project => project
+    sprint = Sprint.create! :project => project, :start_date => 2.days.ago
     user_story = UserStory.create! :project => project, :who => "foo", :what => "bar"
 
     sign_in_as "Hubert"
