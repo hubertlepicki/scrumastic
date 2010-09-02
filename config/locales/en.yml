@@ -12,6 +12,7 @@ en:
   delete: Delete
   edit: Edit
   state: State
+  current: Current
   burn_down_chart: Burn Down Chart
   burn_down_info: "*please note that it can take a few minutes for this chart to be updated after you make changes"
   people:
@@ -40,8 +41,10 @@ en:
     delete_comment: Delete comment
   sprints:
     new: Create new sprint
+    cannot_delete: Cannot delete Sprint with assigned User Stories
   user_stories:
     new: New user story
+    confirm_delete: "Are you really sure that you want to remove this user story?"
   models:
     sprint:
       name: Name

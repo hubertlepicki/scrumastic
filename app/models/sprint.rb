@@ -32,6 +32,9 @@ class Sprint
 
   # Removes sprint and moves all user stories back to the backlog
   def destroy
+    unless user_stories.empty?
+      return false
+    end
     user_stories.each do |story|
       story.move_to_backlog!
     end
@@ -52,6 +55,10 @@ class Sprint
 
   def formatted_start_date
     start_date ? start_date.strftime("%d/%m/%Y") : ""
+  end
+
+  def is_current?
+    (start_date <= Time.zone.now) && (Time.zone.now <= end_date)
   end
 
   # Create or update log entries for given sprint if it's current

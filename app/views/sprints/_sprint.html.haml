@@ -1,3 +1,5 @@
-%h3{:id => "sprint_#{sprint.id}_name_header"}= sprint.name
+%h3{:id => "sprint_#{sprint.id}_name_header", :class => "#{"current-sprint" if sprint.is_current?}"}
+  = sprint.name
+  = " [#{t("current")}]" if sprint.is_current?
 %div{:id => "sprint_#{sprint.id}_wrapper"}
   = render partial: "sprint_inner", locals: {sprint: sprint}

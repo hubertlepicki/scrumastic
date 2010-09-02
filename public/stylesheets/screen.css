@@ -9,10 +9,13 @@ body {
 
 #overall_container {
   width: 960px;
-  border: 1px solid #3c5368;
   margin: auto;
-  background: white url("/images/beta.jpg") no-repeat top right;
-  padding: 10px; }
+  background: white url("/images/container_bg.png") no-repeat top right;
+  padding: 10px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px white;
+  -webkit-box-shadow: 0px 0px 10px white; }
 
 #overall_header {
   margin-bottom: 10px; }
@@ -133,7 +136,7 @@ label {
 .project {
   margin-bottom: 10px;
   padding: 5px;
-  background-color: #f8fbff;
+  background-color: #fafaff;
   border-width: 1px;
   border-style: solid;
   border-color: #3c5368; }
@@ -173,13 +176,20 @@ table.adjusting {
   margin: 5px;
   width: 300px;
   padding: 0 4px 4px 4px;
-  border-width: 1px;
+  border-width: 0px;
   border-style: solid;
-  border-color: #3c5368; }
+  border-color: #3c5368;
+  background-color: #fafaff;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px black;
+  -webkit-box-shadow: 1px 1px 3px black; }
   #sprints h2, #product_backlog h2, #user_stories_incubator h2 {
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: #3c5368; }
+
+#sprints .delete-story {
+  display: none; }
 
 .new-sprint-form-wrapper, .new-user-story-form-wrapper {
   display: none;
@@ -209,10 +219,14 @@ table.adjusting {
 
 .user-story {
   background-color: #fffbe9;
-  padding: 5px;
+  padding: 10px;
   margin: 5px 0 5px 0;
   border: 1px solid #e7daa8;
-  font-size: 10px; }
+  font-size: 14px;
+  font-style: italic;
+  border-radius: 2px;
+  box-shadow: 1px 1px 2px #666666;
+  -webkit-box-shadow: 1px 1px 2px #666666; }
   .user-story img {
     position: relative;
     top: -3px;
@@ -232,7 +246,7 @@ table.adjusting {
   border-color: lime; }
 
 .comment {
-  background-color: #f8fbff;
+  background-color: #fafaff;
   padding: 5px;
   margin: 5px 0 5px 0;
   border-width: 1px;
@@ -244,7 +258,7 @@ table.adjusting {
 .user-stories-sortable {
   min-height: 40px; }
   .user-stories-sortable .ui-state-highlight {
-    height: 20px; }
+    height: 40px; }
 
 #edit_story_form_wrapper {
   display: none; }

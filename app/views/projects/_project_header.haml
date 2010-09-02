@@ -5,6 +5,6 @@
 
 %div.description= project.description
 
-= link_to t("edit"), edit_project_path if Can.edit?(current_user, @project)
+= link_to t("edit"), edit_project_path(@project) if Can.edit?(current_user, @project)
 
 .clear

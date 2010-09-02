@@ -44,7 +44,6 @@ class ProjectsController < AuthenticatedController
 
   def destroy
     Can.destroy?(current_user, @project) do
-      @project.destroy
       redirect_to projects_path
     end
   end

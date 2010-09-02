@@ -154,7 +154,7 @@ $("#project_buttons input").livequery("change", function(event) {
 });
 
 $("#sprints_accordion").livequery(function(event) {
-    $(this).accordion({autoHeight: false, collapsible: true});
+    $(this).accordion({autoHeight: false, collapsible: true, active: $(".current-sprint")});
 });
 
 var load_html_into = function(event) {

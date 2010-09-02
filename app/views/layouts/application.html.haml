@@ -3,14 +3,14 @@
   %head
     %meta{ :name => "csrf-token", :content => form_authenticity_token }
     %title Scrumastic
-    %link{ :href => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/themes/smoothness/jquery-ui.css", :type => "text/css", :rel => "Stylesheet" }
+    %link{ :href => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/themes/smoothness/jquery-ui.css", :type => "text/css", :rel => "Stylesheet" }
     = stylesheet_link_tag "/stylesheets/reset.css"
     = stylesheet_link_tag "/stylesheets/screen.css"
 
     %script{ :type => "text/javascript", :src => "http://www.google.com/jsapi" }
     %script{ :type => "text/javascript" }
       google.load("jquery", "1.4.2");
-      google.load("jqueryui", "1.8.0");
+      google.load("jqueryui", "1.8.4");
 
     = javascript_include_tag "jquery.livequery"
     = javascript_include_tag "rails"
@@ -19,6 +19,7 @@
     = javascript_include_tag "application"
 
   %body
+    &nbsp;
     #overall_container
       #overall_header
         = render partial: "layouts/navigation"
@@ -28,3 +29,9 @@
 
       = render partial: "layouts/flash_messages"
       = yield
+      #footer
+        2010 &copy; Hubert Łępicki.
+        = link_to "AmberBit", "http://amberbit.com" 
+        creation.
+        This web page is using
+        = link_to "slik icon set", "http://www.famfamfam.com/lab/icons/silk/"
