@@ -66,7 +66,7 @@ class Project
 
   # Removes project and associated sprints and user stories
   def destroy
-    Sprint.destroy_all(:conditions => {:project_id => id})
+    sprints.each {|sprint| sprint.destroy(true) }
     UserStory.destroy_all(:conditions => {:project_id => id})
     super
   end

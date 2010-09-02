@@ -56,16 +56,13 @@ describe UserStory do
     story.in_backlog.should be_true
   end
 
-  it "should move to backlog when sprint is being deleted" do
+  it "should not delete Sprint with assigned user stories" do
     sprint = Sprint.create!(project: @project)
     story = UserStory.create( who: "registered user", what: "play",
                               reason: "win cash", project: @project,
                               sprint_id: sprint.id, in_backlog: true )
-    sprint.destroy
-    UserStory.count.should eql(1)
-    story = story.reload
-    story.sprint_id.should be_nil
-    story.in_backlog.should be_true
+    sprint.destroy.should be_false
+    Sprint.count.should eql(1)
   end
 
   it "should be deleted when project is deleted" do

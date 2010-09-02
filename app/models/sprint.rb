@@ -31,14 +31,11 @@ class Sprint
   end
 
   # Removes sprint and moves all user stories back to the backlog
-  def destroy
-    unless user_stories.empty?
+  def destroy(force = false)
+    if !force && !user_stories.empty?
       return false
     end
-    user_stories.each do |story|
-      story.move_to_backlog!
-    end
-    super
+    super()
   end
 
   def formatted_end_date=(date)

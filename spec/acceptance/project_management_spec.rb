@@ -62,6 +62,7 @@ feature "Project management", %q{
 
     click_link "Edit project"
     click_button "Delete this project"
+    sleep(1)
     Project.count.should eql(0)
   end
 end

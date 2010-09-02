@@ -25,7 +25,7 @@ feature "Sprints management", %q{
   scenario "Deleting a sprint" do
     users = create_standard_users
     project = Project.create valid_project_attributes("Project 1", "test", users[:hubert])
-    sprint = Sprint.new(project: project)
+    sprint = Sprint.new(project: project, start_date: 2.days.ago)
     sprint.save
 
     sign_in_as("Hubert")
@@ -39,7 +39,7 @@ feature "Sprints management", %q{
   scenario "Editing a sprint" do
     users = create_standard_users
     project = Project.create valid_project_attributes("Project 1", "test", users[:hubert])
-    sprint = Sprint.new(project: project)
+    sprint = Sprint.new(project: project, start_date: 2.days.ago)
     sprint.save
 
     sign_in_as("Hubert")
