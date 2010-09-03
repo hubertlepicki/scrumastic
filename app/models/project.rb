@@ -17,7 +17,7 @@ class Project
   belongs_to_related :owner, :class_name => "User"
   has_many_related :sprints
   has_many_related :user_stories
-
+  referenced_in :time_log_entry
   mount_uploader :logo, ProjectLogoUploader
 
   validates_presence_of :name

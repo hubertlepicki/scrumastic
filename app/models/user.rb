@@ -20,6 +20,7 @@ class User
   is_gravtastic # we want to have avatar of user with gravatar.com service
 
   has_many_related :projects, foreign_key: :owner_id # projects created and administrated by user
+  referenced_in :time_log_entry
 
   # Removes user and his involvement in all projects
   def destroy

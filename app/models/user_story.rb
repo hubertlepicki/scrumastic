@@ -18,6 +18,7 @@ class UserStory
   belongs_to_related :sprint
   belongs_to_related :user
   has_many_related :comments
+  referenced_in :time_log_entry
   validates_presence_of :who, :what, :project_id
 
   # Story point values that you can select when estimating

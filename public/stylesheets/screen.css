@@ -187,10 +187,6 @@ table.adjusting {
   -moz-border-radius: 5px;
   box-shadow: 1px 1px 3px black;
   -webkit-box-shadow: 1px 1px 3px black; }
-  #sprints h2, #product_backlog h2, #user_stories_incubator h2 {
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: #3c5368; }
 
 #sprints .delete-story {
   display: none; }
