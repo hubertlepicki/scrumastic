@@ -8,7 +8,7 @@ class CommentsController < ProjectScopedController
 
   def index
     Can.see?(current_user, @project) do
-      @comments = @user_story.comments.all(sort: [:created_at, :asc])
+      @comments = @user_story.comments
     end
   end
 
@@ -20,7 +20,7 @@ class CommentsController < ProjectScopedController
 
   def create
     Can.see?(current_user, @project) do
-      @comment = Comment.create(params[:comment].merge(
+      @comment = Comment.create!(params[:comment].merge(
           user_id: current_user.id, user_story_id: @user_story.id))
 
       redirect_to [@project, @user_story]
