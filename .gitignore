@@ -5,3 +5,4 @@ tmp/**/*
 config/mongoid.yml
 public/system/*
 public/uploads/*
+nohup.out

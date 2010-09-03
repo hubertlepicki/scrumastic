@@ -32,7 +32,7 @@ feature "Sprints management", %q{
     click_link "Project 1"
     sleep(1)
     click_link "Delete Sprint 1"
-
+    sleep(1)
     Sprint.count.should eql(0)
   end
 
