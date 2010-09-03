@@ -20,7 +20,7 @@ class User
   is_gravtastic # we want to have avatar of user with gravatar.com service
 
   has_many_related :projects, foreign_key: :owner_id # projects created and administrated by user
-  referenced_in :time_log_entry
+  references_many :time_log_entries, :dependent => :nullify
 
   # Removes user and his involvement in all projects
   def destroy
@@ -70,5 +70,9 @@ class User
   # Returns link to 16x16 user avatar using gravatar.com service
   def small_gravatar_url
     gravatar_url + "&size=16"
+  end
+
+  def current_time_log_entry(project)
+    time_log_entries.find(:first, :conditions => {current: true})
   end
 end

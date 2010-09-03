@@ -12,7 +12,7 @@ class Sprint
   belongs_to_related :project
   has_many_related :user_stories
   has_many_related :sprint_log_entries
-  referenced_in :time_log_entry  
+  references_many :time_log_entries, :dependent => :nullify
 
   validates_presence_of :project_id, :start_date, :end_date, :name
   validates_uniqueness_of :name, scope: :project_id
