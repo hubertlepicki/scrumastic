@@ -29,7 +29,10 @@ describe TimeLogEntry do
     TimeLogEntry.new(user: @user, project: @project).should_not be_valid
   end
 
-  it "should be in relation with user story"
+  it "should be in relation with user story" do
+    entry = TimeLogEntry.new(user: @user, project: @project).should_not be_valid
+    user_story = UserStory.create!(sprint: @sprint, who: "Me", what: "test")
+  end
 
   it "shoul be nullified when removing associated user story"
 
