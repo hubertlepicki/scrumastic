@@ -73,6 +73,6 @@ class User
   end
 
   def current_time_log_entry(project)
-    time_log_entries.find(:first, :conditions => {current: true})
+    time_log_entries.find(:first, :conditions => {current: true, project_id: project.id})
   end
 end

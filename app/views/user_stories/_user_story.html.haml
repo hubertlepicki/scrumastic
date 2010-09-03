@@ -9,11 +9,18 @@
                 class: "right delete-story",                        |
                 "data-confirm" =>  t("user_stories.confirm_delete") |
     - if Can.see?(current_user, @project)
-      = link_to icon_tag("arrowthick-1-e"), [user_story.project, user_story], class: "right"
+      = link_to icon_tag("arrow-4-diag"), [user_story.project, user_story], class: "right"
   - else
     - if Can.edit_user_stories_for?(current_user, @project)
       = link_to icon_tag("pencil"), "#", :'data-toggle' => "#edit_story_form_wrapper", |
         class: "right"                                |
+
+  .right
+    - if current_user.current_time_log_entry(@project) && current_user.current_time_log_entry(@project).user_story_id == user_story.id
+      = link_to icon_tag("pause"), stop_work_project_user_story_sprint_log_entries_path(@project, user_story), title: t("stop_work")
+    - else
+      = link_to icon_tag("play"), start_work_project_user_story_sprint_log_entries_path(@project, user_story), title: t("start_work")
+
 
   - if user_story.story_points && user_story.story_points > 0
     %span.story-points= user_story.story_points
@@ -21,7 +28,7 @@
   - unless user_story.user.nil?
     .right{:style => "clear: right"}
       = image_tag user_story.user.small_gravatar_url, title: user_story.user.name
-
+  
 
   &ldquo;
   = t("as_a")
@@ -32,3 +39,5 @@
     = t("so_that")
     = user_story.reason
   &rdquo;
+
+  .clear

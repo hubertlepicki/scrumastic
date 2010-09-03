@@ -16,6 +16,8 @@ en:
   current: Current
   burn_down_chart: Burn Down Chart
   burn_down_info: "*please note that it can take a few minutes for this chart to be updated after you make changes"
+  start_work: Start work
+  stop_work: Stop work
   people:
     search: "Search by name, login or email:"
     nobody_found: Couldn't find any people matching given criteria.

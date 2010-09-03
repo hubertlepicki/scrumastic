@@ -13,6 +13,12 @@ Scrumastic::Application.routes.draw do |map|
   resources :projects do
     resources :sprints
     resources :user_stories do
+      resources :sprint_log_entries do
+        collection do
+          get :start_work
+          get :stop_work
+        end
+      end
       member do
         post :move_to_backlog
         post :move_to_incubator

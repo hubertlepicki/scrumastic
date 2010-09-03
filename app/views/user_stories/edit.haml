@@ -1,5 +1,7 @@
 = render partial: "projects/project_header", locals: {project: @user_story.project}
 
+.right
+
 %h3= t("models.user_story.name")
 
 = render partial: "user_story", locals: {user_story: @user_story}
