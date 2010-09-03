@@ -53,14 +53,32 @@ describe TimeLogEntry do
     @user.current_time_log_entry(@project).should eql(entry)
   end
 
-  it "should be possible to close this time log entry"
+  it "should be possible to close this time log entry" do
+    entry = TimeLogEntry.create!(user: @user, project: @project, sprint: @sprint)
+    @user.current_time_log_entry(@project).close
+    entry.reload.should_not be_current
+  end
 
-  it "should count time on closing"
+  it "should close current sprint log entry when creating new one" do
+    entry = TimeLogEntry.create!(user: @user, project: @project, sprint: @sprint)
+    TimeLogEntry.create(user: @user, project: @project, sprint: @sprint)
+    entry.reload.should_not be_current
+  end
 
-  it "should be closed automatically when starting new time log entry"
+  it "should count time on closing" do
+    entry = nil
+    Timecop.travel(2.minutes.ago) do
+      entry = TimeLogEntry.create!(user: @user, project: @project, sprint: @sprint)
+    end
+    entry.close
+    entry.number_of_seconds.should > 0
+  end
 
-  it "should switch current time log entry to this newly created one"
+  it "should switch current time log entry to this newly created one" do
+    entry = TimeLogEntry.create!(user: @user, project: @project, sprint: @sprint)
+    TimeLogEntry.create(user: @user, project: @project, sprint: @sprint).should be_current
+  end 
 
-  it "should verify that time log entries do not overlap"
+  it "should verify that time log entries do not overlap" # implement when doing edit
 end
 

@@ -10,6 +10,7 @@ class TimeLogEntry
 
   validates_presence_of :sprint, :project, :user
   validates_uniqueness_of :current, :scope => :project_id, :if => Proc.new {|o| o.current == true }
+  before_validation :close_current_if_new
 
   def nullify
     [:sprint, :user, :user_story].each do |relation|
@@ -20,5 +21,17 @@ class TimeLogEntry
       end
     end
     save
+  end
+
+  def close
+    update_attributes :current => false, :number_of_seconds => Time.zone.now.to_i - created_at.to_i
+  end
+
+  def close_current_if_new
+    if new_record? && project && user
+      TimeLogEntry.all(:conditions => {:user_id => user.id, :project_id => project.id, :current => true}).each do |e|
+        e.close
+      end
+    end
   end
 end
