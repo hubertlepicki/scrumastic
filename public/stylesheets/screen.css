@@ -91,6 +91,9 @@ label {
 .left {
   float: left; }
 
+.clear-right {
+  clear: right; }
+
 .clear {
   clear: both; }
 
@@ -217,7 +220,7 @@ table.adjusting {
 .user-stories-sortable .user-story {
   cursor: move; }
 
-.user-story {
+.user-story, .time-log-entry {
   background-color: #fffbe9;
   padding: 10px;
   margin: 5px 0 5px 0;
@@ -227,10 +230,27 @@ table.adjusting {
   border-radius: 2px;
   box-shadow: 1px 1px 2px #666666;
   -webkit-box-shadow: 1px 1px 2px #666666; }
-  .user-story img {
+  .user-story img, .time-log-entry img {
     position: relative;
     top: -3px;
     left: -2px; }
+
+.time-log-entry img {
+  position: none;
+  top: 0;
+  left: 0;
+  float: left;
+  padding-right: 10px; }
+.time-log-entry .entry-duration, .time-log-entry .entry-worked-on {
+  display: inline; }
+.time-log-entry .entry-date {
+  font-size: 12px;
+  font-style: normal;
+  line-height: 15px; }
+.time-log-entry .entry-duration {
+  font-weight: bold; }
+.time-log-entry .entry-worked-on {
+  font-style: normal; }
 
 .in_progress {
   border-color: red;
@@ -282,3 +302,6 @@ table.adjusting {
   box-shadow: 1px 1px 3px black;
   -webkit-box-shadow: 1px 1px 3px black;
   font-style: normal; }
+
+.simple-filtering label {
+  display: inline; }

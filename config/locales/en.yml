@@ -1,6 +1,8 @@
 en:
   welcome: Welcome
   your_projects: Your projects
+  from: From
+  to: To
   description: Description
   submit: Submit
   cancel: Cancel
@@ -12,6 +14,8 @@ en:
   content: Content
   delete: Delete
   edit: Edit
+  worked_on: "Worked on:"
+  item_removed: "This item was removed and is no longer available"
   state: State
   current: Current
   burn_down_chart: Burn Down Chart

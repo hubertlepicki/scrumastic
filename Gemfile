@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 # Bundle edge Rails instead:
 gem 'rails', "3.0.0" #git: 'git://github.com/rails/rails.git', :branch => "3-0-stable", ref: "c7106e827e34b34da8cb348e5ec387d87def24ec"
 gem "mongoid", git: "http://github.com/mongoid/mongoid.git" #, ref: "f38e3efa4fb61204cddf8e98595edf966e304c1e"
+gem "will_paginate"
 gem "bson_ext", "1.0.4"
 gem "devise", "1.1.2"
 gem "rmagick", "2.13.1", require: 'RMagick'
