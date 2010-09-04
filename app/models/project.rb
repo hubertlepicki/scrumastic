@@ -93,6 +93,12 @@ class Project
     self.team_member_ids.collect{|user_id| User.find(user_id)}
   end
 
+  def worked_time(from = created_at, to = Time.zone.now)
+    TimeLogEntry.all(conditions: 
+                       {project_id: id, :created_at.gte => from, :created_at.lte => to}
+                    ).collect{|e| e.number_of_seconds}.sum
+  end
+
   private
 
   # Validates that one user must play only one role in Project.
@@ -114,4 +120,5 @@ class Project
       errors[:stakeholder_ids] << "must have unique role"
     end
   end
+
 end
