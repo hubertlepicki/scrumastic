@@ -1,0 +1,6 @@
+default:
+  app:
+    name: MyApp
+    url:  http://myapp.com
+  author: AmberBit
+  current_file_name: default.yml
