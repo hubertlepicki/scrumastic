@@ -305,3 +305,10 @@ table.adjusting {
 
 .simple-filtering label {
   display: inline; }
+
+.worked-time {
+  font-size: 20px;
+  font-weight: bold;
+  float: right;
+  color: #3c5368;
+  clear: right; }

@@ -4,6 +4,9 @@
 %h2= link_to project.name, project
 
 %div.description= project.description
+%div.description
+  = TimeFormatter::format project.worked_time
+  = link_to t("details"), project_time_log_entries_path(project)
 
 = link_to t("edit"), edit_project_path(@project) if Can.edit?(current_user, @project)
 

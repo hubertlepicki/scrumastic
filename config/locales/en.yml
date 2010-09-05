@@ -1,6 +1,7 @@
 en:
   welcome: Welcome
   your_projects: Your projects
+  details: Details
   from: From
   to: To
   description: Description
@@ -10,11 +11,13 @@ en:
   I_want_to: I want to
   so_that: so that
   back_to: "Back to %{name}"
+  back: "Back"
   attachment: "Attachment"
   content: Content
   delete: Delete
   edit: Edit
   worked_on: "Worked on:"
+  user: User
   item_removed: "This item was removed and is no longer available"
   state: State
   current: Current
@@ -22,6 +25,8 @@ en:
   burn_down_info: "*please note that it can take a few minutes for this chart to be updated after you make changes"
   start_work: Start work
   stop_work: Stop work
+  start_date: Start date
+  worked_time: Worked time
   people:
     search: "Search by name, login or email:"
     nobody_found: Couldn't find any people matching given criteria.
@@ -46,6 +51,9 @@ en:
     comments: Comments
     new_comment: New comment
     delete_comment: Delete comment
+  time_log_entries:
+    new: New time log entry
+    edit: Edit time log entry
   sprints:
     new: Create new sprint
     cannot_delete: Cannot delete Sprint with assigned User Stories

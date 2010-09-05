@@ -34,4 +34,17 @@ class TimeLogEntry
     end
   end
 
+  def formatted_created_at=(time)
+    begin
+      self.created_at = Time.parse(time)
+    rescue ArgumentError
+      # silently ignore, use default 
+    end
+  end
+
+  def formatted_created_at
+    (created_at ? created_at : Time.zone.now).strftime("%d/%m/%Y %k:%M:%S")
+  end
+
+
 end

@@ -34,6 +34,11 @@ class UserStory
     self.story_points ||= 0
   end
 
+  def text
+    "#{I18n.t("as_a")} #{who} #{I18n.t("I_want_to")} #{what} " +
+    "#{"#{I18n.t("so_that")} #{reason}" unless reason.blank?}"
+  end
+
   # Moves user story to product backlog from incubator or
   # sprint backlog
   def move_to_backlog!
