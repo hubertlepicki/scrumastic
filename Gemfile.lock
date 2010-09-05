@@ -60,6 +60,9 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    RubyInline (3.8.6)
+      ZenTest (~> 4.3)
+    ZenTest (4.4.0)
     abstract (1.0.0)
     actionmailer (3.0.0)
       actionpack (= 3.0.0)
@@ -113,6 +116,7 @@ GEM
     gravtastic (2.2.0)
     haml (3.0.18)
     i18n (0.4.1)
+    image_science (1.2.1)
     json_pure (1.4.6)
     mail (2.2.5)
       activesupport (>= 2.3.6)
@@ -142,7 +146,6 @@ GEM
       rake (>= 0.8.4)
       thor (~> 0.14.0)
     rake (0.8.7)
-    rmagick (2.13.1)
     rubyzip (0.9.4)
     selenium-webdriver (0.0.28)
       ffi (>= 0.6.1)
@@ -161,6 +164,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RubyInline (= 3.8.6)
   bson_ext (= 1.0.4)
   capybara (= 0.3.9)
   carrierwave!
@@ -169,9 +173,9 @@ DEPENDENCIES
   googlecharts (= 1.6.0)
   gravtastic (= 2.2.0)
   haml (= 3.0.18)
+  image_science (= 1.2.1)
   mongoid!
   rails (= 3.0.0)
-  rmagick (= 2.13.1)
   rspec!
   rspec-core!
   rspec-expectations!

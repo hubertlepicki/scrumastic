@@ -6,7 +6,8 @@ gem "mongoid", git: "http://github.com/mongoid/mongoid.git" #, ref: "f38e3efa4fb
 gem "will_paginate"
 gem "bson_ext", "1.0.4"
 gem "devise", "1.1.2"
-gem "rmagick", "2.13.1", require: 'RMagick'
+gem "RubyInline", "3.8.6", require: "inline"
+gem "image_science", "1.2.1"
 gem "carrierwave", git: "git://github.com/evansagge/carrierwave.git" #, ref: "015530b3cb83cc7988565d2d6f118d6b64b1f83c"
 gem "gravtastic", "2.2.0"
 gem "haml", "3.0.18"
