@@ -31,7 +31,7 @@ class Project
 
   # Ids of people that you can assign user stories to.
   def assignable_people_ids
-    ([self.scrum_master_id] + self.team_member_ids).select {|u_id| !u_id.blank?}
+    ([self.scrum_master_id.to_s] + self.team_member_ids).select {|u_id| !u_id.blank?}
   end
 
   # True if user is allowed to remove given project
@@ -54,14 +54,14 @@ class Project
   # True if user is allowed to edit user stories in project
   def can_edit_user_stories_for?(someone)
     can_edit?(someone) ||
-    assignable_people_ids.include?(someone.id) ||
+    assignable_people_ids.include?(someone.id.to_s) ||
     (product_owner_id == someone.id)
   end
 
   # True if user is allowed to see project dashboard and user stories
   def can_see?(someone)
     can_edit?(someone) ||
-    involved_people_ids.include?(someone.id)
+    involved_people_ids.include?(someone.id.to_s)
   end
 
   # Removes project and associated sprints and user stories
@@ -109,10 +109,10 @@ class Project
   def uniqueness_of_roles
     ids = involved_people_ids
     doubled_ids = ids.select {|user_id| ids.index(user_id) != ids.rindex(user_id) }
-    if doubled_ids.include?(scrum_master_id)
+    if doubled_ids.include?(scrum_master_id.to_s)
       errors[:scrum_master_id] << "must have unique role"
     end
-    if doubled_ids.include?(self.product_owner_id)
+    if doubled_ids.include?(self.product_owner_id.to_s)
       errors[:product_owner_id] << "must have unique role"
     end
     if self.team_member_ids - doubled_ids != self.team_member_ids

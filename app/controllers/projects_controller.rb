@@ -8,8 +8,8 @@ class ProjectsController < AuthenticatedController
   def index
     @projects = [ {product_owner_id: current_user.id},
                   {scrum_master_id: current_user.id},
-                  {team_member_ids: current_user.id},
-                  {stakeholder_ids: current_user.id}
+                  {team_member_ids: current_user.id.to_s},
+                  {stakeholder_ids: current_user.id.to_s}
     ].inject([]) { |all, cond| all + Project.where(cond)}
     @owned_projects = Project.where(owner_id: current_user.id)
   end

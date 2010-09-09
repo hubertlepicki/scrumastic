@@ -69,7 +69,7 @@ describe Project, "user roles" do
   end
 
   it "should be possible to assign team member role" do
-    @project.team_member_ids = [@lukasz.id, @wojtek.id]
+    @project.team_member_ids = [@lukasz.id.to_s, @wojtek.id.to_s]
     @project.save
     @project.team_members.should include(@lukasz)
     @project.team_members.should include(@wojtek)
@@ -78,7 +78,7 @@ describe Project, "user roles" do
   end
 
   it "should be possible to assign stakeholder role" do
-    @project.stakeholder_ids = [@david.id, @alex.id]
+    @project.stakeholder_ids = [@david.id.to_s, @alex.id.to_s]
     @project.save
     @project.stakeholders.should include(@david)
     @project.stakeholders.should include(@alex)
@@ -93,27 +93,27 @@ describe Project, "user roles" do
     @project = @project.reload
 
     @project.product_owner = @hubert
-    @project.team_member_ids = [@hubert.id]
+    @project.team_member_ids = [@hubert.id.to_s]
     @project.save.should be_false
     @project = @project.reload
 
     @project.product_owner = @hubert
-    @project.stakeholder_ids = [@hubert.id]
+    @project.stakeholder_ids = [@hubert.id.to_s]
     @project.save.should be_false
     @project = @project.reload
 
     @project.product_owner = @hubert
-    @project.team_member_ids = [@hubert.id]
+    @project.team_member_ids = [@hubert.id.to_s]
     @project.save.should be_false
     @project = @project.reload
 
     @project.product_owner = @hubert
-    @project.stakeholder_ids = [@hubert.id]
+    @project.stakeholder_ids = [@hubert.id.to_s]
     @project.save.should be_false
     @project = @project.reload
 
-    @project.team_member_ids = [@hubert.id]
-    @project.stakeholder_ids = [@hubert.id]
+    @project.team_member_ids = [@hubert.id.to_s]
+    @project.stakeholder_ids = [@hubert.id.to_s]
     @project.save.should be_false
     @project = @project.reload
   end
@@ -121,16 +121,16 @@ describe Project, "user roles" do
   it "should assign users unique roles" do
     @project.scrum_master = @hubert
     @project.product_owner = @deborah
-    @project.team_member_ids = [@wojtek.id, @lukasz.id]
-    @project.stakeholder_ids = [@alex.id, @david.id]
+    @project.team_member_ids = [@wojtek.id.to_s, @lukasz.id.to_s]
+    @project.stakeholder_ids = [@alex.id.to_s, @david.id.to_s]
     @project.save.should be_true
   end
 
   it "should clear user's role in project when removing user from database" do
     @project.scrum_master = @hubert
     @project.product_owner = @deborah
-    @project.team_member_ids = [@wojtek.id, @lukasz.id]
-    @project.stakeholder_ids = [@alex.id, @david.id]
+    @project.team_member_ids = [@wojtek.id.to_s, @lukasz.id.to_s]
+    @project.stakeholder_ids = [@alex.id.to_s, @david.id.to_s]
     @project.save
 
     @hubert.destroy

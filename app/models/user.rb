@@ -24,17 +24,17 @@ class User
 
   # Removes user and his involvement in all projects
   def destroy
-    Project.all(conditions: {product_owner_id: self.id}).each do |project|
+    Project.all(conditions: {product_owner_id: id}).each do |project|
       project.update_attributes(product_owner_id: nil)
     end
-    Project.all(conditions: {scrum_master_id: self.id}).each do |project|
+    Project.all(conditions: {scrum_master_id: id}).each do |project|
       project.update_attributes(scrum_master_id: nil)
     end
-    Project.any_in(team_member_ids: [self.id]).each do |project|
-      project.update_attributes(team_member_ids: project.team_member_ids.select{|tm_id| tm_id != id})
+    Project.any_in(team_member_ids: [id.to_s]).each do |project|
+      project.update_attributes(team_member_ids: project.team_member_ids.select{|tm_id| tm_id != id.to_s})
     end
-    Project.any_in(stakeholder_ids: [self.id]).each do |project|
-      project.update_attributes(stakeholder_ids: project.stakeholder_ids.select{|st_id| st_id != id})
+    Project.any_in(stakeholder_ids: [id.to_s]).each do |project|
+      project.update_attributes(stakeholder_ids: project.stakeholder_ids.select{|st_id| st_id != id.to_s})
     end
     super
   end
@@ -58,10 +58,10 @@ class User
       return :scrum_master
     elsif project.product_owner == self
       return :product_owner
-    elsif project.team_member_ids.include?(self.id)
+    elsif project.team_member_ids.include?(self.id.to_s)
       return :team_member
     elsif
-      project.stakeholder_ids.include?(self.id)
+      project.stakeholder_ids.include?(self.id.to_s)
       return :stakeholder
     end
     nil
