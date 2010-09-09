@@ -1,5 +1,5 @@
 # encoding: UTF-8
-require File.dirname(__FILE__) + '/acceptance_helper'
+require File.join(File.dirname(__FILE__), '/acceptance_helper')
 
 feature "Sprints management", %q{
   In order to better manage their project
@@ -18,7 +18,7 @@ feature "Sprints management", %q{
     within(:css, "form.new_sprint") do
       click_button "Submit"
     end
-
+    sleep(1)
     Sprint.count.should eql(1)
   end
 

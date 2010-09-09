@@ -24,6 +24,5 @@
 - if Can.edit_sprints_for?(current_user, sprint.project)
   %div.edit-sprint{:id => "edit_#{sprint.id}_form_wrapper"}
     = render partial: "form", locals: {sprint: sprint}
-
-%div{:class => "sprint-sortable #{'user-stories-sortable' if Can.edit_user_stories_for?(current_user, @project)}", "data-sprint-id" => sprint.id}
+%div{:id => "sprint_#{sprint.id}", :class => "sprint-sortable #{'user-stories-sortable' if Can.edit_user_stories_for?(current_user, @project)}", "data-sprint-id" => sprint.id }
   = render partial: "user_stories/user_story", collection: sprint.user_stories.find(:all, :conditions => {}, :sort => [:position, :asc])

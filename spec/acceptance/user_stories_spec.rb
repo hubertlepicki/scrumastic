@@ -1,5 +1,5 @@
 # encoding: UTF-8
-require File.dirname(__FILE__) + '/acceptance_helper'
+require File.join(File.dirname(__FILE__), 'acceptance_helper')
 
 feature "User Stories management", %q{
   In order to express what needs to be done
@@ -24,7 +24,7 @@ feature "User Stories management", %q{
     UserStory.count.should eql(1)
   end
 
-  scenario "Moving User Stories between panels" do
+  scenario "Moving User Story to backlog" do
     users = create_standard_users
     project = Project.create! valid_project_attributes("Project 1", "test", users[:hubert])
     sprint = Sprint.create! :project => project, :start_date => 2.days.ago
@@ -32,18 +32,8 @@ feature "User Stories management", %q{
 
     sign_in_as "Hubert"
     click_link "Project 1"
-    sleep 1
-
     drag "//*[@data-id='#{user_story.id}']", "//*[@id='backlog_stories']"
     sleep 1
     UserStory.first.in_backlog.should eql(true)
-    drag "//*[@data-id='#{user_story.id}']", "//*[@data-sprint-id='#{sprint.id}']"
-    sleep 1
-    UserStory.first.sprint.should eql(sprint)
-    drag "//*[@data-id='#{user_story.id}']", "//*[@id='incubator_stories']"
-    sleep 1
-    UserStory.first.in_backlog.should eql(false)
   end
-
-
 end

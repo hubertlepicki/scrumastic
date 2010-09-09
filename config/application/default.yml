@@ -26,7 +26,7 @@ default:
 development:
 
 test:
-
+  url: "http://localhost:9887"
 staging:
 
 production:

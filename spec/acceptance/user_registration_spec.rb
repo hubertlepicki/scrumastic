@@ -1,5 +1,5 @@
 # encoding: UTF-8
-require File.dirname(__FILE__) + '/acceptance_helper'
+require File.join(File.dirname(__FILE__), 'acceptance_helper')
 
 feature "User registration", %q{
   In order to use Scrumastic
