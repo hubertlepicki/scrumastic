@@ -151,7 +151,9 @@ $("#project_buttons input").livequery("change", function(event) {
     } else if (count == 3) {
         $("#sprints, #product_backlog, #user_stories_incubator").css("width", "300px");
     }
+
 });
+
 
 $("#sprints_accordion").livequery(function(event) {
     $(this).accordion({autoHeight: false, collapsible: true, active: $(".current-sprint")});

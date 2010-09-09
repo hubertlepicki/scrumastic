@@ -39,7 +39,7 @@ class Sprint
   end
 
   def formatted_end_date=(date)
-    self.end_date = Time.parse(date)
+    self.end_date = Time.parse(date).end_of_day
   end
 
   def formatted_start_date=(date)

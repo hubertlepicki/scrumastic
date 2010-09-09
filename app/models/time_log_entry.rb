@@ -15,6 +15,17 @@ class TimeLogEntry
     self.user == user || user.role_in_project(project) == :scrum_master
   end
 
+  def formatted_number_of_seconds
+    TimeFormatter::format(number_of_seconds)
+  end
+  
+  def formatted_number_of_seconds=(str)
+    begin
+      self.number_of_seconds = (Time.parse(str) - Time.parse("00:00:00")).to_i
+    rescue ArgumentError
+    end
+  end
+
   def nullify
     [:user, :user_story].each do |relation|
       begin
