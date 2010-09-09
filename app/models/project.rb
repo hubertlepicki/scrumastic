@@ -79,7 +79,7 @@ class Project
   # Ids of people assigned to this project
   def involved_people_ids
     (
-      [self.scrum_master_id, self.product_owner_id] + self.team_member_ids + self.stakeholder_ids
+      [self.scrum_master_id.to_s, self.product_owner_id.to_s] + self.team_member_ids + self.stakeholder_ids
     ).select {|u_id| !u_id.blank?}
   end
 
