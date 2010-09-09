@@ -7,7 +7,7 @@ feature "Time logging", %q{
   I want to log my time
 } do
   
-  scenario "Starting logging time for User Story" do
+  scenario "Logging time for User Story" do
     users = create_standard_users
     project = Project.create! valid_project_attributes("Project 1", "test", users[:hubert])
     sprint = Sprint.create! :project => project, :start_date => 2.days.ago
@@ -16,7 +16,10 @@ feature "Time logging", %q{
     sign_in_as "Hubert"
     click_link "Project 1"
   
-    click_link "Start working on this User Story"
+    click_link "Start work"
     TimeLogEntry.count.should eql(1)
+    TimeLogEntry.first.should be_current
+    click_link "Stop work"
+    TimeLogEntry.first.should_not be_current
   end
 end

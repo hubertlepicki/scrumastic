@@ -105,6 +105,9 @@ label
 .left
   :float left
 
+.clear-right
+  :clear right
+
 .clear
   :clear both
 
@@ -240,7 +243,7 @@ table.adjusting
   .user-story
     :cursor move
 
-.user-story
+.user-story, .time-log-entry
   :background-color #fffbe9
   :padding 10px
   :margin 5px 0 5px 0
@@ -255,6 +258,23 @@ table.adjusting
     :top -3px
     :left -2px
 
+.time-log-entry
+  img
+    :position none
+    :top 0
+    :left 0
+    :float left
+    :padding-right 10px
+  .entry-duration, .entry-worked-on
+    :display inline
+  .entry-date
+    :font-size 12px
+    :font-style normal
+    :line-height 15px
+  .entry-duration
+    :font-weight bold
+  .entry-worked-on
+    :font-style normal
 .in_progress
   :border-color = !red
   :background-color = !lightred
@@ -307,3 +327,13 @@ table.adjusting
   :-webkit-box-shadow 1px 1px 3px #000
   :font-style normal
 
+.simple-filtering
+  label
+    :display inline
+
+.worked-time
+  :font-size 20px
+  :font-weight bold
+  :float right
+  :color = !darkblue
+  :clear right

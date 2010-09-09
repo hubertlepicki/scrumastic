@@ -4,7 +4,9 @@ describe TimeLogEntry do
 
   before :each do
     @user = User.create!(valid_user_attributes)
-    @project = Project.create!(valid_project_attributes)
+    Timecop.travel(10.minutes.ago) do
+      @project = Project.create!(valid_project_attributes)
+    end
   end
 
   it "should be possible to create" do
@@ -75,6 +77,35 @@ describe TimeLogEntry do
     TimeLogEntry.create(user: @user, project: @project).should be_current
   end 
 
+  it "should be possible to override created_at date on creation" do
+    entry = TimeLogEntry.create!(user: @user, project: @project, formatted_created_at: "01/01/2001 00:33")
+    entry.reload.created_at.should eql(Time.parse("01/01/2001 00:33"))
+  end
+
   it "should verify that time log entries do not overlap" # implement when doing edit
+
+  it "should sum time for given project" do
+    entry = nil
+    Timecop.travel(2.minutes.ago) do
+      TimeLogEntry.create!(user: @user, project: @project)
+    end
+    Timecop.travel(1.minutes.ago) do
+      entry = TimeLogEntry.create!(user: @user, project: @project)
+    end
+    entry.close
+    @project.worked_time.should eql(120) 
+  end
+
+  it "should sum time for given project, with time restrictions" do
+    entry = nil
+    Timecop.travel(3.minutes.ago) do
+      TimeLogEntry.create!(user: @user, project: @project)
+    end
+    Timecop.travel(1.minute.ago) do
+      entry = TimeLogEntry.create!(user: @user, project: @project)
+    end
+    entry.close
+    @project.worked_time(2.minutes.ago, Time.zone.now).should eql(60) 
+  end
 end
 

@@ -13,7 +13,7 @@ Scrumastic::Application.routes.draw do |map|
   resources :projects do
     resources :sprints
     resources :user_stories do
-      resources :sprint_log_entries do
+      resources :time_log_entries do
         collection do
           get :start_work
           get :stop_work
@@ -29,6 +29,7 @@ Scrumastic::Application.routes.draw do |map|
       end
       resources :comments
     end
+    resources :time_log_entries
   end
   
   resources :user_searches, only: [:create]

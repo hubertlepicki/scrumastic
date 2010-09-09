@@ -119,6 +119,8 @@ GEM
       mime-types
       treetop (>= 1.4.5)
     mime-types (1.16)
+    mini_magick (2.1)
+      subexec (~> 0.0.4)
     mongo (1.0.7)
       bson (>= 1.0.4)
     nokogiri (1.4.3.1)
@@ -142,12 +144,12 @@ GEM
       rake (>= 0.8.4)
       thor (~> 0.14.0)
     rake (0.8.7)
-    rmagick (2.13.1)
     rubyzip (0.9.4)
     selenium-webdriver (0.0.28)
       ffi (>= 0.6.1)
       json_pure
       rubyzip
+    subexec (0.0.4)
     thor (0.14.0)
     timecop (0.3.5)
     treetop (1.4.8)
@@ -169,9 +171,9 @@ DEPENDENCIES
   googlecharts (= 1.6.0)
   gravtastic (= 2.2.0)
   haml (= 3.0.18)
+  mini_magick (= 2.1)
   mongoid!
   rails (= 3.0.0)
-  rmagick (= 2.13.1)
   rspec!
   rspec-core!
   rspec-expectations!
@@ -179,3 +181,4 @@ DEPENDENCIES
   rspec-rails!
   steak!
   timecop (= 0.3.5)
+  will_paginate

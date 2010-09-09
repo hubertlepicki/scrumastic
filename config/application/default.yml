@@ -1,0 +1,33 @@
+# Store your application configuration defaults here. This file should be under
+# version control. In case you need installation specific settings please copy
+# config.template.yml to config.yml and ignore the latter with your version
+# control system.
+#
+# Usage
+# ------
+#
+# in this file:
+# default:
+#   application_name: My Super App
+#
+# development:
+#   title_prefix: Development Mode
+#
+# in your code:
+# This is <%= AppConfig['application_name'] %>
+#
+# or
+#
+# This is <%= AppConfig.application_name %>
+#
+default:
+  url: "http://localhost:3000"
+
+development:
+
+test:
+
+staging:
+
+production:
+

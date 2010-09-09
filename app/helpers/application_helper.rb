@@ -12,4 +12,13 @@ module ApplicationHelper
   def icon_tag name
     content_tag :span, {}, {class: "ui-icon ui-icon-#{name}"}
   end
+
+  def story_text(user_story_or_nil)
+    return I18n.t("item_removed") unless user_story_or_nil
+
+    link_to(
+      user_story_or_nil.text,
+      project_user_story_path(user_story_or_nil.project, user_story_or_nil)
+    )
+  end
 end

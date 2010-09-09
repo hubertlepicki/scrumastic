@@ -1,0 +1,33 @@
+= render partial: "projects/project_header", locals: {project: @project}
+.right
+  = link_to t("time_log_entries.new"), new_project_time_log_entry_path(@project)
+.worked-time
+  = TimeFormatter::format @project.worked_time(@from, @to)
+- form_tag project_time_log_entries_path(@project), {method: :get, class: "simple-filtering"} do
+  = label_tag :from, t("from")
+  = text_field_tag :from, params[:from] || @project.created_at.to_date, class: "date-picker", size: 10
+  = label_tag :to, t("to")
+  = text_field_tag :to, params[:to] || Time.zone.now.to_date, class: "date-picker", size: 10
+  = label_tag :user_id, t("user")
+  = select_tag :user_id, options_from_collection_for_select(@project.involved_people, "id", "name", selected: params[:user_id]), include_blank: true
+ 
+  = submit_tag t("submit")
+
+
+- @time_log_entries.each do |entry|
+  .time-log-entry
+    - if entry.user != nil
+      = image_tag entry.user.medium_gravatar_url, :title => entry.user.name
+
+    .entry-date
+      = localize entry.created_at, :format => :short
+      = link_to t("edit"), edit_project_time_log_entry_path(@project, entry) 
+
+    .entry-duration
+      = TimeFormatter::format(entry.number_of_seconds)
+    .entry-worked-on
+      = t("worked_on")
+      = story_text(entry.user_story)
+
+= will_paginate @time_log_entries
+
