@@ -1,6 +1,10 @@
 = render partial: "projects/project_header", locals: {project: @project} 
 
-%h2= t("time_log_entries.edit")
+%h2
+   = image_tag(@time_log_entry.user.medium_gravatar_url, :title => @time_log_entry.user.name)
+   = t("time_log_entries.edit")
+
+
 = render partial: "form"
 
 = link_to t("back"), project_time_log_entries_path(@project)

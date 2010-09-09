@@ -10,6 +10,10 @@ class TimeLogEntry
   validates_presence_of :project, :user
   validates_uniqueness_of :current, scope: :project_id, if: Proc.new {|o| o.current == true }
   before_validation :close_current_if_new
+  
+  def can_edit?(user)
+    self.user == user || user.role_in_project(project) == :scrum_master
+  end
 
   def nullify
     [:user, :user_story].each do |relation|

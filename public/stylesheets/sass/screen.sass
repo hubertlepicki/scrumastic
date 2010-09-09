@@ -71,7 +71,7 @@ h2
 
 h3
   :color = !darkblue
-  :font-size 15px
+  :font-size 16px
   :margin 10px 0 5px 0
   :text-shadow #999 2px 2px 2px
 
@@ -160,8 +160,8 @@ label
   :background transparent url('/images/semi_transparent.png') repeat top left
   :border-radius 5px
   :-moz-border-radius 5px
-  box-shadow 1px 1px 3px #000
-  :-webkit-box-shadow 1px 1px 3px #000
+  :box-shadow 0px 0px 3px #3c5368
+  :-webkit-box-shadow 0px 0px 3px #3c5368
 
   .hidden
     :opacity 0.3
@@ -180,10 +180,16 @@ label
 
 .logo_thumb
   :margin 5px
+  :-webkit-border-radius 5px
+  :-moz-border-radius 5px
+  :border-radius 5px
   :border
-    :width 1px
+    :width 0px
     :style solid
     :color = !darkblue
+  :box-shadow 0px 0px 3px #3c5368
+  :-webkit-box-shadow 0px 0px 3px #3c5368
+
 
 table.adjusting
   :border 0 !important
@@ -208,8 +214,8 @@ table.adjusting
   :background transparent url('/images/semi_transparent.png') repeat top left
   :border-radius 5px
   :-moz-border-radius 5px
-  :box-shadow 1px 1px 3px #000
-  :-webkit-box-shadow 1px 1px 3px #000
+  :box-shadow 0px 0px 3px #3c5368
+  :-webkit-box-shadow 0px 0px 3px #3c5368
 
 #sprints 
   .delete-story 
@@ -323,8 +329,8 @@ table.adjusting
   :background-color white
   :padding 5px 10px
   :margin 0 5px 5px 0
-  :box-shadow 1px 1px 3px #000
-  :-webkit-box-shadow 1px 1px 3px #000
+  :box-shadow 1px 1px 3px #3c5368
+  :-webkit-box-shadow 1px 1px 3px #3c5368
   :font-style normal
 
 .simple-filtering
@@ -337,3 +343,18 @@ table.adjusting
   :float right
   :color = !darkblue
   :clear right
+
+.new-sprint-form-wrapper, .edit-sprint, .new_user_story, .edit_user_story
+  label, textarea, input[type=text], select
+    :font-size 14px
+    :line-height 16px
+  textarea
+    :width 100%
+    :display block
+    :margin 0
+    :padding 0
+    :box-sizing border-box
+    :-moz-box-sizing border-box
+    :-ms-box-sizing border-box
+    :-webkit-box-sizing border-box
+

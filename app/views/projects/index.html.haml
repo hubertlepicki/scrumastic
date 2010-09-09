@@ -2,7 +2,7 @@
   %h2= t("projects.you_are_involved_in")
   - @projects.each do |project|
     - div_for project do
-      = thumb_of project
+      = thumb_of(project, 32)
       %h3= link_to project.name, project
       %p
         = project.description
@@ -23,7 +23,7 @@
   %h2= t("projects.you_own")
   - @owned_projects.each do |project|
     - div_for project do
-      = thumb_of project
+      = thumb_of(project, 32)
       .right
         %a.hidden{:href => edit_project_path(project) }
           %span{:class => "ui-icon ui-icon-wrench inline-block"}

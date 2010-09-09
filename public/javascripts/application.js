@@ -390,3 +390,16 @@ $("input[name='user_story[who]']:visible").livequery(function() {
   setTimeout(function() { $(self).focus(); }, 1000);
 });
 
+$(".autoresize").livequery(function() {
+  $(this).autoResize({
+    onResize : function() {
+      $(this).css({opacity:0.8});
+    },
+    animateCallback : function() {
+      $(this).css({opacity:1});
+    },
+    animateDuration : 300,
+    extraSpace : 0
+ });
+});
+

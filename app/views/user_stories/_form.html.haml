@@ -5,16 +5,16 @@
       %td
         %p
           = f.label :who, t("as_a"), :for => "user_story_#{user_story.id}_who"
-          = f.text_field :who, :size => 35, :id => "user_story_#{user_story.id}_who"
+          = f.text_area :who, :rows => 1, :id => "user_story_#{user_story.id}_who"
         %p
           = f.label :what, t("I_want_to"), :for => "user_story_#{user_story.id}_what"
-          = f.text_field :what, :size => 35, :id => "user_story_#{user_story.id}_what"
+          = f.text_area :what, :rows => 1, :id => "user_story_#{user_story.id}_what"
         %p
           = f.label :reason, t("so_that"), :for => "user_story_#{user_story.id}_reason"
-          = f.text_field :reason, :size => 35, :id => "user_story_#{user_story.id}_reason"
+          = f.text_area :reason, :rows => 1, :id => "user_story_#{user_story.id}_reason"
         %p
           = f.label :description, t("description"), :for => "user_story_#{user_story.id}_description"
-          = f.text_area :description, :cols => 35, :rows => 3, :id => "user_story_#{user_story.id}_description"
+          = f.text_area :description, :rows => 1, :id => "user_story_#{user_story.id}_description"
 
       %td
         - unless user_story.new_record?

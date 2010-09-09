@@ -40,6 +40,7 @@ class TimeLogEntriesController < ProjectScopedController
 
   def create
     @time_log_entry = TimeLogEntry.new(params[:time_log_entry])
+    @time_log_entry.user = current_user
     @time_log_entry.project = @project
     if @time_log_entry.save
       redirect_to project_time_log_entries_path(@project)
@@ -49,12 +50,14 @@ class TimeLogEntriesController < ProjectScopedController
   end
 
   def update
-    @time_log_entry.project = @project
- 
-    if @time_log_entry.update_attributes(params[:time_log_entry])
-      redirect_to project_time_log_entries_path(@project)
-    else
-      render action: "edit"
+    Can.edit?(current_user, @time_log_entry) do
+      @time_log_entry.project = @project
+   
+      if @time_log_entry.update_attributes(params[:time_log_entry])
+        redirect_to project_time_log_entries_path(@project)
+      else
+        render action: "edit"
+      end
     end
   end
 
