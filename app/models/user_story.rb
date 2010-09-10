@@ -34,6 +34,13 @@ class UserStory
     self.story_points ||= 0
   end
 
+  def destroy
+    time_log_entries.each do |entry|
+      entry.close if entry.current?
+    end
+    super
+  end
+
   def text
     "#{I18n.t("as_a")} #{who} #{I18n.t("I_want_to")} #{what} " +
     "#{"#{I18n.t("so_that")} #{reason}" unless reason.blank?}"

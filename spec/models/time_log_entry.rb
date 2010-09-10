@@ -37,12 +37,22 @@ describe TimeLogEntry do
 
   it "shoul be nullified when removing associated user story" do
     entry = TimeLogEntry.create!(user: @user, project: @project)
+    entry.close
     user_story = UserStory.create!(who: "Me", what: "test", project: @project)
     entry.user_story = user_story
     entry.save!
     user_story.destroy
     TimeLogEntry.count.should eql(1)
     entry.reload.user_story.should be_nil
+  end
+
+  it "should be closed when removing associated user story whie in progress" do
+    entry = TimeLogEntry.create!(user: @user, project: @project)
+    user_story = UserStory.create!(who: "Me", what: "test", project: @project)
+    entry.user_story = user_story
+    entry.save!
+    user_story.destroy
+    entry.reload.should_not be_current
   end
 
   it "should be current if just created" do
