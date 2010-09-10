@@ -8,7 +8,7 @@ class TimeLogEntry
   field :current, type: Boolean, default: true  
 
   validates_presence_of :project, :user
-  validates_uniqueness_of :current, scope: :project_id, if: Proc.new {|o| o.current == true }
+  validates_uniqueness_of :current, scope: [:project_id, :user_id], if: Proc.new {|o| o.current == true }
   before_validation :close_current_if_new
   
   def can_edit?(user)
