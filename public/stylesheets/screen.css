@@ -347,3 +347,17 @@ table.adjusting {
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -webkit-box-sizing: border-box; }
+
+#radiator {
+  clear: right;
+  background: transparent url("/images/semi_transparent.png") repeat top left;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  float: right;
+  width: 600px;
+  padding: 10px;
+  box-shadow: 0px 0px 3px #3c5368;
+  -webkit-box-shadow: 0px 0px 3px #3c5368; }
+  #radiator h2 {
+    display: inline; }
