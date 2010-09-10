@@ -235,7 +235,8 @@ table.adjusting {
   font-style: italic;
   border-radius: 2px;
   box-shadow: 1px 1px 2px #666666;
-  -webkit-box-shadow: 1px 1px 2px #666666; }
+  -webkit-box-shadow: 1px 1px 2px #666666;
+  position: relative; }
   .user-story img, .time-log-entry img {
     position: relative;
     top: -3px;
@@ -297,6 +298,16 @@ table.adjusting {
 
 .sprint-backlog-dialog {
   display: none; }
+
+.story-avatar {
+  display: inline-block;
+  margin: 0;
+  padding: 0; }
+  .story-avatar img {
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0; }
 
 .story-points {
   font-weight: bold;

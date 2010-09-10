@@ -24,6 +24,8 @@
 
   - if user_story.story_points && user_story.story_points > 0
     %span.story-points= user_story.story_points
-
   = story_text(user_story, false)
+
+  - if user_story.user
+    %span.story-avatar= image_tag(user_story.user.small_gravatar_url, alt: user_story.user.name, title: user_story.user.name)
   .clear

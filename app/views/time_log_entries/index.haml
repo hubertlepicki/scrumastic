@@ -21,7 +21,7 @@
 
     .entry-date
       = localize entry.created_at, :format => :short
-      = link_to t("edit"), edit_project_time_log_entry_path(@project, entry) 
+      = link_to t("edit"), edit_project_time_log_entry_path(@project, entry)  if Can.edit?(current_user, entry)
 
     .entry-duration
       = TimeFormatter::format(entry.number_of_seconds)
