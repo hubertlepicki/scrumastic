@@ -18,7 +18,8 @@ body {
   -moz-border-radius: 15px;
   border-radius: 15px;
   box-shadow: 0px 0px 10px white;
-  -webkit-box-shadow: 0px 0px 10px white; }
+  -webkit-box-shadow: 0px 0px 10px white;
+  -moz-box-shadow: 0px 0px 10px white; }
 
 #overall_header {
   margin-bottom: 10px; }
@@ -149,7 +150,8 @@ label {
   border-radius: 5px;
   -moz-border-radius: 5px;
   box-shadow: 0px 0px 3px #3c5368;
-  -webkit-box-shadow: 0px 0px 3px #3c5368; }
+  -webkit-box-shadow: 0px 0px 3px #3c5368;
+  -moz-box-shadow: 0px 0px 3px #3c5368; }
   .project .hidden {
     opacity: 0.3; }
   .project .logo_thumb {
@@ -173,7 +175,8 @@ label {
   border-style: solid;
   border-color: #3c5368;
   box-shadow: 0px 0px 3px #3c5368;
-  -webkit-box-shadow: 0px 0px 3px #3c5368; }
+  -webkit-box-shadow: 0px 0px 3px #3c5368;
+  -moz-box-shadow: 0px 0px 3px #3c5368; }
 
 table.adjusting {
   border: 0 !important; }
@@ -198,7 +201,8 @@ table.adjusting {
   border-radius: 5px;
   -moz-border-radius: 5px;
   box-shadow: 0px 0px 3px #3c5368;
-  -webkit-box-shadow: 0px 0px 3px #3c5368; }
+  -webkit-box-shadow: 0px 0px 3px #3c5368;
+  -moz-box-shadow: 0px 0px 3px #3c5368; }
 
 #sprints .delete-story {
   display: none; }
@@ -241,6 +245,7 @@ table.adjusting {
   border-radius: 2px;
   box-shadow: 1px 1px 2px #666666;
   -webkit-box-shadow: 1px 1px 2px #666666;
+  -moz-box-shadow: 1px 1px 2px #666666;
   position: relative; }
   .user-story img, .time-log-entry img {
     position: relative;
@@ -323,6 +328,7 @@ table.adjusting {
   margin: 0 5px 5px 0;
   box-shadow: 1px 1px 3px #3c5368;
   -webkit-box-shadow: 1px 1px 3px #3c5368;
+  -moz-box-shadow: 1px 1px 3px #3c5368;
   font-style: normal; }
 
 .simple-filtering label {
@@ -358,6 +364,7 @@ table.adjusting {
   width: 600px;
   padding: 10px;
   box-shadow: 0px 0px 3px #3c5368;
-  -webkit-box-shadow: 0px 0px 3px #3c5368; }
+  -webkit-box-shadow: 0px 0px 3px #3c5368;
+  -moz-box-shadow: 0px 0px 3px #3c5368; }
   #radiator h2 {
     display: inline; }
