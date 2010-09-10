@@ -93,6 +93,10 @@ class Project
     self.team_member_ids.collect{|user_id| User.find(user_id)}
   end
 
+  def current_time_log_entries
+    TimeLogEntry.all(conditions: {current: true, project_id: id})  
+  end
+
   def worked_time(from=created_at, to=Time.zone.now)
     from = created_at if from.blank?
     to = created_at if to.blank?
