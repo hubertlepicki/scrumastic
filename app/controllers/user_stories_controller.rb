@@ -6,7 +6,6 @@ class UserStoriesController < ProjectScopedController
   def create
     Can.edit_user_stories_for?(current_user, @project) do
       @user_story = UserStory.create(params[:user_story].merge(project_id: @project.id))
-      render :action => "create.js"
     end
   end
   

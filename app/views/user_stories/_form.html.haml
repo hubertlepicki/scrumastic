@@ -1,4 +1,4 @@
-- form_for [@project, user_story], remote: true do |f|
+- form_for [@project, user_story], remote: true, html: {onSubmit: "return false;"} do |f|
   = f.error_messages
   %table
     %tr
