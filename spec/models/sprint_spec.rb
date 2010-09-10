@@ -74,7 +74,7 @@ describe Sprint do
   it "should be possible to assing formatted date" do
     s = Sprint.create(project: @project, formatted_start_date: "21/02/2010", formatted_end_date: "28/02/2010")
     s.start_date.should eql(Time.parse("21/02/2010"))
-    s.end_date.should eql(Time.parse("28/02/2010"))
+    s.end_date.to_i.should eql(Time.parse("28/02/2010").end_of_day.to_i)
     s.formatted_start_date.should eql("21/02/2010")
     s.formatted_end_date.should eql("28/02/2010")
   end
