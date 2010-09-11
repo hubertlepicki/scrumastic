@@ -6,3 +6,5 @@ config/mongoid.yml
 public/system/*
 public/uploads/*
 nohup.out
+config/socky.yml
+config/socky_hosts.yml
