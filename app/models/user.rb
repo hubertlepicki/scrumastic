@@ -8,14 +8,12 @@ class User
   include Mongoid::Timestamps
   include Gravtastic
   field :name, :type => String
-  field :nickname, :type => String
   
   devise :database_authenticatable, :rememberable, :confirmable, :recoverable, :registerable
-  validates_presence_of :nickname, :name, :email
+  validates_presence_of :name, :email
   validates_confirmation_of :password
   validates_presence_of :password, :only => [:create]
-  validates_uniqueness_of :nickname
-  validates_format_of :nickname, :with => /^([a-z])*$/
+  validates_uniqueness_of :email
   
   is_gravtastic # we want to have avatar of user with gravatar.com service
 

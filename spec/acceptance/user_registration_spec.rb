@@ -11,7 +11,6 @@ feature "User registration", %q{
     visit homepage
     click_button "Sign up"
     fill_in "Name", with: "Hubert Łępicki"
-    fill_in "Nickname (can consist only of lowercase letters)", with: "hubert"
     fill_in "Email", with: "hubert.lepicki@gmail.com"
     fill_in "Password", with: "abcd1234"
     fill_in "Password confirmation", with: "abcd1234"
@@ -36,7 +35,6 @@ feature "User registration", %q{
 
     User.count.should eql(0)
     page.should have_content("Email can't be blank")
-    page.should have_content("Nickname can't be blank")
     page.should have_content("Name can't be blank")
     page.should have_content("Password can't be blank")
   end
