@@ -415,3 +415,10 @@ $("#toggle_shoutbox").live("click", function(event) {
   else
     $(".shouts").animate({height: 60}, 200);
 });
+
+$("input[name='user_story[who]']").livequery(function() {
+    if ($(this).attr("data-suggestions")) {
+      var suggestions = $(this).attr("data-suggestions").split("|");
+      $(this).autocomplete({ source: suggestions });
+    }
+});

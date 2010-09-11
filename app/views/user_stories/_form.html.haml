@@ -5,7 +5,7 @@
       %td
         %p
           = f.label :who, t("as_a"), :for => "user_story_#{user_story.id}_who"
-          = f.text_field :who, :id => "user_story_#{user_story.id}_who"
+          = f.text_field :who, :id => "user_story_#{user_story.id}_who", "data-suggestions" => who_suggestions(@project).join("|")
         %p
           = f.label :what, t("I_want_to"), :for => "user_story_#{user_story.id}_what"
           = f.text_field :what, :id => "user_story_#{user_story.id}_what"

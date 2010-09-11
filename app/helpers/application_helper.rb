@@ -25,4 +25,8 @@ module ApplicationHelper
       user_story_or_nil.text
     end
   end
+
+  def who_suggestions(project)
+    UserStory.collection.distinct(:who, :project_id => project.id)
+  end
 end
