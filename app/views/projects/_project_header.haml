@@ -14,7 +14,7 @@
 
 - if @project.current_time_log_entries.count > 0
   #now_working
-    %h3= t("currently_working")
+    %h2= t("currently_working")
     - @project.current_time_log_entries.each do |entry|
       - if entry.user != nil && entry.user_story
         = link_to image_tag(entry.user.small_gravatar_url, :title => entry.user.name, :alt => entry.user.name), [@project, entry.user_story]
