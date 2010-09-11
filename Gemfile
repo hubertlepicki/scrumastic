@@ -11,6 +11,7 @@ gem "carrierwave", git: "git://github.com/evansagge/carrierwave.git" #, ref: "01
 gem "gravtastic", "2.2.0"
 gem "haml", "3.0.18"
 gem "googlecharts", "1.6.0"
+gem "socky", "0.1.1"
 
 #gem 'sqlite3-ruby', :require => 'sqlite3'
 

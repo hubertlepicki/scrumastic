@@ -1,6 +1,7 @@
 en:
   welcome: Welcome
-  currently_working: "Currently working: "
+  shoutbox: Shoutbox
+  currently_working: "Now working"
   radiator: Radiator
   your_projects: Your projects
   details: Details

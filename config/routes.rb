@@ -10,7 +10,10 @@ Scrumastic::Application.routes.draw do |map|
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
+  resources :websocket_connections
+
   resources :projects do
+    resources :shouts
     resources :sprints
     resources :user_stories do
       resources :time_log_entries do

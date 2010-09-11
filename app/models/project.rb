@@ -15,8 +15,9 @@ class Project
   belongs_to_related :scrum_master, :class_name => "User"
   belongs_to_related :product_owner, :class_name => "User"
   belongs_to_related :owner, :class_name => "User"
-  has_many_related :sprints
-  has_many_related :user_stories
+  has_many_related :sprints, :dependent => :destroy
+  has_many_related :user_stories, :dependent => :destroy
+  has_many_related :shouts, :dependent => :destroy
   references_many :time_log_entries, :dependent => :destroy
   mount_uploader :logo, ProjectLogoUploader
 

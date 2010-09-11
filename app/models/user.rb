@@ -17,7 +17,8 @@ class User
   
   is_gravtastic # we want to have avatar of user with gravatar.com service
 
-  has_many_related :projects, foreign_key: :owner_id # projects created and administrated by user
+  has_many_related :projects, foreign_key: :owner_id, :dependent => :destroy # projects created and administrated by user
+  has_many_related :shouts, :dependent => :destroy
   references_many :time_log_entries, :dependent => :nullify
 
   # Removes user and his involvement in all projects

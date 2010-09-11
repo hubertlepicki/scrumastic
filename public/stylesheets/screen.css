@@ -367,4 +367,9 @@ table.adjusting {
   -webkit-box-shadow: 0px 0px 3px #3c5368;
   -moz-box-shadow: 0px 0px 3px #3c5368; }
   #radiator h2 {
-    display: inline; }
+    display: inline-block;
+    width: 130px; }
+
+#shout_content {
+  width: 370px;
+  font-size: 16px; }
