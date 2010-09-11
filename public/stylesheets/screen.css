@@ -354,7 +354,7 @@ table.adjusting {
   -ms-box-sizing: border-box;
   -webkit-box-sizing: border-box; }
 
-#radiator {
+#shoutbox {
   clear: right;
   background: transparent url("/images/semi_transparent.png") repeat top left;
   border-radius: 5px;
@@ -367,7 +367,7 @@ table.adjusting {
   -webkit-box-shadow: 0px 0px 3px #3c5368;
   -moz-box-shadow: 0px 0px 3px #3c5368;
   margin-right: 10px; }
-  #radiator h2 {
+  #shoutbox h2 {
     display: inline-block;
     width: 130px; }
 
@@ -379,7 +379,8 @@ table.adjusting {
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   position: absolute;
-  left: -60px; }
+  left: -60px;
+  top: 5px; }
 
 .shouts-wrapper {
   padding-left: 20px;
@@ -402,3 +403,9 @@ table.adjusting {
     .shouts .shout span {
       font-weight: bold;
       color: #666666; }
+
+#now_working {
+  float: left;
+  clear: left; }
+  #now_working h3 {
+    display: inline-block; }

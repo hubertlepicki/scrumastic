@@ -1,10 +1,5 @@
 - content_for :socky do
   = socky :client_id => current_user.id, :channels => @project.id, :client_secret => current_user.password_salt
 
-#radiator
-  - if @project.current_time_log_entries.count > 0
-    %h2= t("currently_working")
-    - @project.current_time_log_entries.each do |entry|
-      - if entry.user != nil && entry.user_story
-        = link_to image_tag(entry.user.small_gravatar_url, :title => entry.user.name, :alt => entry.user.name), [@project, entry.user_story]
+#shoutbox
   %div{"data-populate-with" => project_shouts_path(@project) }
