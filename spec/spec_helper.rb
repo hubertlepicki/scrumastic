@@ -45,13 +45,12 @@ end
 
 def valid_project_attributes(title="Test project",
                              description="Some description",
-                             owner=User.first(conditions: {nickname: "admin"}))
+                             owner=User.first)
   { name: title, description: description, owner: owner }
 end
 
 def valid_user_attributes(name="admin")
-  { nickname: name.downcase,
-    name: name,
+  { name: name,
     password: "asdf1234",
     password_confirmantion: "asdf1234",
     email: "#{name.downcase}@example.com" }
