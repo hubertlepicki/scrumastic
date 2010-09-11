@@ -5,4 +5,5 @@
   - form_for [@project, Shout.new], :remote => true do |f|
     = f.text_field :content
     = f.submit t("submit")
+    = link_to icon_tag("carat-2-n-s"), "#", id: "toggle_shoutbox"
 

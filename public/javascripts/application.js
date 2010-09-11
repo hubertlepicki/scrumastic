@@ -409,3 +409,9 @@ $(".shouts").livequery(function() {
   $(".shouts").attr("scrollTop", $(".shouts").attr("scrollHeight"));
 });
 
+$("#toggle_shoutbox").live("click", function(event) {
+  if ($(".shouts").css("height") == "60px")
+    $(".shouts").animate({height: 400}, 200);
+  else
+    $(".shouts").animate({height: 60}, 200);
+});
