@@ -361,11 +361,12 @@ table.adjusting {
   -moz-border-radius: 5px;
   border-radius: 5px;
   float: right;
-  width: 600px;
+  width: 620px;
   padding: 10px;
   box-shadow: 0px 0px 3px #3c5368;
   -webkit-box-shadow: 0px 0px 3px #3c5368;
-  -moz-box-shadow: 0px 0px 3px #3c5368; }
+  -moz-box-shadow: 0px 0px 3px #3c5368;
+  margin-right: 10px; }
   #radiator h2 {
     display: inline-block;
     width: 130px; }
@@ -374,8 +375,18 @@ table.adjusting {
   width: 520px;
   font-size: 16px; }
 
+.shouts-title {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  position: absolute;
+  left: -60px; }
+
+.shouts-wrapper {
+  padding-left: 20px;
+  position: relative; }
+
 .shouts {
-  max-height: 50px;
+  height: 60px;
   overflow: auto;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -386,7 +397,7 @@ table.adjusting {
     font-size: 16px;
     color: #3c5368; }
   .shouts .shout {
-    border-top: 1px solid #cccccc;
+    border-top: 1px solid #fafafa;
     padding: 5px; }
     .shouts .shout span {
       font-weight: bold;

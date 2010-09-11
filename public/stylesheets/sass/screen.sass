@@ -384,7 +384,7 @@ table.adjusting
   :border
     :radius 5px
   :float right
-  :width 600px
+  :width 620px
   :padding 10px
   :box-shadow 0px 0px 3px #3c5368
   :-webkit-box-shadow 0px 0px 3px #3c5368
@@ -392,13 +392,24 @@ table.adjusting
   h2
     display: inline-block
     width: 130px
+  :margin-right 10px
 
 #shout_content
   :width 520px
   :font-size 16px
 
+.shouts-title
+  :-webkit-transform rotate(-90deg)
+  :-moz-transform rotate(-90deg)
+  :position absolute
+  :left -60px
+
+.shouts-wrapper
+  :padding-left 20px
+  :position relative
+
 .shouts
-  :max-height 50px
+  :height 60px
   :overflow auto
   :-moz-border-radius 5px
   :border-radius 5px
@@ -409,7 +420,7 @@ table.adjusting
     :font-size 16px
     :color = !darkblue
   .shout
-    :border-top 1px solid #ccc
+    :border-top 1px solid #fafafa
     :padding 5px
     span
       :font-weight bold
