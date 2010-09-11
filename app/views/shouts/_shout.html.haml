@@ -1,7 +1,7 @@
-.shout
+.shout{:id => "shout_#{shout.id}"}
   = image_tag shout.user.small_gravatar_url, title: shout.user.name
-  = shout.user.name
+  = "#{shout.user.name}: "
   
-  .span
+  %span
     = shout.content
 

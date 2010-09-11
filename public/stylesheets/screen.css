@@ -371,5 +371,23 @@ table.adjusting {
     width: 130px; }
 
 #shout_content {
-  width: 370px;
+  width: 520px;
   font-size: 16px; }
+
+.shouts {
+  max-height: 50px;
+  overflow: auto;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: white;
+  padding: 0 10px 0 10px;
+  border: 1px solid #cccccc; }
+  .shouts .shout:last-child {
+    font-size: 16px;
+    color: #3c5368; }
+  .shouts .shout {
+    border-top: 1px solid #cccccc;
+    padding: 5px; }
+    .shouts .shout span {
+      font-weight: bold;
+      color: #666666; }

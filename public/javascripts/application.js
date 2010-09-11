@@ -404,4 +404,8 @@ $(".autoresize").livequery(function() {
     extraSpace : 0
  });
 });
+ 
+$(".shouts").livequery(function() {
+  $(".shouts").attr("scrollTop", $(".shouts").attr("scrollHeight"));
+});
 

@@ -1,3 +1,6 @@
+- content_for :socky do
+  = socky :client_id => current_user.id, :channels => @project.id, :client_secret => current_user.password_salt
+
 - if @project.current_time_log_entries.count > 0
   #radiator
     %h2= t("currently_working")

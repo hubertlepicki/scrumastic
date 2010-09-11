@@ -1,2 +1,5 @@
-$(".shouts").prepend("<%= escape_javascript(render @shout) %>");
+if ("WebSocket" in window) {} else {
+  $(".shouts").append("<%= escape_javascript(render @shout) %>");
+  $(".shouts").animate({ scrollTop: $(".shouts").attr("scrollHeight") }, 3000);
+}
 $("#shout_content").val("");
