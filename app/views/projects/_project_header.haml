@@ -9,6 +9,9 @@
 %div.description
   = TimeFormatter::format project.worked_time
   = link_to t("details"), project_time_log_entries_path(project)
+%div.description
+  = link_to t("attachments"), [@project, :attachments]
+
 
 = link_to t("edit"), edit_project_path(@project) if Can.edit?(current_user, @project)
 

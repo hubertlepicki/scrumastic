@@ -1,0 +1,14 @@
+= render partial: "projects/project_header", locals: {project: @project}
+
+%h1= t("new_attachment")
+
+- form_for [@project, @attachment], html: {multipart: true} do |f|
+  = f.error_messages
+  %p
+    = f.label :file
+    = f.file_field :file
+  %p
+    = f.label :description
+    = f.text_field :description
+  %p
+    = f.submit t("submit")

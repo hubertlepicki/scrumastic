@@ -1,7 +1,7 @@
 class Attachment
   include Mongoid::Document
   include Mongoid::Timestamps
-
+  field :description, :type => String
   mount_uploader :file, AttachmentUploader
 
   referenced_in :project

@@ -30,6 +30,8 @@ en:
   stop_work: Stop work
   start_date: Start date
   worked_time: Worked time
+  attachments: Files
+  new_attachment: Upload file
   people:
     search: "Search by name, login or email:"
     nobody_found: Couldn't find any people matching given criteria.
@@ -64,6 +66,8 @@ en:
     new: New user story
     confirm_delete: "Are you really sure that you want to remove this user story?"
   models:
+    attachment:
+      name: File
     sprint:
       name: Name
       goal: Sprint goal
