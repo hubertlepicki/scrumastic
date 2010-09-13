@@ -18,6 +18,7 @@ class Project
   has_many_related :sprints, :dependent => :destroy
   has_many_related :user_stories, :dependent => :destroy
   has_many_related :shouts, :dependent => :destroy
+  references_many :attachments, :dependent => :destroy
   references_many :time_log_entries, :dependent => :destroy
   mount_uploader :logo, ProjectLogoUploader
 
