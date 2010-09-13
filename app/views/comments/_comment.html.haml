@@ -9,10 +9,10 @@
 
   = raw simple_format sanitize(comment.content)
   .clear
-  - if comment.attachment.present?
+  - if !comment.attachment.nil?
     .left
       = icon_tag "document"
     .left
-    = link_to File.basename(comment.attachment.file.file), comment.attachment.url
+      = link_to File.basename(comment.attachment.file.file.file), [comment.user_story.project, comment.attachment]
   .clear
 

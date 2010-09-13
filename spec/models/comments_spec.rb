@@ -13,10 +13,4 @@ describe "Comment" do
   it "should be possible to comment on projects" do
     Comment.create(user_story: @story, user: @user, content: "This is cool.")
   end
-
-  it "should be possible to attach file" do
-    c = Comment.create(user_story: @story, user: @user, content: "This is cool.",
-                       attachment: File.new("spec/fixtures/logo.png"))
-    c.attachment.should be_present
-  end
 end

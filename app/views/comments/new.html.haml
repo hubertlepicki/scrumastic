@@ -4,7 +4,7 @@
     %label{:for => "comment_content"}= t("content")
     = text_area_tag "comment[content]"
   %p
-    %label{:for => "comment_attachment"}= t("attachment")
-    = file_field_tag "comment[attachment]"
+    %label{:for => "attachment"}= t("attachment")
+    = file_field_tag "attachment"
   %p
     = submit_tag t("submit")

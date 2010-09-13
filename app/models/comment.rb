@@ -11,7 +11,7 @@ class Comment
   belongs_to_related :user
   belongs_to_related :user_story
 
-  mount_uploader :attachment, AttachmentUploader
+  references_one :attachment
 
   # True if user is allowed to edit this comment
   def can_edit?(someone)

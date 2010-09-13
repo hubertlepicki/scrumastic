@@ -22,7 +22,9 @@ class CommentsController < ProjectScopedController
     Can.see?(current_user, @project) do
       @comment = Comment.create!(params[:comment].merge(
           user_id: current_user.id, user_story_id: @user_story.id))
-
+      if params[:attachment]
+        Attachment.create(comment: @comment, project: @project, file: params[:attachment])
+      end
       redirect_to [@project, @user_story]
     end
   end
