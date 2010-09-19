@@ -2,7 +2,7 @@
 
 class ShoutsController < ProjectScopedController
   def index
-    @shouts = @project.shouts.find(:all, sort: ["created_at", "desc"], :limit => 10)
+    @shouts = @project.shouts.find(:all, sort: ["created_at", "desc"], limit: 10)
     render layout: false
   end
 

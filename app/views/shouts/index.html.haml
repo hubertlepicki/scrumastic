@@ -1,7 +1,7 @@
 .shouts-wrapper
   %h2.shouts-title= t("shoutbox")
   .shouts
-    = render :partial => 'shout', :collection => @shouts
+    = render :partial => 'shout', :collection => @shouts.reverse
   - form_for [@project, Shout.new], :remote => true do |f|
     = f.text_field :content
     = f.submit t("submit")
