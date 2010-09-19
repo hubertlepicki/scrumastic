@@ -1,5 +1,6 @@
 en:
   welcome: Welcome
+  bytes: bytes
   show_burndown: "Show Burndown Chart"
   shoutbox: Shoutbox
   currently_working: "Now working"
@@ -31,7 +32,6 @@ en:
   stop_work: Stop work
   start_date: Start date
   worked_time: Worked time
-  attachments: Files
   new_attachment: Upload file
   people:
     search: "Search by name, login or email:"
@@ -63,6 +63,9 @@ en:
   sprints:
     new: Create new sprint
     cannot_delete: Cannot delete Sprint with assigned User Stories
+  attachments:
+    list: Files
+    confirm_delete: "Are you really sure that you want to remove this file?"
   user_stories:
     new: New user story
     confirm_delete: "Are you really sure that you want to remove this user story?"

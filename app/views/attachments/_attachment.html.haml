@@ -1,0 +1,16 @@
+.attachment
+  = button_to "", [attachment.project, attachment],             |
+            method: "delete",                                   |
+            class: "right icon icon-cross",                     |
+            "data-confirm" =>  t("attachments.confirm_delete")  |
+
+
+  = image_tag project_attachment_path(attachment.project, attachment, style: "thumb") if attachment.has_thumb?
+  = link_to File.basename(attachment.file.file.file), [attachment.project, attachment]
+  = attachment.description
+  .meta
+    = localize(attachment.created_at, format: :short) + ", "
+    = attachment.file.size
+    = t("bytes")
+
+  .clear

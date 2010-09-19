@@ -21,6 +21,12 @@ body {
   -webkit-box-shadow: 0px 0px 10px white;
   -moz-box-shadow: 0px 0px 10px white; }
 
+h1 {
+  font-size: 18px; }
+
+p {
+  margin: 1em 0; }
+
 #overall_header {
   margin-bottom: 10px; }
   #overall_header h1 {
@@ -469,3 +475,34 @@ table.adjusting {
 
 .icon-prefs {
   background-image: url(/images/icons/wrench.png); }
+
+.icon-add {
+  background-image: url(/images/icons/add.png); }
+
+.attachment {
+  border-width: 0px;
+  border-style: solid;
+  border-color: #3c5368;
+  background: transparent url("/images/semi_transparent.png") repeat top left;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  box-shadow: 0px 0px 3px #3c5368;
+  -webkit-box-shadow: 0px 0px 3px #3c5368;
+  -moz-box-shadow: 0px 0px 3px #3c5368;
+  margin: 10px 0;
+  padding: 5px;
+  font-size: 14px; }
+  .attachment img {
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    box-shadow: 1px 1px 3px #3c5368;
+    -webkit-box-shadow: 1px 1px 3px #3c5368;
+    -moz-box-shadow: 1px 1px 3px #3c5368;
+    float: left;
+    margin-right: 10px; }
+  .attachment a {
+    display: block;
+    font-size: 16px; }
+  .attachment .meta {
+    margin: 5px 0;
+    font-size: 12px; }

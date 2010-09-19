@@ -11,4 +11,8 @@ class Attachment
   def can_edit?(someone)
     project.involved_people_ids.include?(someone.id.to_s)
   end
+
+  def has_thumb?
+    file.thumb.file.path =~ /(png|jpg|jpeg|gif)$/
+  end
 end

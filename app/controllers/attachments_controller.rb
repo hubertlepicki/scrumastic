@@ -18,13 +18,26 @@ class AttachmentsController < ProjectScopedController
   end
 
   def index
-    @attachments = Attachment.find(:all, conditions: {project_id: @project.id}, sort: ["updated_at", "desc"])
+    @attachments = Attachment.paginate(conditions: {project_id: @project.id}, sort: ["updated_at", "desc"],
+                                       page: params[:page], per_page: 10)
   end
 
   def show
     attachment = Attachment.find(params[:id])
     Can.edit?(current_user, attachment) do
-      send_file attachment.file.file.file
+      if params[:style] == "thumb"
+        send_file attachment.file.thumb.file.file
+      else
+        send_file attachment.file.file.file
+      end
+    end
+  end
+
+  def destroy
+    attachment = Attachment.find(params[:id])
+    Can.edit?(current_user, attachment) do
+      attachment.destroy
+      redirect_to [@project, :attachments]
     end
   end
 end

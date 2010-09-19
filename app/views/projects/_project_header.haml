@@ -24,7 +24,7 @@
 
 - content_for :extra_navigation do
   .left
-    = link_to t("attachments"), [@project, :attachments], class: "button button-with-icon icon-pages"
+    = link_to t("attachments.list"), [@project, :attachments], class: "button button-with-icon icon-pages"
   - if controller.is_a?(ProjectsController) && action_name == "show"
     #project_buttons
       %input{:type => "checkbox", :id => "sprints_visible", :checked => "checked"}

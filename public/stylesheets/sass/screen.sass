@@ -45,6 +45,12 @@ body
   :-webkit-box-shadow 0px 0px 3px #3c5368
   :-moz-box-shadow 0px 0px 3px #3c5368
 
+h1
+  :font-size 18px
+
+p
+  :margin 1em 0
+
 #overall_header
   :margin-bottom 10px
   h1
@@ -474,4 +480,28 @@ table.adjusting
 
 .icon-prefs
   :background-image url(/images/icons/wrench.png)
+
+.icon-add
+  :background-image url(/images/icons/add.png)
+
+.attachment
+  @include panel
+  :margin 10px 0
+  :padding 5px
+  :font-size 14px
+  img
+    :border-radius 3px
+    :-moz-border-radius 3px
+    :box-shadow 1px 1px 3px #3c5368
+    :-webkit-box-shadow 1px 1px 3px #3c5368
+    :-moz-box-shadow 1px 1px 3px #3c5368
+    :float left
+    :margin-right 10px
+  a
+    :display block
+    :font-size 16px
+  .meta
+    :margin 5px 0
+    :font-size 12px
+
 

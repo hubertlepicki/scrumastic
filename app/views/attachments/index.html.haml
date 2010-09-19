@@ -1,8 +1,8 @@
 = render partial: "projects/project_header", locals: {project: @project}
+.clear
+%p= link_to t("new_attachment"), [:new, @project, :attachment], class: "right button button-with-icon icon-add"
+%h1= t("attachments.list")
+.clear
+= render partial: "attachment", collection: @attachments
 
-%h1= t("attachments")
-
-%p= link_to t("new_attachment"), [:new, @project, :attachment]
-
-- @attachments.each do |attachment|
-  = link_to File.basename(attachment.file.file.file), [@project, attachment]
+= will_paginate @attachments

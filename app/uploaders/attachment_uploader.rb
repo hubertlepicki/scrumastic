@@ -1,11 +1,13 @@
 # encoding: utf-8
 
+class MiniMagick::MiniMagickError < RuntimeError; end
+
 class AttachmentUploader < CarrierWave::Uploader::Base
   
   # Include RMagick or ImageScience support
   #include CarrierWave::RMagick
   #     include CarrierWave::ImageScience
-
+  include CarrierWave::MiniMagick
   # Choose what kind of storage to use for this uploader
   storage :file
   #     storage :s3
@@ -16,6 +18,18 @@ class AttachmentUploader < CarrierWave::Uploader::Base
     "../uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  version :thumb do
+    process :scale => [64, 64]
+  end
+
+  def scale(width, height)
+    begin
+      resize_to_fill(64, 64)
+      convert("png")
+    rescue MiniMagick::Invalid => e
+
+    end
+  end
   # Process files as they are uploaded.
   #     process :scale => [200, 300]
   #
