@@ -4,10 +4,6 @@
 
 %h3= t("models.user_story.name")
 
-= render partial: "user_story", locals: {user_story: @user_story}
-
-= simple_format(auto_link(@user_story.description))
-
 - if Can.edit_user_stories_for?(current_user, @project)
   #edit_story_form_wrapper
     = render partial: "form", locals: {user_story: @user_story}

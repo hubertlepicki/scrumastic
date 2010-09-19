@@ -9,8 +9,6 @@
 %div.description
   = TimeFormatter::format project.worked_time
   = link_to t("details"), project_time_log_entries_path(project)
-%div.description
-  = link_to t("attachments"), [@project, :attachments]
 
 
 = link_to t("edit"), edit_project_path(@project) if Can.edit?(current_user, @project)
@@ -23,3 +21,17 @@
         = link_to image_tag(entry.user.small_gravatar_url, :title => entry.user.name, :alt => entry.user.name), [@project, entry.user_story]
 
 .clear
+
+- content_for :extra_navigation do
+  .left
+    = link_to t("attachments"), [@project, :attachments], class: "button button-with-icon icon-pages"
+  - if controller.is_a?(ProjectsController) && action_name == "show"
+    #project_buttons
+      %input{:type => "checkbox", :id => "sprints_visible", :checked => "checked"}
+      %label{:for => "sprints_visible"}= t("projects.sprints")
+      %input{:type => "checkbox", :id => "product_backlog_visible", :checked => "checked"}
+      %label{:for => "product_backlog_visible"}= t("projects.product_backlog")
+      %input{:type => "checkbox", :id => "user_stories_incubator_visible", :checked => "checked"}
+      %label{:for => "user_stories_incubator_visible"}= t("projects.user_stories_incubator")
+
+

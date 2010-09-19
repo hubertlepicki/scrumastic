@@ -1,7 +1,10 @@
 .vspacer
 
 .left
-  = link_to icon_tag("arrow-4-diag"), "#sprint_#{sprint.id}_burndown", class: "pop-up"
+  = link_to content_tag(:span, t("show_burndown")), |
+            "#sprint_#{sprint.id}_burndown",        |
+            class: "icon icon-chart-curve pop-up",         |
+            title: t("show_burndown")               |
 
 %div{:id => "sprint_#{sprint.id}_burndown", :class => "sprint-backlog-dialog", "data-title" =>  "#{t("burn_down_chart")} - #{sprint.name}" }
   %canvas{:width => "600", :height => "350", "data-url" => project_sprint_path(sprint.project, sprint), :class => "burn-down-canvas"}
@@ -12,9 +15,16 @@
     %table
       %tr
         %td
-          = link_to icon_tag("pencil"), "#", "data-toggle" => "#edit_#{sprint.id}_form_wrapper", title: "#{t("edit")} #{sprint.name}"
+          = link_to content_tag(:span, "#{t("edit")} #{sprint.name}"), "#", |
+                    "data-toggle" => "#edit_#{sprint.id}_form_wrapper",     |
+                    title: "#{t("edit")} #{sprint.name}",                   |
+                    class: "icon icon-prefs"                                |
         %td
-          = link_to icon_tag("trash"), project_sprint_path(@project, sprint), title: "#{t("delete")} #{sprint.name}", method: "delete", remote: true
+          = link_to content_tag(:span, "#{t("delete")} #{sprint.name}"), |
+                    project_sprint_path(@project, sprint),               |
+                    title: "#{t("delete")} #{sprint.name}",              |
+                    method: "delete", remote: true,                      |
+                    class: "icon icon-cross"                             |
 
 .clear
 

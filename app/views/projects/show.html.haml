@@ -1,12 +1,3 @@
-- content_for :extra_navigation do
-  #project_buttons
-    %input{:type => "checkbox", :id => "sprints_visible", :checked => "checked"}
-    %label{:for => "sprints_visible"}= t("projects.sprints")
-    %input{:type => "checkbox", :id => "product_backlog_visible", :checked => "checked"}
-    %label{:for => "product_backlog_visible"}= t("projects.product_backlog")
-    %input{:type => "checkbox", :id => "user_stories_incubator_visible", :checked => "checked"}
-    %label{:for => "user_stories_incubator_visible"}= t("projects.user_stories_incubator")
-
 = render partial: "project_header", locals: {project: @project}
 
 #sprints.ui-corner-all

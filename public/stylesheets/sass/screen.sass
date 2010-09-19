@@ -288,18 +288,16 @@ table.adjusting
     :font-weight bold
   .entry-worked-on
     :font-style normal
+
 .in_progress
-  :border-color = !red
   :background-color = !lightred
 
 .resolved
-  :border-color = !green
   :background-color = !lightgreen
 
 .closed
   :text-decoration line-through
   :background-color = !lightgreen
-  :border-color = !green
 
 .comment
   :background-color = !lightblue
@@ -317,9 +315,6 @@ table.adjusting
   .ui-state-highlight
     :height 40px
 
-#edit_story_form_wrapper
-  :display none
-
 #new_comment_wrapper
   :display none
 
@@ -332,13 +327,22 @@ table.adjusting
 .story-avatar
   :display inline-block
   :margin 0
+  :position relative
+  :top -3px
   :padding 0
   img
+    :width 14px
+    :height 14px
     :margin 0
+    :-moz-border-radius 6px
+    :border-radius 6px
     :padding 0
     :top 0
     :left 0
-
+    :box-shadow 0px 0px 2px #3c5368
+    :-webkit-box-shadow 0px 0px 2px #3c5368
+    :-moz-box-shadow 0px 0px 2px #3c5368
+ 
 .story-points
   :font-weight bold
   :color = !darkblue
@@ -425,3 +429,49 @@ table.adjusting
   :margin-left 5px
   h2
     :margin 0 0 5px 0
+
+.button
+  :padding 5px 5px 7px 5px
+  :display inline-block
+  :font-size 12px
+  :line-height 12px
+  :border
+    :width 1px 
+    :style solid 
+    :color = #999
+    :radius 4px
+  :-moz-border-radius 4px
+  :margin 0 5px
+
+.button-with-icon
+  :padding-left 22px
+  :background-repeat no-repeat
+  :background-position 3px center
+
+.icon
+  :display inline-block
+  :width 20px
+  :height 20px
+  :background-repeat no-repeat
+  :background-position center center
+  span
+    :display none
+
+.icon-pages
+  :background-image url(/images/icons/page_white_stack.png) 
+
+.icon-play
+  :background-image url(/images/icons/control_play_blue.png)
+
+.icon-pause
+  :background-image url(/images/icons/control_pause_blue.png)
+
+.icon-cross
+  :background-image url(/images/icons/cross.png)
+
+.icon-chart-curve
+  :background-image url(/images/icons/chart_curve.png)
+
+.icon-prefs
+  :background-image url(/images/icons/wrench.png)
+

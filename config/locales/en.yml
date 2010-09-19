@@ -1,5 +1,6 @@
 en:
   welcome: Welcome
+  show_burndown: "Show Burndown Chart"
   shoutbox: Shoutbox
   currently_working: "Now working"
   radiator: Radiator
