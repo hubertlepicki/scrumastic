@@ -26,9 +26,9 @@ class AttachmentsController < ProjectScopedController
     attachment = Attachment.find(params[:id])
     Can.edit?(current_user, attachment) do
       if params[:style] == "thumb"
-        send_file attachment.file.thumb.file.file
+        safer_send_file attachment.file.thumb.file.file
       else
-        send_file attachment.file.file.file
+        safer_send_file attachment.file.file.file
       end
     end
   end

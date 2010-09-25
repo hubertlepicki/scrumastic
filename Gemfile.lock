@@ -12,6 +12,13 @@ GIT
     carrierwave (0.4.4)
 
 GIT
+  remote: git://github.com/hubertlepicki/safer_send_file
+  revision: 952f631d87bcfa12b4634df1a71392628fbf63f5
+  specs:
+    safer_send_file (0.0.1)
+      rails (~> 3.0)
+
+GIT
   remote: git://github.com/rspec/rspec-core.git
   revision: 001e600
   specs:
@@ -200,6 +207,7 @@ DEPENDENCIES
   rspec-expectations!
   rspec-mocks!
   rspec-rails!
+  safer_send_file!
   socky (= 0.1.1)
   steak!
   timecop (= 0.3.5)
