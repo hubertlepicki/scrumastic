@@ -29,10 +29,10 @@ feature "User Stories management", %q{
     project = Project.create! valid_project_attributes("Project 1", "test", users[:hubert])
     sprint = Sprint.create! :project => project, :start_date => 2.days.ago
     user_story = UserStory.create! :project => project, :who => "foo", :what => "bar"
-
     sign_in_as "Hubert"
     click_link "Project 1"
-    drag "//*[@data-id='#{user_story.id}']", "//*[@id='backlog_stories']"
+    sleep 2
+    drag "//*[@id='user_story_#{user_story.id}']", "//div[@id='backlog_stories']"
     sleep 1
     UserStory.first.in_backlog.should eql(true)
   end

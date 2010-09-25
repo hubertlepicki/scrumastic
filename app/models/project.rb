@@ -43,7 +43,7 @@ class Project
 
   # True if user is allowed to edit given project
   def can_edit?(someone)
-    owner_id == someone.id
+    owner_id.to_s == someone.id.to_s
   end
 
   # True if user can edit sprint details for this project
@@ -57,7 +57,7 @@ class Project
   def can_edit_user_stories_for?(someone)
     can_edit?(someone) ||
     assignable_people_ids.include?(someone.id.to_s) ||
-    (product_owner_id == someone.id)
+    (product_owner_id.to_s == someone.id.to_s)
   end
 
   # True if user is allowed to see project dashboard and user stories

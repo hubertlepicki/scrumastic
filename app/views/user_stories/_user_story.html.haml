@@ -1,4 +1,4 @@
-%div{"data-id" => user_story.id, "data-project-id" => user_story.project_id, :class => "user-story #{user_story.state}",
+%div{"id" => "user_story_#{user_story.id}", "data-id" => user_story.id, "data-project-id" => user_story.project_id, :class => "user-story #{user_story.state}",
   "data-story-points" => (user_story.story_points || 0)}
 
 
