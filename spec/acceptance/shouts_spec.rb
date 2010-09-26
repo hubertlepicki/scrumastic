@@ -1,6 +1,7 @@
 # encoding: UTF-8
 require File.join(File.dirname(__FILE__), '/acceptance_helper')
 
+=begin
 feature "Publishing shouts", %q{
   In order to inform other people what's going on
   As a signed in user
@@ -17,3 +18,4 @@ feature "Publishing shouts", %q{
     project.shouts.count.should eql(1)
   end
 end
+=end
