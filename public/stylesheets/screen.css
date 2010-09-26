@@ -510,3 +510,5 @@ table.adjusting {
 #reports canvas {
   border: 1px solid black;
   height: 200px; }
+#reports .data, #reports .multiplier, #reports #sprints_data {
+  display: none; }

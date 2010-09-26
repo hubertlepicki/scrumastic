@@ -439,9 +439,25 @@ var ReportChart = function(canvas, data, multiplier) {
   var end = new Date(canvas.attr("data-end"));
   var days = parseInt(canvas.attr("data-days"));
 
+  var sprints = $("#sprints_data").html().split(",");
+
   canvas.attr("width", days * 10);
   canvas.attr("height", 200);
   canvas.css("width", days * 10 + "px");
+
+  canvas.bind("mousemove", function(event) {
+    $(".report-date", $(canvas).parent()).html($($("tr[data-index='"+Math.floor(event.offsetX/10)+"'] td", data)[1]).html());
+    $(".report-value", $(canvas).parent()).html($($("tr[data-index='"+Math.floor(event.offsetX/10)+"'] td", data)[2]).html());
+
+
+  });
+
+  $(sprints).each(function(index, val) {
+    if (index % 2 == 1) {
+      ctx.fillStyle = "#fafaff";
+      ctx.fillRect(sprints[index-1] * 10, 0, val * 10 - sprints[index-1] * 10, 200);
+    }
+  });
 
   var prev = null;
 
@@ -462,8 +478,6 @@ var ReportChart = function(canvas, data, multiplier) {
     var y = 200-(parseFloat($($("td", row)[2]).html()))*y_multiplier;
     
     ctx.beginPath();
-    console.debug(x);
-    console.debug(y);
     ctx.arc(x, y, 2, 0, Math.PI*2, true); 
     ctx.stroke();
     ctx.closePath();
@@ -471,6 +485,6 @@ var ReportChart = function(canvas, data, multiplier) {
 
 }
  
-$("#size_report_plot").livequery(function() {
-  new ReportChart($(this), $("#size_report_data"), $("#size_multiplier"));
+$("#size_report").livequery(function() {
+  new ReportChart($("canvas", this), $(".data", this), $(".multiplier", this));
 });
