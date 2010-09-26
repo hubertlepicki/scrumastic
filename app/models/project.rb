@@ -10,6 +10,9 @@ class Project
 
   field :name, :type => String
   field :description, :type => String
+  field :repository_url, :type => String
+  field :size_at, :type => Hash, :default => {}
+
   array_attributes :team_member_ids, :stakeholder_ids
 
   belongs_to_related :scrum_master, :class_name => "User"
@@ -24,6 +27,7 @@ class Project
 
   validates_presence_of :name
   validates_uniqueness_of :name, :scope => :owner_id
+  validates_format_of :repository_url, with: URI::regexp(["http", "https", "git"]), if: Proc.new {|o| !o.repository_url.blank? }
   validate :uniqueness_of_roles
 
   # People that you can assign user stories to.
@@ -105,6 +109,31 @@ class Project
     TimeLogEntry.all(conditions: 
                        {project_id: id, :created_at.gte => from, :created_at.lte => to}
                     ).collect{|e| e.number_of_seconds}.sum
+  end
+
+  def prepare_reporting
+     return if sprints.count == 0
+    `rm -rf tmp/repositories`
+    `mkdir -p tmp/repositories`
+     
+     repo = SCM::GitAdapter.clone_repository(repository_url, "#{Rails.root}/tmp/repositories/#{id}")
+
+     from = sprints.collect {|s| s.start_date.to_date}.min
+     to = sprints.collect {|s| s.end_date.to_date}.max
+    
+     self.size_at = {} if size_at.nil?
+
+     (from..to).each do |day|
+       if size_at[day.to_s].nil?
+         added_lines = repo.added_lines_count(from.midnight, day.end_of_day)
+         removed_lines = repo.removed_lines_count(from.midnight, day.end_of_day)
+         if added_lines
+           self.size_at[day.to_s] = added_lines - removed_lines
+         end
+       end
+     end 
+
+     save
   end
 
   private

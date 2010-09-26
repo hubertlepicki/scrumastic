@@ -43,7 +43,15 @@
         = render partial: "search_people"
         %div{:id => "available_people", :class => "person-droppable"}
         %div{:id => "available_people_pagination"}
+    %tr
+      %td{:colspan => 3}
+        %label{:for => "repository_url"}= t("projects.repository_url")
+    %tr
+      %td{:colspan => 3}
+        = f.text_field :repository_url
 
+
+ 
   .vspacer
 
   %p

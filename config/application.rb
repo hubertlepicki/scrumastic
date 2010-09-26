@@ -4,15 +4,16 @@ require File.expand_path('../boot', __FILE__)
 
 require "action_controller/railtie"
 require "action_mailer/railtie"
-["array_attributes", "can", "mongo_utils", "not_overlapping_validator", 
- "permission_denied", "time_formatter"].each do |item|
-    require File.join(File.dirname(__FILE__), "..", "lib", item)
-end
-
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
+
+["array_attributes", "can", "mongo_utils", "not_overlapping_validator", 
+ "permission_denied", "time_formatter", "scm/git_adapter"].each do |item|
+    require File.join(File.dirname(__FILE__), "..", "lib", item)
+end
+
 
 module Scrumastic
   class Application < Rails::Application

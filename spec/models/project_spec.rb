@@ -33,6 +33,9 @@ describe "Project" do
     p.logo.should be_present
   end
 
+  it "should be possible to specify git repository url"
+  it "should be possible to specify hudson url"
+
   it "should be possible to remove a logo from a project by setting a boolean field" do
     p = Project.create!(valid_project_attributes.merge(
           {:logo => File.new("#{::Rails.root}/spec/fixtures/logo.png")}
@@ -153,3 +156,33 @@ describe Project, "user roles" do
   end
 
 end
+
+describe Project, "reports" do
+  before(:each) do
+    @admin = User.create!(valid_user_attributes)
+    @project = Project.create!( valid_project_attributes.merge(
+                                  {repository_url: "http://github.com/hubertlepicki/scrumastic.git"}
+                              ))
+
+    @sprint = Sprint.create!( :project => @project, 
+                              :start_date => Time.parse("2010-08-15 00:00:00"),
+                              :end_date => Time.parse("2010-09-15 00:00:00") )
+
+    SCM::GitAdapter.stub!(:clone_repository).and_return SCM::GitAdapter.new("#{Rails.root}")
+    @project.prepare_reporting
+  end
+
+  it "should save into database project size during the days within Sprints" do
+    @project.size_at["2010-08-29"].should eql(11929) 
+    @project.size_at["2010-09-13"].should eql(17418) 
+    @project.size_at["2010-09-15"].should eql(17502) 
+  end
+
+  it "should not save size entries when can't get this information from repository" do
+    @project.size_at["2010-08-16"].should be_nil
+  end
+
+  it "should save into database test to code ratio"
+  it "should save into database average ABC result"
+end
+

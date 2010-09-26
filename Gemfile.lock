@@ -12,6 +12,14 @@ GIT
     carrierwave (0.4.4)
 
 GIT
+  remote: git://github.com/hubertlepicki/grit.git
+  revision: 79420070e27285585f242277c76bdbd7ea6e24ec
+  specs:
+    grit (2.2.0)
+      diff-lcs (~> 1.1)
+      mime-types (~> 1.15)
+
+GIT
   remote: git://github.com/hubertlepicki/safer_send_file
   revision: 952f631d87bcfa12b4634df1a71392628fbf63f5
   specs:
@@ -205,6 +213,7 @@ DEPENDENCIES
   fastthread
   googlecharts (= 1.6.0)
   gravtastic (= 2.2.0)
+  grit!
   haml (= 3.0.18)
   mini_magick (= 2.1)
   mongoid!
