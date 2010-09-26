@@ -46,7 +46,28 @@
           %td{id: "size_#{row[0]}"}= row[1]
 
     .multiplier= 200.0 / @project.test_to_code_ratio_at.collect {|k,v| v}.max
-  
+ 
+  %h3= t("projects.complexity")
+
+  #complexity_report.report
+    %div
+      Date:
+      %span{class: "report-date"}
+      Average method complexity:
+      %span{class: "report-value"}
+    %canvas.plot{"data-days" => (@project.start_date..@project.end_date).count,
+                             "data-start" => @project.start_date,
+                             "data-end" => @project.end_date}}
+
+    %table.data
+      - rows = @project.complexity_at.sort{|l,r| l[0]<=>r[0]}
+      - rows.each do |row|
+        %tr{"data-index" => rows.index(row)}
+          %td= rows.index(row)
+          %td= row[0]
+          %td{id: "size_#{row[0]}"}= row[1]
+
+    .multiplier= 200.0 / @project.complexity_at.collect {|k,v| v}.max
 
   - days = (@project.start_date..@project.end_date).to_a
 

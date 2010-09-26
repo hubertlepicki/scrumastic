@@ -188,6 +188,10 @@ describe Project, "reports" do
     @project.test_to_code_ratio_at["2010-09-15"].should eql(1.0655) 
   end
 
-  it "should save into database average ABC result"
+  it "should save into database average ABC result" do
+    @project.complexity_at["2010-08-29"].should eql(4.6289) 
+    @project.complexity_at["2010-09-13"].should eql(1.0877) 
+    @project.complexity_at["2010-09-15"].should eql(1.0655) 
+  end
 end
 

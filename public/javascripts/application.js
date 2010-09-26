@@ -493,3 +493,7 @@ $("#ratio_report").livequery(function() {
   new ReportChart($("canvas", this), $(".data", this), $(".multiplier", this));
 });
 
+$("#complexity_report").livequery(function() {
+  new ReportChart($("canvas", this), $(".data", this), $(".multiplier", this));
+});
+

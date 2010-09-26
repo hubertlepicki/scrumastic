@@ -152,6 +152,7 @@ GEM
       activesupport (>= 2.3.6)
       mime-types
       treetop (>= 1.4.5)
+    metric_abc (0.0.3)
     mime-types (1.16)
     mini_magick (2.1)
       subexec (~> 0.0.4)
@@ -215,6 +216,7 @@ DEPENDENCIES
   gravtastic (= 2.2.0)
   grit!
   haml (= 3.0.18)
+  metric_abc
   mini_magick (= 2.1)
   mongoid!
   mongrel (= 1.2.0.pre2)
