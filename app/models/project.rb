@@ -118,8 +118,8 @@ class Project
      
      repo = SCM::GitAdapter.clone_repository(repository_url, "#{Rails.root}/tmp/repositories/#{id}")
 
-     from = sprints.collect {|s| s.start_date.to_date}.min
-     to = sprints.collect {|s| s.end_date.to_date}.max
+     from = start_date
+     to = end_date
     
      self.size_at = {} if size_at.nil?
 
@@ -134,6 +134,14 @@ class Project
      end 
 
      save
+  end
+
+  def start_date
+    sprints.collect {|s| s.start_date.to_date}.min
+  end
+
+  def end_date
+    sprints.collect {|s| s.end_date.to_date}.max
   end
 
   private

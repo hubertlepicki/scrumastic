@@ -37,6 +37,8 @@ en:
     search: "Search by name, login or email:"
     nobody_found: Couldn't find any people matching given criteria.
   projects:
+    reports: "Reports"
+    size: "Project size"
     your_role_in_project: You are %{role} in this project
     this_project: this project
     available_people: Available people

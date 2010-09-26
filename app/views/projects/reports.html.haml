@@ -1,0 +1,10 @@
+= render partial: "project_header", locals: {project: @project}
+
+%h2= t("projects.reports")
+%h3= t("projects.size")
+
+%table
+  - @project.size_at.each do |date, size|
+    %tr
+      %td= date
+      %td{id: "size_#{date}"}= size

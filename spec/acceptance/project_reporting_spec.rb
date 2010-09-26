@@ -18,12 +18,9 @@ feature "Project reporting", %q{
     sign_in_as "Hubert"
     click_link "Project 1"
     sleep 1
-    update_reports
+    project.prepare_reporting
     click_link "Reports"
-    page.should have_css("#size_report")
-    page.find(:id, 'size_20100829').text.should eql("FILL ME IN")
-    page.find(:id, 'size_20100830').text.should eql("FILL ME IN")
-    page.find(:id, 'size_20100815').text.should eql("FILL ME IN")
+    page.find('//td[@id="size_2010-08-29"]').text.should eql("11929")
   end
 
 end
