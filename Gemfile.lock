@@ -64,6 +64,13 @@ GIT
       tzinfo (~> 0.3.22)
       will_paginate (~> 3.0.pre)
 
+GIT
+  remote: http://github.com/tylerkovacs/ci_reporter.git
+  revision: 3dfd4f47a155959e6c7d2aa04a9906fb7153428a
+  specs:
+    ci_reporter (1.6.4)
+      builder (>= 2.1.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -192,6 +199,7 @@ DEPENDENCIES
   capybara (= 0.3.9)
   carrierwave!
   cgi_multipart_eof_fix
+  ci_reporter!
   devise (= 1.1.2)
   diff-lcs (= 1.1.2)
   fastthread

@@ -35,6 +35,7 @@ gem "safer_send_file", git: "git://github.com/hubertlepicki/safer_send_file"
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
+  gem "ci_reporter", git: "http://github.com/tylerkovacs/ci_reporter.git"
   gem "diff-lcs", "1.1.2", require: nil
   gem "rspec-rails",        :git => "git://github.com/rspec/rspec-rails.git"
   gem "rspec",              :git => "git://github.com/rspec/rspec.git"

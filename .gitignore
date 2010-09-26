@@ -9,3 +9,4 @@ nohup.out
 config/socky.yml
 config/socky_hosts.yml
 uploads/*
+hudson/*

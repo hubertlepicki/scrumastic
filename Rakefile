@@ -3,5 +3,7 @@
 
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
+ENV["CI_REPORTS"] = 'hudson/reports/spec/'
+require 'ci/reporter/rake/rspec'
 
 Scrumastic::Application.load_tasks
