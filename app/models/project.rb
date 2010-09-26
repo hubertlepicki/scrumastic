@@ -130,7 +130,7 @@ class Project
 
      (from..to).each do |day|
        if size_at[day.to_s].nil? || test_to_code_ratio_at[day.to_s].nil? || complexity_at[day.to_s].nil?
-         `cd tmp/repositories/#{id}; git checkout master`
+         `cd #{Rails.root}/tmp/repositories/#{id} && git checkout master`
          added_lines = repo.added_lines_count(from.midnight, day.end_of_day, /^(app|lib)/)
          removed_lines = repo.removed_lines_count(from.midnight, day.end_of_day, /^(app|lib)/)
          next unless added_lines && removed_lines
@@ -144,9 +144,9 @@ class Project
 
          next unless test_added_lines && test_removed_lines
          self.test_to_code_ratio_at[day.to_s] = round(test_lines.to_f / (all_lines - test_lines).abs.to_f, 2)
-         command = "cd tmp/repositories/#{id}; git checkout master; git checkout `git rev-list -n 1 --before=\"#{day.end_of_day}\" master`; "
+         command = "cd #{Rails.root}/tmp/repositories/#{id} && git checkout master && git checkout `git rev-list -n 1 --before=\"#{day.end_of_day}\" master`; "
          `#{command}`
-         command = "cd tmp/repositories/#{id}/app; metric_abc `find . -iname *.rb`"
+         command = "cd #{Rails.root}/tmp/repositories/#{id}/app && metric_abc `find . -iname *.rb`"
          output = `#{command}`
          lines = output.split("\n")
          self.complexity_at[day.to_s] = (lines.collect{|l| Math.exp(l.split(": ").last.to_f/10.0) }.sum) / 1.0 
