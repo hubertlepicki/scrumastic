@@ -422,3 +422,51 @@ $("input[name='user_story[who]']").livequery(function() {
       $(this).autocomplete({ source: suggestions });
     }
 });
+
+
+$("#size_report_plot").livequery(function() {
+  var drawLine = function(x1, y1, x2, y2, color) {
+      canvas.lineWidth = 1.0;
+      canvas.beginPath();
+      canvas.strokeStyle = color;
+      canvas.moveTo(x1,y1);
+      canvas.lineTo(x2,y2);
+      canvas.stroke();
+  };
+
+  var start = new Date($(this).attr("data-start"));
+  var end = new Date($(this).attr("data-end"));
+  var days = parseInt($(this).attr("data-days"));
+  var canvas = $(this)[0].getContext("2d");
+
+  $(this).attr("width", days * 10);
+  $(this).attr("height", 200);
+  $(this).css("width", days * 10 + "px");
+
+  var prev = null;
+
+  $("#size_report_data tr").each(function(index, row) {
+    var y_multiplier = parseFloat($("#size_multiplier").html());
+    var x = parseInt($($("td", row)[0]).html())*10;
+    var y = 200-(parseFloat($($("td", row)[2]).html()))*y_multiplier;
+
+    if (index > 0) {
+      drawLine(prev[0], prev[1], x, y, "#4444ff");
+    }
+
+    prev = [x, y];
+  });
+
+  $("#size_report_data tr").each(function(index, row) {
+    var y_multiplier = parseFloat($("#size_multiplier").html());
+    var x = parseInt($($("td", row)[0]).html())*10;
+    var y = 200-(parseFloat($($("td", row)[2]).html()))*y_multiplier;
+    
+    canvas.beginPath();
+    console.debug(x);
+    console.debug(y);
+    canvas.arc(x, y, 2, 0, Math.PI*2, true); 
+    canvas.stroke();
+    canvas.closePath();
+  }); 
+});

@@ -1,10 +1,20 @@
 = render partial: "project_header", locals: {project: @project}
 
 %h2= t("projects.reports")
-%h3= t("projects.size")
 
-%table
-  - @project.size_at.each do |date, size|
-    %tr
-      %td= date
-      %td{id: "size_#{date}"}= size
+#reports
+  %h3= t("projects.size")
+  %canvas#size_report_plot{"data-days" => (@project.start_date..@project.end_date).count,
+                           "data-start" => @project.start_date,
+                           "data-end" => @project.end_date}}
+
+  %table#size_report_data
+    - rows = @project.size_at.sort{|l,r| l[0]<=>r[0]}
+    - rows.each do |row|
+      %tr
+        %td= rows.index(row)
+        %td= row[0]
+        %td{id: "size_#{row[0]}"}= row[1]
+
+
+  #size_multiplier= 200.0 / @project.size_at.collect {|k,v| v}.max

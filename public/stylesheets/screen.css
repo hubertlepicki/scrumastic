@@ -506,3 +506,7 @@ table.adjusting {
   .attachment .meta {
     margin: 5px 0;
     font-size: 12px; }
+
+#reports canvas {
+  border: 1px solid black;
+  height: 200px; }
