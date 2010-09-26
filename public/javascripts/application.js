@@ -488,3 +488,8 @@ var ReportChart = function(canvas, data, multiplier) {
 $("#size_report").livequery(function() {
   new ReportChart($("canvas", this), $(".data", this), $(".multiplier", this));
 });
+
+$("#ratio_report").livequery(function() {
+  new ReportChart($("canvas", this), $(".data", this), $(".multiplier", this));
+});
+

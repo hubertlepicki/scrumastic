@@ -12,6 +12,7 @@ class Project
   field :description, :type => String
   field :repository_url, :type => String
   field :size_at, :type => Hash, :default => {}
+  field :test_to_code_ratio_at, :type => Hash, :default => {}
 
   array_attributes :team_member_ids, :stakeholder_ids
 
@@ -122,14 +123,23 @@ class Project
      to = end_date
     
      self.size_at = {} if size_at.nil?
+     self.test_to_code_ratio_at = {} if size_at.nil?
 
      (from..to).each do |day|
        if size_at[day.to_s].nil?
-         added_lines = repo.added_lines_count(from.midnight, day.end_of_day)
-         removed_lines = repo.removed_lines_count(from.midnight, day.end_of_day)
-         if added_lines
-           self.size_at[day.to_s] = added_lines - removed_lines
-         end
+         added_lines = repo.added_lines_count(from.midnight, day.end_of_day, /^(app|lib)/)
+         removed_lines = repo.removed_lines_count(from.midnight, day.end_of_day, /^(app|lib)/)
+         next unless added_lines && removed_lines
+
+         all_lines = added_lines - removed_lines
+         self.size_at[day.to_s] = all_lines
+
+         test_added_lines = repo.added_lines_count(from.midnight, day.end_of_day, /^spec/)
+         test_removed_lines = repo.removed_lines_count(from.midnight, day.end_of_day, /^spec/)
+         test_lines = test_added_lines - test_removed_lines
+
+         next unless test_added_lines && test_removed_lines
+         self.test_to_code_ratio_at[day.to_s] = round(test_lines.to_f / (all_lines - test_lines).abs.to_f, 2)
        end
      end 
 
@@ -145,6 +155,12 @@ class Project
   end
 
   private
+  def round(float, num_of_decimal_places)
+    exponent = num_of_decimal_places + 2
+    @float = float*(10**exponent)
+    @float = @float.round
+    @float = @float / (10.0**exponent)
+  end 
 
   # Validates that one user must play only one role in Project.
   # makes project.valid? return false, prevents it from saving

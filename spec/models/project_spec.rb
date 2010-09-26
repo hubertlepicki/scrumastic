@@ -182,7 +182,12 @@ describe Project, "reports" do
     @project.size_at["2010-08-16"].should be_nil
   end
 
-  it "should save into database test to code ratio"
+  it "should save into database test to code ratio" do
+    @project.test_to_code_ratio_at["2010-08-29"].should eql(4.6289) 
+    @project.test_to_code_ratio_at["2010-09-13"].should eql(1.0877) 
+    @project.test_to_code_ratio_at["2010-09-15"].should eql(1.0655) 
+  end
+
   it "should save into database average ABC result"
 end
 
