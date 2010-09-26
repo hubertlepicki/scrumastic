@@ -165,33 +165,30 @@ describe Project, "reports" do
                               ))
 
     @sprint = Sprint.create!( :project => @project, 
-                              :start_date => Time.parse("2010-08-15 00:00:00"),
-                              :end_date => Time.parse("2010-09-15 00:00:00") )
+                              :start_date => Time.parse("2010-08-25 00:00:00"),
+                              :end_date => Time.parse("2010-09-01 00:00:00") )
 
-    SCM::GitAdapter.stub!(:clone_repository).and_return SCM::GitAdapter.new("#{Rails.root}")
+    `rm -rf #{Rails.root}/tmp/repositories`
+    `mkdir -p #{Rails.root}/tmp/repositories`
+    puts `git clone #{Rails.root} #{Rails.root}/tmp/repositories/#{@project.id}`
+    SCM::GitAdapter.stub!(:clone_repository).and_return SCM::GitAdapter.new("#{Rails.root}/tmp/repositories/#{@project.id}")
     @project.prepare_reporting
   end
 
   it "should save into database project size during the days within Sprints" do
-    @project.size_at["2010-08-29"].should eql(11929) 
-    @project.size_at["2010-09-13"].should eql(17418) 
-    @project.size_at["2010-09-15"].should eql(17502) 
+    @project.size_at["2010-08-29"].should eql(577) 
   end
 
   it "should not save size entries when can't get this information from repository" do
-    @project.size_at["2010-08-16"].should be_nil
+    @project.size_at["2010-08-26"].should be_nil
   end
 
   it "should save into database test to code ratio" do
-    @project.test_to_code_ratio_at["2010-08-29"].should eql(4.6289) 
-    @project.test_to_code_ratio_at["2010-09-13"].should eql(1.0877) 
-    @project.test_to_code_ratio_at["2010-09-15"].should eql(1.0655) 
+    @project.test_to_code_ratio_at["2010-08-29"].should eql(1.2756) 
   end
 
   it "should save into database average ABC result" do
-    @project.complexity_at["2010-08-29"].should eql(4.6289) 
-    @project.complexity_at["2010-09-13"].should eql(1.0877) 
-    @project.complexity_at["2010-09-15"].should eql(1.0655) 
+    @project.complexity_at["2010-08-29"].should eql(0.1879) 
   end
 end
 

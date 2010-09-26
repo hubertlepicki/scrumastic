@@ -25,6 +25,7 @@ module SCM
     end
     
     def self.clone_repository(url, directory)
+      `rm -rf #{directory}`
       command = "git clone #{url} #{directory}"
       system(command)
       SCM::GitAdapter.new directory

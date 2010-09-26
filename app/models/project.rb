@@ -115,7 +115,6 @@ class Project
 
   def prepare_reporting
      return if sprints.count == 0
-    `rm -rf tmp/repositories`
     `mkdir -p tmp/repositories`
      
      repo = SCM::GitAdapter.clone_repository(repository_url, "#{Rails.root}/tmp/repositories/#{id}")
@@ -143,13 +142,13 @@ class Project
          test_lines = test_added_lines - test_removed_lines
 
          next unless test_added_lines && test_removed_lines
-         self.test_to_code_ratio_at[day.to_s] = round(test_lines.to_f / (all_lines - test_lines).abs.to_f, 2)
+         self.test_to_code_ratio_at[day.to_s] = round(test_lines.to_f / all_lines.to_f, 2)
          command = "cd #{Rails.root}/tmp/repositories/#{id} && git checkout master && git checkout `git rev-list -n 1 --before=\"#{day.end_of_day}\" master`; "
          `#{command}`
          command = "cd #{Rails.root}/tmp/repositories/#{id}/app && metric_abc `find . -iname *.rb`"
          output = `#{command}`
          lines = output.split("\n")
-         self.complexity_at[day.to_s] = (lines.collect{|l| Math.exp(l.split(": ").last.to_f/10.0) }.sum) / 1.0 
+         self.complexity_at[day.to_s] = round((lines.collect{|l| Math.exp(l.split(": ").last.to_f/10.0) }.sum) / all_lines.to_f, 2)
        end
      end 
 
