@@ -2,7 +2,7 @@
 .right
   = link_to t("time_log_entries.new"), new_project_time_log_entry_path(@project)
 .worked-time
-  = TimeFormatter::format @project.worked_time(@from, @to)
+  = TimeFormatter::format @project.worked_time(@from, @to, params[:user_id])
 - form_tag project_time_log_entries_path(@project), {method: :get, class: "simple-filtering"} do
   = label_tag :from, t("from")
   = text_field_tag :from, params[:from] || @project.created_at.to_date, class: "date-picker", size: 10
