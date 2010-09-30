@@ -438,8 +438,7 @@ var Canvas = new function() {
   }
 }
 
-$(function() {
-  $("#reports #from, #reports #to").change(function(event) {
+function prepareReportsCanvas() {
     days = ($("#reports select[name='to']").val() - $("#reports select[name='from']").val()) / (24 * 3600);
     $("#timeline").attr("width", 20*days);
     if (days < 43) {
@@ -458,11 +457,18 @@ $(function() {
     for (var y=0; y<200; y+=20) {
       Canvas.drawLine("#timeline", 0, y, 20*days, y, "#cccccc");
     }
+}
+
+$(function() {
+  if ($("#reports #from").size() > 0) {
+    prepareReportsCanvas();
+  }
+
+  $("#reports #from, #reports #to").change(function(event) {
+    prepareReportsCanvas();
   });
 
   $("#reports button").click(function(event) {
-    console.debug(ppd);
-    for (var x=0; x<=$("#timeline").width(); x+= ppd)
-      Canvas.drawLine("#timeline", x, 0, x, $("#timeline").height(), "#000000");
+  
   });
 });
