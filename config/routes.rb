@@ -13,6 +13,9 @@ Scrumastic::Application.routes.draw do |map|
   resources :websocket_connections
 
   resources :projects do
+    member do 
+      get "reports"
+    end
     resources :attachments
     resources :shouts
     resources :sprints

@@ -2,6 +2,7 @@
 
 class SprintsController < ProjectScopedController
   layout false
+  respond_to :html, :json
   before_filter :find_sprint, except: [:index, :create]
   
   def destroy
@@ -18,7 +19,7 @@ class SprintsController < ProjectScopedController
 
   def index
     Can.see?(current_user, @project) do
-      @sprints = @project.sprints.find(:all, :conditions => {}, :sort => [:start_date, :desc])
+      respond_with(@sprints = @project.sprints.find(:all, :conditions => {}, :sort => [:start_date, :desc]))
     end
   end
 

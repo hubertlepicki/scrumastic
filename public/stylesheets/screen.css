@@ -506,3 +506,9 @@ table.adjusting {
   .attachment .meta {
     margin: 5px 0;
     font-size: 12px; }
+
+#timeline {
+  height: 100px;
+  border: 1px solid #cccccc;
+  width: 960px;
+  display: block; }

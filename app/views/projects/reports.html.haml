@@ -1,0 +1,11 @@
+= render partial: "project_header", locals: {project: @project}
+
+%h2= t("projects.reports")
+#reports
+  = select_tag :from, options_for_select((@project.start_date..@project.end_date).collect {|d| [d.to_s, d.midnight.to_i]}.reverse)
+  = select_tag :to, options_for_select((@project.start_date..@project.end_date).collect {|d| [d.to_s, d.end_of_day.to_i]}.reverse)
+
+  %button#plot_timeline Plot
+
+  %canvas#timeline
+

@@ -35,6 +35,10 @@ class ProjectsController < AuthenticatedController
     end
   end
 
+  def reports
+    show
+  end
+
   def update
     Can.edit?(current_user, @project) do
       @project.update_attributes(params[:project].merge(owner_id: current_user.id))

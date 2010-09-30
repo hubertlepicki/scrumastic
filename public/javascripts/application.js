@@ -422,3 +422,47 @@ $("input[name='user_story[who]']").livequery(function() {
       $(this).autocomplete({ source: suggestions });
     }
 });
+
+var Canvas = new function() {
+  var self = this;
+
+  self.drawLine = function(canvas, x1, y1, x2, y2, color) {
+    ctx = $(canvas)[0].getContext("2d");
+    console.debug("pff");
+    ctx.lineWidth = 1.0;
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.moveTo(x1,y1);
+    ctx.lineTo(x2,y2);
+    ctx.stroke();
+  }
+}
+
+$(function() {
+  $("#reports #from, #reports #to").change(function(event) {
+    days = ($("#reports select[name='to']").val() - $("#reports select[name='from']").val()) / (24 * 3600);
+    $("#timeline").attr("width", 20*days);
+    if (days < 43) {
+      $("#timeline").css("width", days * 20 + "px");
+    } else {
+      $("#timeline").css("width", "960px");
+    }
+
+    ppd = $("#timeline").width() / days;
+
+    $("#timeline").attr("height", 200);
+    $("#timeline").css("height", 20 * ppd + "px");
+    for (var x=0; x<days; x++) {
+      Canvas.drawLine("#timeline", 20*x, 0, 20*x, 200, "#cccccc");
+    }
+    for (var y=0; y<200; y+=20) {
+      Canvas.drawLine("#timeline", 0, y, 20*days, y, "#cccccc");
+    }
+  });
+
+  $("#reports button").click(function(event) {
+    console.debug(ppd);
+    for (var x=0; x<=$("#timeline").width(); x+= ppd)
+      Canvas.drawLine("#timeline", x, 0, x, $("#timeline").height(), "#000000");
+  });
+});

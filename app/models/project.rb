@@ -107,6 +107,14 @@ class Project
     TimeLogEntry.all(conditions: query).collect{|e| e.number_of_seconds}.sum
   end
 
+  def start_date
+    sprints.collect {|s| s.start_date.to_date}.min
+  end
+
+  def end_date
+    sprints.collect {|s| s.end_date.to_date}.max
+  end
+  
   private
 
   # Validates that one user must play only one role in Project.
