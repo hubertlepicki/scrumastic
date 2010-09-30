@@ -10,6 +10,7 @@ class SprintLogEntry
   field :date, type: String
   field :total_points, type: Float
   field :remaining_points, type: Float
+  field :velocity, type: Float
 
   belongs_to_related :sprint
 
@@ -17,6 +18,7 @@ class SprintLogEntry
     super(args)
     self.total_points ||= 0.0
     self.remaining_points ||= 0.0
+    self.velocity ||= 0.0
   end
 
   def self.find_or_new(s_id, for_date)
@@ -24,7 +26,7 @@ class SprintLogEntry
     entry = SprintLogEntry.new(sprint_id: s_id, date: for_date.to_s) if entry.nil?
     entry
   end
-
+ 
   def self.update_now
     Sprint.find( :all,
                  :conditions =>
