@@ -18,6 +18,7 @@ Scrumastic::Application.routes.draw do |map|
     end
     resources :attachments
     resources :shouts
+    resources :sprint_log_entries
     resources :sprints
     resources :user_stories do
       resources :time_log_entries do

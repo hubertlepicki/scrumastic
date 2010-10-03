@@ -463,13 +463,21 @@ var Canvas = new function() {
 
 $(function() {
 
-
-  var FakeMetric = function(from, to, callback) {
-    days = (to - from) / (24 * 3600);
-    for (var i=0; i<days; i++)  {
-      callback(i, Math.random() * 100);
-    }
+  var SprintLogEntriesMetric = function(project_id, from, to, callback) {
+    $.getJSON("/projects/"+project_id+"/sprint_log_entries?from="+from+"&to="+to, function(data) {
+      var max = 0;
+      for (var i=0; i<data.length; i++) {
+        if (max < data[i].total_points) {
+          max = data[i].total_points;
+        }
+      }
+      for (var i=0; i<data.length; i++) {
+        callback(i, 100*(data[i].remaining_points / max));
+      }
+      console.debug(data);
+    });
   };
+
 
   $.fn["plot"] = function(options) {
     options = options || {};
@@ -525,7 +533,7 @@ $(function() {
     $(options.metrics).each(function(index, metric_class) {
       var prev_day = null;
       var prev_value = null;
-      metric = new metric_class($(options.from).val(), $(options.to).val(), function(day, value) {
+      metric = new metric_class(project_id, parseInt($(options.from).val()), parseInt($(options.to).val()), function(day, value) {
         Canvas.drawCircle(self, day*20, 20 + value*2, 2, colors[index], true);
 
         if (prev_day != null && prev_value != null) {
@@ -538,11 +546,11 @@ $(function() {
   }
   
   if ($("#reports #from").size() > 0) {
-    $("#timeline").plot({from: "select[name='from']", to: "select[name='to']", metrics: [FakeMetric, FakeMetric, FakeMetric]}); 
+    $("#timeline").plot({from: "select[name='from']", to: "select[name='to']", metrics: [SprintLogEntriesMetric]}); 
   }
 
   $("#reports #from, #reports #to").change(function(event) {
-    $("#timeline").plot({from: "select[name='from']", to: "select[name='to']", metrics: [FakeMetric, FakeMetric, FakeMetric]}); 
+    $("#timeline").plot({from: "select[name='from']", to: "select[name='to']", metrics: [SprintLogEntriesMetric]}); 
   });
 
   $("#reports button").click(function(event) {
