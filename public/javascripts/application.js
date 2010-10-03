@@ -428,47 +428,83 @@ var Canvas = new function() {
 
   self.drawLine = function(canvas, x1, y1, x2, y2, color) {
     ctx = $(canvas)[0].getContext("2d");
-    console.debug("pff");
     ctx.lineWidth = 1.0;
     ctx.beginPath();
     ctx.strokeStyle = color;
     ctx.moveTo(x1,y1);
     ctx.lineTo(x2,y2);
     ctx.stroke();
+    ctx.closePath();
+  };
+
+  self.drawCircle = function(canvas, x, y, radius, color, fill) {
+    ctx = $(canvas)[0].getContext("2d");
+    ctx.lineWidth = 1.0;
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color;
+    ctx.arc(x, y, radius, 0, Math.PI*2, true);
+    ctx.stroke();
+    if (fill) {
+      ctx.fill();
+    }
+    ctx.closePath();
   }
-}
-
-function prepareReportsCanvas() {
-    days = ($("#reports select[name='to']").val() - $("#reports select[name='from']").val()) / (24 * 3600);
-    $("#timeline").attr("width", 20*days);
-    if (days < 43) {
-      $("#timeline").css("width", days * 20 + "px");
-    } else {
-      $("#timeline").css("width", "960px");
-    }
-
-    ppd = $("#timeline").width() / days;
-
-    $("#timeline").attr("height", 200);
-    $("#timeline").css("height", 20 * ppd + "px");
-    for (var x=0; x<days; x++) {
-      Canvas.drawLine("#timeline", 20*x, 0, 20*x, 200, "#cccccc");
-    }
-    for (var y=0; y<200; y+=20) {
-      Canvas.drawLine("#timeline", 0, y, 20*days, y, "#cccccc");
-    }
 }
 
 $(function() {
+
+  var FakeMetric = function(from, to, callback) {
+    days = (to - from) / (24 * 3600);
+    console.debug(days);
+    for (var i=0; i<days; i++)  {
+      callback(i, Math.random() * 100);
+    }
+  };
+
+  $.fn["plot"] = function(options) {
+    options = options || {};
+    var self = this;
+    var colors = ["#64829d", "#ffda0c", "#e00cff", "#0cffe1", "#00ff00", "#ff0000", "#0000ff"];
+    days = ($(options.to).val() - $(options.from).val()) / (24 * 3600);
+
+    $(this).attr("width", 20*days);
+    $(this).css("width", days * 20 + "px");
+
+    $(this).attr("height", 200);
+    $(this).css("height", "200px");
+    for (var x=0; x<days; x++) {
+
+      Canvas.drawLine(self, 20*x, 0, 20*x, 200, "#cccccc");
+    }
+    for (var y=0; y<200; y+=20) {
+      Canvas.drawLine(self, 0, y, 20*days, y, "#cccccc");
+    }
+
+    $(options.metrics).each(function(index, metric_class) {
+      var prev_day = null;
+      var prev_value = null;
+      metric = new metric_class($(options.from).val(), $(options.to).val(), function(day, value) {
+        Canvas.drawCircle(self, day*20, 200 - value*2, 2, colors[index], true);
+
+        if (prev_day != null && prev_value != null) {
+          Canvas.drawLine(self, prev_day*20, 200 - prev_value*2, day*20, 200 - value*2, colors[index]);
+        }
+        prev_day = day;
+        prev_value = value;
+      });
+    });
+  }
+  
   if ($("#reports #from").size() > 0) {
-    prepareReportsCanvas();
+    $("#timeline").plot({from: "select[name='from']", to: "select[name='to']", metrics: [FakeMetric, FakeMetric, FakeMetric]}); 
   }
 
   $("#reports #from, #reports #to").change(function(event) {
-    prepareReportsCanvas();
+    $("#timeline").plot({from: "select[name='from']", to: "select[name='to']", metrics: [FakeMetric, FakeMetric, FakeMetric]}); 
   });
 
   $("#reports button").click(function(event) {
-  
+      
   });
 });

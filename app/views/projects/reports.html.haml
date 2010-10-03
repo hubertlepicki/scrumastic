@@ -6,6 +6,6 @@
   = select_tag :to, options_for_select((@project.start_date..@project.end_date).collect {|d| [d.to_s, d.end_of_day.to_i]}.reverse)
 
   %button#plot_timeline Plot
-
-  %canvas#timeline
+  #plot
+    %canvas#timeline
 
