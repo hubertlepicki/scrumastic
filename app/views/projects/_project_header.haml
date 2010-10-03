@@ -1,5 +1,7 @@
 = render :partial => "projects/shoutbox"
 
+%input{type: "hidden", id: "current_project_id", value: @project.id}
+
 .left
   = thumb_of project
 

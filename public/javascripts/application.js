@@ -437,6 +437,15 @@ var Canvas = new function() {
     ctx.closePath();
   };
 
+  self.fillText = function(canvas, text, x, y, color) {
+    ctx = $(canvas)[0].getContext("2d");
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color;
+    ctx.fillText(text, x, y);
+    ctx.closePath();
+  }
+
   self.drawCircle = function(canvas, x, y, radius, color, fill) {
     ctx = $(canvas)[0].getContext("2d");
     ctx.lineWidth = 1.0;
@@ -454,9 +463,9 @@ var Canvas = new function() {
 
 $(function() {
 
+
   var FakeMetric = function(from, to, callback) {
     days = (to - from) / (24 * 3600);
-    console.debug(days);
     for (var i=0; i<days; i++)  {
       callback(i, Math.random() * 100);
     }
@@ -466,29 +475,61 @@ $(function() {
     options = options || {};
     var self = this;
     var colors = ["#64829d", "#ffda0c", "#e00cff", "#0cffe1", "#00ff00", "#ff0000", "#0000ff"];
-    days = ($(options.to).val() - $(options.from).val()) / (24 * 3600);
+    var project_id = $('#current_project_id').val();
 
-    $(this).attr("width", 20*days);
-    $(this).css("width", days * 20 + "px");
+    var days = [];
 
-    $(this).attr("height", 200);
-    $(this).css("height", "200px");
-    for (var x=0; x<days; x++) {
+    $("option", $(options.from)).each(function(index, option) {
+      var epoch = parseInt($(option).val());
 
-      Canvas.drawLine(self, 20*x, 0, 20*x, 200, "#cccccc");
+      if (epoch >= parseInt($(options.from).val()) && epoch <= parseInt($(options.to).val())) {
+        days.push(epoch);
+      }
+    });
+    days = days.reverse();
+
+    var number_of_days = days.length;
+
+    self.drawSprints = function() {
+      $.getJSON("/projects/"+project_id+"/sprints", function(data) {
+        $(data).each(function(index, sprint) {
+          var sprint_start = Date.parse(sprint.start_date.split("T")[0]) / 1000;
+          var sprint_end = Date.parse(sprint.end_date.split("T")[0]) / 1000;
+          $(days).each(function(index, day_epoch) {
+            if (day_epoch == sprint_start) {
+              Canvas.drawLine(self, index*20, 0, index*20, 220, "#0000aa");
+              Canvas.fillText(self, sprint.name, index*20+5, 12, "#0000aa");
+            } else if (day_epoch == sprint_end) {
+              Canvas.drawLine(self, index*20, 0, index*20, 220, "#0000aa");
+            }
+          });
+        });
+      });
+    };
+
+    $(this).attr("width", 20*number_of_days);
+    $(this).css("width", number_of_days * 20 + "px");
+
+    $(this).attr("height", 220);
+    $(this).css("height", "220px");
+
+    for (var x=0; x<number_of_days; x++) {
+      Canvas.drawLine(self, 20*x, 20, 20*x, 220, "#cccccc");
     }
     for (var y=0; y<200; y+=20) {
-      Canvas.drawLine(self, 0, y, 20*days, y, "#cccccc");
+      Canvas.drawLine(self, 0, y+20, 20*number_of_days, y+20, "#cccccc");
     }
+
+    self.drawSprints();
 
     $(options.metrics).each(function(index, metric_class) {
       var prev_day = null;
       var prev_value = null;
       metric = new metric_class($(options.from).val(), $(options.to).val(), function(day, value) {
-        Canvas.drawCircle(self, day*20, 200 - value*2, 2, colors[index], true);
+        Canvas.drawCircle(self, day*20, 20 + value*2, 2, colors[index], true);
 
         if (prev_day != null && prev_value != null) {
-          Canvas.drawLine(self, prev_day*20, 200 - prev_value*2, day*20, 200 - value*2, colors[index]);
+          Canvas.drawLine(self, prev_day*20, 20 + prev_value*2, day*20, 20 + value*2, colors[index]);
         }
         prev_day = day;
         prev_value = value;
