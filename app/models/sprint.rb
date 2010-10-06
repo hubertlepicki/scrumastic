@@ -72,7 +72,7 @@ class Sprint
         log_entry.velocity += story.story_points.to_f
       end
 
-      log_entry.velocity = log_entry.velocity / (start_date.to_date..Time.zone.now.to_date).to_f
+      log_entry.velocity = log_entry.velocity / (start_date.to_date - Time.zone.now.to_date).to_f
     end
     log_entry.save
   end
