@@ -3,15 +3,16 @@ module Metrics
     include Mongoid::Document
     include Mongoid::Timestamps
 
-    field :metric_value, type: Float, default: 0.0
-    field :day, type: Time
+    field :value, type: Float, default: 0.0
+    field :date, type: Time
     referenced_in :project
+
+    validates_presence_of :date, :value, :project
 
     def self.log
       Project.all.each do |project|
-        record = RemainingPoints.first(conditions: {day: Time.now.utc.midnight.midnight, project_id: project.id})
-        record = RemainingPoints.new(day: Time.now.utc.midnight.midnight, project_id: project.id) if record.nil?
-        record.metric_value = project.reload.user_stories.where(state: {"$ne" => "closed"}).collect {|story| story.story_points}.sum
+        record = RemainingPoints.find_or_initialize_by(date: Time.now.utc.midnight.midnight, project_id: project.id)
+        record.value = project.reload.user_stories.remaining.collect {|story| story.story_points}.sum
         record.save!
       end
     end

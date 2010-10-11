@@ -8,7 +8,7 @@ describe Metrics::RemainingPoints do
 
   it "should be collected for given day for project" do
     Metrics::RemainingPoints.log
-    Metrics::RemainingPoints.first.metric_value.should eql(0.0)
+    Metrics::RemainingPoints.first.value.should eql(0.0)
   end
 
   it "should be collected for different projects individually" do
@@ -17,13 +17,12 @@ describe Metrics::RemainingPoints do
     Metrics::RemainingPoints.count.should eql(2)
   end
 
-  it "should be updated during the day if metric_value changes" do
+  it "should be updated during the day if value changes" do
     @user_story = UserStory.create!( who: "registered user", what: "play",
                                      reason: "win cash", project: @project,
                                      story_points: 3 )
     Metrics::RemainingPoints.log
-    puts Metrics::RemainingPoints.all.to_a.inspect
-    Metrics::RemainingPoints.first.reload.metric_value.should eql(3.0)
+    Metrics::RemainingPoints.first.reload.value.should eql(3.0)
 
     @user_story = UserStory.create!( who: "registered user", what: "play",
                                      reason: "win cash", project: @project,
@@ -31,7 +30,7 @@ describe Metrics::RemainingPoints do
   
      
     Metrics::RemainingPoints.log
-    Metrics::RemainingPoints.first.reload.metric_value.should eql(5.0)
+    Metrics::RemainingPoints.first.reload.value.should eql(5.0)
   end
 
   it "should not include closed user stories" do
@@ -39,7 +38,7 @@ describe Metrics::RemainingPoints do
                                      reason: "win cash", project: @project,
                                      story_points: 3, state: "closed" )
     Metrics::RemainingPoints.log
-    Metrics::RemainingPoints.first.metric_value.should eql(0.0)
+    Metrics::RemainingPoints.first.value.should eql(0.0)
   end
 
   it "should save project reference" do

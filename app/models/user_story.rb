@@ -21,6 +21,8 @@ class UserStory
   references_many :time_log_entries, :dependent => :nullify
   validates_presence_of :who, :what, :project_id
 
+  scope :remaining, where: {state: {"$ne" => "closed"}}
+
   # Story point values that you can select when estimating
   # complexity of user story
   STORY_POINTS_SCALE = [ 0, 1, 2, 4, 8, 16, 32, 64 ]
