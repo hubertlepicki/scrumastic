@@ -66,13 +66,7 @@ class Sprint
 
     user_stories.each do |story|
       log_entry.total_points += story.story_points.to_f
-      if story.state != "closed"
-        log_entry.remaining_points += story.story_points.to_f
-      else
-        log_entry.velocity += story.story_points.to_f
-      end
-
-      log_entry.velocity = log_entry.velocity / (start_date.to_date - Time.zone.now.to_date).to_f
+      log_entry.remaining_points += story.story_points.to_f if story.state != "closed"
     end
     log_entry.save
   end

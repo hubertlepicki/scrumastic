@@ -13,7 +13,6 @@ describe SprintLogEntry do
     @log = SprintLogEntry.first
     @log.total_points.should eql(0.0)
     @log.remaining_points.should eql(0.0)
-    @log.velocity.should eql(0.0)
   end
 
   it "should update log entries during the day" do
@@ -29,19 +28,16 @@ describe SprintLogEntry do
     @log = SprintLogEntry.first
     @log.total_points.should eql(10.0)
     @log.remaining_points.should eql(10.0)
-    @log.velocity.should eql(0.0)
-    s2.update_attributes state: "resolved"
+    s2.update_attributes state: "closed"
     @sprint.log
     @log = @log.reload
     @log.total_points.should eql(10.0)
     @log.remaining_points.should eql(8.0)
-    @log.velocity.should eql(2.0)
     s1.update_attributes state: "closed"
     @sprint.log
     @log = @log.reload
     @log.total_points.should eql(10.0)
     @log.remaining_points.should eql(0.0)
-    @log.velocity.should eql(10.0)
   end
 end
 

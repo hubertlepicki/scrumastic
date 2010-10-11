@@ -32,7 +32,7 @@ feature "User Stories management", %q{
     sign_in_as "Hubert"
     click_link "Project 1"
     sleep 2
-    drag "//*[@id='user_story_#{user_story.id}']", "//div[@id='backlog_stories']"
+    find_by_id("user_story_#{user_story.id}").drag_to find_by_id("backlog_stories")
     sleep 1
     UserStory.first.in_backlog.should eql(true)
   end
