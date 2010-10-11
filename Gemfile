@@ -2,9 +2,9 @@ source 'http://rubygems.org'
 
 # Bundle edge Rails instead:
 gem 'rails', "3.0.0" #git: 'git://github.com/rails/rails.git', :branch => "3-0-stable", ref: "c7106e827e34b34da8cb348e5ec387d87def24ec"
+gem "bson_ext", "1.1"
 gem "mongoid", git: "http://github.com/mongoid/mongoid.git" #, ref: "f38e3efa4fb61204cddf8e98595edf966e304c1e"
 gem "will_paginate"
-gem "bson_ext", "1.0.4"
 gem "devise", "1.1.2"
 gem "mini_magick", "2.1"
 gem "carrierwave", git: "git://github.com/evansagge/carrierwave.git" #, ref: "015530b3cb83cc7988565d2d6f118d6b64b1f83c"

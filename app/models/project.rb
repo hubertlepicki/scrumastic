@@ -20,6 +20,7 @@ class Project
   has_many_related :shouts, :dependent => :destroy
   references_many :attachments, :dependent => :destroy
   references_many :time_log_entries, :dependent => :destroy
+  references_many :remaining_points_metrics, class_name: "Metric::RemainingPoints", dependent: :destroy
   mount_uploader :logo, ProjectLogoUploader
 
   validates_presence_of :name
