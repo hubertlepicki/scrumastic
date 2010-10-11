@@ -62,12 +62,16 @@ class Sprint
   # (start_date <= now <= end_date).
   def log
     log_entry = SprintLogEntry.find_or_new(id, Time.zone.now.to_date)
-    log_entry.total_points = log_entry.remaining_points = log_entry.velocity = 0
+    log_entry.total_points = log_entry.remaining_points = 0
 
     user_stories.each do |story|
       log_entry.total_points += story.story_points.to_f
       log_entry.remaining_points += story.story_points.to_f if story.state != "closed"
     end
+
+    velocity = Metrics::Velocity.find_or_initialize_by(project_id: log_entry.sprint.project_id, date: Time.zone.now.to_date)
+    velocity.value = log_entry.total_points - log_entry.remaining_points
+    velocity.save
     log_entry.save
   end
 
