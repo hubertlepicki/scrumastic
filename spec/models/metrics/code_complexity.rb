@@ -37,5 +37,4 @@ describe Metrics::CodeComplexity do
     @project.code_complexity_metrics.first.value.should > 0.0
   end
 
-  it "should be one pending"
 end
