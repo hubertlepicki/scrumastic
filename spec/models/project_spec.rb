@@ -172,11 +172,7 @@ describe "Project::Repository" do
   before :each do
     @project = Project.create valid_project_attributes.merge(repository_url: "/tmp/example_repo")
     FileUtils.rm_rf "/tmp/#{@project.id}"
-    FileUtils.rm_rf "/tmp/example_repo"
-    system "mkdir /tmp/example_repo"
-    system "git init /tmp/example_repo"
-    system "touch /tmp/example_repo/README"
-    system "cd /tmp/example_repo && git add . && git commit -a -m 'initial commit'"
+    create_example_repo
   end
 
   it "should be accessible as project.repository property" do

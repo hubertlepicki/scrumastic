@@ -55,3 +55,15 @@ def valid_user_attributes(name="admin")
     password_confirmantion: "asdf1234",
     email: "#{name.downcase}@example.com" }
 end
+
+def create_example_repo
+    FileUtils.rm_rf "/tmp/example_repo"
+    system "mkdir /tmp/example_repo"
+    system "git init /tmp/example_repo"
+    system "touch /tmp/example_repo/README"
+    system "echo 'puts 1' >> /tmp/example_repo/app.rb"
+    system "echo 'puts 2' >> /tmp/example_repo/app.rb"
+    system "echo 'puts 1' > /tmp/example_repo/test.rb"
+    system "cd /tmp/example_repo && git add . && git commit -a -m 'initial commit'"
+end
+

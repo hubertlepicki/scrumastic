@@ -25,6 +25,7 @@ class Project
   references_many :time_log_entries, :dependent => :destroy
   references_many :remaining_points_metrics, class_name: "Metrics::RemainingPoints", dependent: :destroy
   references_many :velocity_metrics, class_name: "Metrics::Velocity", dependent: :destroy
+  references_many :project_size_metrics, class_name: "Metrics::ProjectSize", dependent: :destroy
   mount_uploader :logo, ProjectLogoUploader
 
   validates_presence_of :name
@@ -156,10 +157,12 @@ class Project
     end 
 
     def update
-      if Dir.exists?("#{path}/.git")
+      if @repository_url.blank?
+        false
+      elsif Dir.exists?("#{path}/.git")
         system "cd #{path} && git pull"
-      else
-        system Escape.shell_command(["git", "clone", @repository_url, path])
+      else 
+        system Escape.shell_command(["git", "clone", @repository_url.to_s, path])
       end
     end
   end
