@@ -37,6 +37,7 @@ en:
     search: "Search by name, login or email:"
     nobody_found: Couldn't find any people matching given criteria.
   projects:
+    api_key: "API key"
     repository_url: "Repository URL"
     tests_regexp: "Regexp matching test files"
     application_regexp: "Regexp matching application files"

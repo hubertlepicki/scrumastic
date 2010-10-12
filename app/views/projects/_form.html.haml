@@ -67,6 +67,10 @@
   %p
     = f.label :tests_regexp, t("projects.tests_regexp")
     = f.text_field :tests_regexp
+  %p
+    = f.label :api_key, t("projects.api_key")
+    = f.text_field :api_key
+
 
   = f.submit t("submit")
   = link_to t("cancel"), :projects

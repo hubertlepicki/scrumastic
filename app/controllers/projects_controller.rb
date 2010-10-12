@@ -69,7 +69,7 @@ class ProjectsController < AuthenticatedController
       failed.value = params[:failed].to_i
       failed.save
     end
- 
+    head :ok 
   end
 
   protected
