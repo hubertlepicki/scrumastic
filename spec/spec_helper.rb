@@ -25,7 +25,7 @@ class Spec::Core::Formatters::BaseFormatter
     old_dump_summary(*args)
 
     if report_url = AppConfig.report_test_results_to
-      Faraday.get report_url+"?passed=#{args[1]}&failed=#{args[2]}"
+      Faraday.get report_url+"?passed=#{args[1] - argv[2]}&failed=#{args[2]}"
     end
   end
 end
