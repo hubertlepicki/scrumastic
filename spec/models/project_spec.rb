@@ -33,6 +33,21 @@ describe "Project" do
     p.logo.should be_present
   end
 
+  it "should be possible to store git repository url in the project" do
+    p = Project.create!(valid_project_attributes.merge(
+          {:repository_url => Rails.root}
+        ))
+    p.repository_url.should eql(Rails.root.to_s)
+  end
+
+  it "should be possible to provide regexps for program files and tests files" do
+    p = Project.create!(valid_project_attributes.merge(
+          {:application_regexp => "app/**/*", :tests_regexp => "spec/**/*"}
+        ))
+    p.application_regexp.should eql("app/**/*")
+    p.tests_regexp.should eql("spec/**/*")
+  end
+
   it "should be possible to remove a logo from a project by setting a boolean field" do
     p = Project.create!(valid_project_attributes.merge(
           {:logo => File.new("#{::Rails.root}/spec/fixtures/logo.png")}

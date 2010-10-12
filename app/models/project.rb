@@ -10,6 +10,9 @@ class Project
 
   field :name, :type => String
   field :description, :type => String
+  field :repository_url, :type => String
+  field :application_regexp, :type => String
+  field :tests_regexp, :type => String
   array_attributes :team_member_ids, :stakeholder_ids
 
   belongs_to_related :scrum_master, :class_name => "User"

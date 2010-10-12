@@ -57,7 +57,16 @@
       %br
     = f.file_field :logo
     .clear
-
+    
+  %p
+    = f.label :repository_url, t("projects.repository_url")
+    = f.text_field :repository_url
+  %p
+    = f.label :application_regexp, t("projects.application_regexp")
+    = f.text_field :application_regexp
+  %p
+    = f.label :tests_regexp, t("projects.tests_regexp")
+    = f.text_field :tests_regexp
 
   = f.submit t("submit")
   = link_to t("cancel"), :projects
