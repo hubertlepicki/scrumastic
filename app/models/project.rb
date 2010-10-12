@@ -119,7 +119,11 @@ class Project
   def end_date
     sprints.collect {|s| s.end_date.to_date}.max
   end
-  
+ 
+  def repository
+    Repository.new(repository_url, id.to_s)
+  end 
+
   private
 
   # Validates that one user must play only one role in Project.
@@ -142,4 +146,19 @@ class Project
     end
   end
 
+  class Repository
+    def initialize(repository_url, project_id)
+      @repository_url = repository_url
+      @project_id = project_id
+    end 
+
+    def update
+      if Dir.exists?("/tmp/#{@project_id}/.git")
+        system "cd /tmp/#{@project_id}/ && git pull"
+      else
+        system Escape.shell_command(["git", "clone", @repository_url, "/tmp/#{@project_id}"])
+      end
+    end
+  end
 end
+

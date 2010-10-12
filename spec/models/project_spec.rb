@@ -166,5 +166,32 @@ describe Project, "user roles" do
     @david.destroy
     @project.reload.stakeholder_ids.count.should eql(0)
   end
+end
 
+describe "Project::Repository" do
+  before :each do
+    @project = Project.create valid_project_attributes.merge(repository_url: "/tmp/example_repo")
+    FileUtils.rm_rf "/tmp/#{@project.id}"
+    FileUtils.rm_rf "/tmp/example_repo"
+    system "mkdir /tmp/example_repo"
+    system "git init /tmp/example_repo"
+    system "touch /tmp/example_repo/README"
+    system "cd /tmp/example_repo && git add . && git commit -a -m 'initial commit'"
+  end
+
+  it "should be accessible as project.repository property" do
+    @project.repository.should be_kind_of(Project::Repository)
+  end
+
+  it "should be possible to update/clone repository if it didn't exist yet" do
+    @project.repository.update.should be_true
+    File.should exist("/tmp/#{@project.id}/README")
+  end
+
+  it "should be possible to update/pull repository if it already exists" do
+    @project.repository.update.should be_true
+    system "cd /tmp/example_repo && git mv README README.rdoc && git commit -a -m 'renamed file'" 
+    @project.repository.update.should be_true
+    File.should exist("/tmp/#{@project.id}/README.rdoc")
+  end
 end
