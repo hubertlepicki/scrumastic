@@ -14,6 +14,7 @@ gem "googlecharts", "1.6.0"
 gem "socky", "0.1.1"
 gem "safer_send_file", git: "git://github.com/hubertlepicki/safer_send_file"
 gem "escape"
+gem "metric_abc"
 
 #gem 'sqlite3-ruby', :require => 'sqlite3'
 

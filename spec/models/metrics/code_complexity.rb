@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Metrics::ProjectSize do
+describe Metrics::CodeComplexity do
   before :each do
     @project = Project.create(valid_project_attributes.merge(
       :repository_url => "/tmp/example_repo",
@@ -10,9 +10,8 @@ describe Metrics::ProjectSize do
   end
 
   it "should be calculated for given project when all information is available" do
-    Metrics::ProjectSize.log
-    @project.project_size_metrics.count.should eql(1)
-    @project.project_size_metrics.first.value.should eql(2.0)
+    Metrics::CodeComplexity.log
+    @project.code_complexity_metrics.count.should eql(1)
   end
 
   it "should not be calculated when repository could not be updated" do
@@ -20,22 +19,22 @@ describe Metrics::ProjectSize do
     repo_mock.should_receive(:update).and_return(false)
     @project.should_receive(:repository).and_return repo_mock
     Project.should_receive(:all).and_return([@project])
-    Metrics::ProjectSize.log
-    @project.project_size_metrics.count.should eql(0)
+    Metrics::CodeComplexity.log
+    @project.code_complexity_metrics.count.should eql(0)
   end
 
   it "should not be calculated when application_regexp is blank" do
     @project.update_attributes :application_regexp => nil
-    Metrics::ProjectSize.log
-    @project.project_size_metrics.count.should eql(0)
+    Metrics::CodeComplexity.log
+    @project.code_complexity_metrics.count.should eql(0)
   end
 
   it "should be updated during the day" do
-    Metrics::ProjectSize.log
-    system "cd /tmp/example_repo && echo 'puts 3' >> app.rb && git add . && git commit -m 'one more line'" 
-    Metrics::ProjectSize.log
-    @project.project_size_metrics.count.should eql(1)
-    @project.project_size_metrics.first.value.should eql(3.0)
+    Metrics::CodeComplexity.log
+    system "cd /tmp/example_repo && echo 'puts def a; if (true == false) return 1; else return 2; end' >> app.rb && git add . && git commit -m 'one more line'" 
+    Metrics::CodeComplexity.log
+    @project.code_complexity_metrics.count.should eql(1)
+    @project.code_complexity_metrics.first.value.should > 0.0
   end
-end
 
+end

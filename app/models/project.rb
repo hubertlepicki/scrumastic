@@ -26,6 +26,7 @@ class Project
   references_many :remaining_points_metrics, class_name: "Metrics::RemainingPoints", dependent: :destroy
   references_many :velocity_metrics, class_name: "Metrics::Velocity", dependent: :destroy
   references_many :project_size_metrics, class_name: "Metrics::ProjectSize", dependent: :destroy
+  references_many :code_complexity_metrics, class_name: "Metrics::CodeComplexity", dependent: :destroy
   mount_uploader :logo, ProjectLogoUploader
 
   validates_presence_of :name
