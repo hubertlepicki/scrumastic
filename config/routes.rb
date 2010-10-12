@@ -15,6 +15,7 @@ Scrumastic::Application.routes.draw do |map|
   resources :projects do
     member do 
       get "reports"
+      get "collect_test_results"
     end
     resources :attachments
     resources :shouts

@@ -13,6 +13,7 @@ class Project
   field :repository_url, :type => String
   field :application_regexp, :type => String
   field :tests_regexp, :type => String
+  field :api_key, :type => String
   array_attributes :team_member_ids, :stakeholder_ids
 
   belongs_to_related :scrum_master, :class_name => "User"
@@ -32,6 +33,8 @@ class Project
   validates_presence_of :name
   validates_uniqueness_of :name, :scope => :owner_id
   validate :uniqueness_of_roles
+
+  before_validation :generate_api_key_if_blank
 
   # People that you can assign user stories to.
   def assignable_people
@@ -165,6 +168,12 @@ class Project
       else 
         system Escape.shell_command(["git", "clone", @repository_url.to_s, path])
       end
+    end
+  end
+
+  def generate_api_key_if_blank
+    if self.api_key.blank?
+      self.api_key = (0...50).map{ ('a'..'z').to_a[rand(26)] }.join
     end
   end
 end

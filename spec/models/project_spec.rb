@@ -56,6 +56,11 @@ describe "Project" do
     p.save
     p.logo.thumb.url.should eql("/images/fallback/logo/thumb_default.png")
   end
+
+  it "should generate unique authentication key to be used as api verification" do
+    p = Project.create valid_project_attributes
+    p.api_key.should_not be_blank 
+  end
 end
 
 describe Project, "user roles" do

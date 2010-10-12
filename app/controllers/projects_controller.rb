@@ -3,8 +3,9 @@
 class ProjectsController < AuthenticatedController
   respond_to :html, :json
   
-  before_filter :find_user_owned_project, except: [:new, :index, :create, :show]
+  before_filter :find_user_owned_project, except: [:new, :index, :create, :show, :collect_test_results]
 
+  skip_before_filter :authenticate_user!, only: [:collect_test_results]
   def index
     @projects = [ {product_owner_id: current_user.id},
                   {scrum_master_id: current_user.id},
@@ -51,6 +52,24 @@ class ProjectsController < AuthenticatedController
       @project.destroy
       redirect_to projects_path
     end
+  end
+
+  def collect_test_results
+    project = Project.find(params[:id])
+    raise "Not authorized!" unless project.api_key == params[:api_key]
+
+    if params[:passed]
+      passed = Metrics::PassedTests.find_or_initialize_by(date: Time.zone.now.to_date, project_id: project.id)
+      passed.value = params[:passed].to_i
+      passed.save
+    end
+
+    if params[:failed]
+      failed = Metrics::FailedTests.find_or_initialize_by(date: Time.zone.now.to_date, project_id: project.id)
+      failed.value = params[:failed].to_i
+      failed.save
+    end
+ 
   end
 
   protected

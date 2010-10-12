@@ -14,9 +14,21 @@ module Rspec
   end
 end
 
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
+class Spec::Core::Formatters::BaseFormatter
+  alias_method :old_dump_summary, :dump_summary
+  def dump_summary(*args)
+    old_dump_summary(*args)
+
+    if report_url = AppConfig.report_test_results_to
+      Faraday.get report_url+"?passed=#{args[1]}&failed=#{args[2]}"
+    end
+  end
+end
 
 RSpec.configure do |config|
   # == Mock Framework

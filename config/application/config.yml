@@ -1,0 +1,11 @@
+# See default.yml for usage.
+default:
+
+development:
+
+test:
+#  report_test_results_to: "http://localhost:3000/test_results/XXX"
+staging:
+
+production:
+
