@@ -147,16 +147,19 @@ class Project
   end
 
   class Repository
+    attr_accessor :path
+
     def initialize(repository_url, project_id)
       @repository_url = repository_url
       @project_id = project_id
+      self.path = "/tmp/#{@project_id}"
     end 
 
     def update
-      if Dir.exists?("/tmp/#{@project_id}/.git")
-        system "cd /tmp/#{@project_id}/ && git pull"
+      if Dir.exists?("#{path}/.git")
+        system "cd #{path} && git pull"
       else
-        system Escape.shell_command(["git", "clone", @repository_url, "/tmp/#{@project_id}"])
+        system Escape.shell_command(["git", "clone", @repository_url, path])
       end
     end
   end
