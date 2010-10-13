@@ -41,6 +41,7 @@ en:
     remaining_points: "Remaining story points"
     code_complexity: "Code complexity"
     velocity: "Team velocity"
+    plot: "Project metrics"
   projects:
     api_key: "API key"
     repository_url: "Repository URL"

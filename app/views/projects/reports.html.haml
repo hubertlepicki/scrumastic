@@ -8,6 +8,15 @@
   %button#plot_timeline Plot
 
 
+- plot_data = []
+- legends = []
+- labels = []
 - ["project_size", "remaining_points", "velocity", "code_complexity"].each do |metric|
   - data, labels = data_for_chart(@project, @project.send(metric + "_metrics"))
-  = image_tag(Gchart.line(:size => "960x300", :title => t("metrics.#{metric}"), :bg => 'transparent', :legend => [t("metrics.#{metric}")], :data => data.values, :axis_with_labels => ["x", "y"], :axis_labels => [labels])) unless data.values.all?{|v| v.nil?}
+  - unless data.values.all?{|v| v.nil?}
+    - plot_data << data.values
+    - legends << t("metrics.#{metric}")
+
+
+= image_tag(Gchart.line(:size => "960x300", :title => t("metrics.plot"), :bg => 'FFFFFF', :legend => legends, :data => plot_data, :axis_with_labels => ["x"], :axis_labels => [labels], :line_colors => "FF0000,00FF00,0000FF,F0F000"))
+
