@@ -10,7 +10,7 @@ gem "mini_magick", "2.1"
 gem "carrierwave", git: "git://github.com/evansagge/carrierwave.git" #, ref: "015530b3cb83cc7988565d2d6f118d6b64b1f83c"
 gem "gravtastic", "2.2.0"
 gem "haml", "3.0.18"
-gem "googlecharts", "1.6.0"
+gem "googlecharts", "1.6.0", require: 'gchart'
 gem "socky", "0.1.1"
 gem "safer_send_file", git: "git://github.com/hubertlepicki/safer_send_file"
 gem "escape"

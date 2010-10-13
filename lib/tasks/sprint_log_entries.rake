@@ -3,5 +3,7 @@ namespace :sprint_log_entries do
   task :update_now => :environment do
     SprintLogEntry.update_now
     Metrics::RemainingPoints.log
+    Metrics::ProjectSize.log
+    Metrics::CodeComplexity.log
   end
 end
