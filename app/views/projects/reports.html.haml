@@ -7,4 +7,7 @@
 
   %button#plot_timeline Plot
 
-= image_tag Gchart.line(:size => '960x300', :title => "example title", :bg => 'efefef', :legend => ['first data set label', 'second data set label'], :data => [10, 30, 120, 45, 72, 55, 53, 2, 3, nil, 45, 6, 6, 6, 7, 7, 7,7])
+
+- ["project_size", "remaining_points", "velocity", "code_complexity"].each do |metric|
+  - data, labels = data_for_chart(@project, @project.send(metric + "_metrics"))
+  = image_tag(Gchart.line(:size => "960x300", :title => t("metrics.#{metric}"), :bg => 'transparent', :legend => [t("metrics.#{metric}")], :data => data.values, :axis_with_labels => ["x", "y"], :axis_labels => [labels])) unless data.values.all?{|v| v.nil?}

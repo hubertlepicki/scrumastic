@@ -36,6 +36,11 @@ en:
   people:
     search: "Search by name, login or email:"
     nobody_found: Couldn't find any people matching given criteria.
+  metrics:
+    project_size: "Project size"
+    remaining_points: "Remaining story points"
+    code_complexity: "Code complexity"
+    velocity: "Team velocity"
   projects:
     api_key: "API key"
     repository_url: "Repository URL"

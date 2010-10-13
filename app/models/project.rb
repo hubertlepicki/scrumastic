@@ -28,6 +28,7 @@ class Project
   references_many :velocity_metrics, class_name: "Metrics::Velocity", dependent: :destroy
   references_many :project_size_metrics, class_name: "Metrics::ProjectSize", dependent: :destroy
   references_many :code_complexity_metrics, class_name: "Metrics::CodeComplexity", dependent: :destroy
+
   mount_uploader :logo, ProjectLogoUploader
 
   validates_presence_of :name
@@ -123,6 +124,10 @@ class Project
 
   def end_date
     sprints.collect {|s| s.end_date.to_date}.max
+  end
+
+  def sprint_start_end_dates
+    sprints.collect {|s| [s.start_date.to_date, s.end_date.to_date] }.flatten
   end
  
   def repository

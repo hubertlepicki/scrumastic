@@ -211,4 +211,12 @@ describe Project, "duration" do
     @project.start_date.should be_nil
     @project.end_date.should be_nil
   end
+
+  it "should be possible to tell if given date is beginning/end of sprint" do
+    @project = Project.create valid_project_attributes
+    @sprint = Sprint.create!(project: @project, start_date: 2.days.ago.midnight, end_date: 3.days.from_now.midnight)
+    @sprint = Sprint.create!(project: @project, start_date: 5.days.from_now.midnight, end_date: 10.days.from_now.midnight)
+    @project.sprint_start_end_dates.should include(2.days.ago.to_date)
+    @project.sprint_start_end_dates.should_not include(Time.now.to_date)
+  end
 end
