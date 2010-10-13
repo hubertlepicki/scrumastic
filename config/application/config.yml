@@ -4,7 +4,7 @@ default:
 development:
 
 test:
-  report_test_results_to: "http://localhost:3000/projects/4c7eb63d6e152b0d7d000031/collect_test_results?api_key=etzuhbydyunkepxofgemhaoccjifeflpambevkxurongvvnwpu"
+#  report_test_results_to: "http://localhost:3000/projects/4c7eb63d6e152b0d7d000031/collect_test_results?api_key=etzuhbydyunkepxofgemhaoccjifeflpambevkxurongvvnwpu"
 staging:
 
 production:

@@ -196,3 +196,19 @@ describe "Project::Repository" do
     File.should exist("/tmp/#{@project.id}/README.rdoc")
   end
 end
+
+describe Project, "duration" do
+  it "should be possible to get start and end date of project" do
+    @project = Project.create valid_project_attributes
+    @sprint = Sprint.create!(project: @project, start_date: 2.days.ago.midnight, end_date: 3.days.from_now.midnight)
+    @sprint = Sprint.create!(project: @project, start_date: 5.days.from_now.midnight, end_date: 10.days.from_now.midnight)
+    @project.start_date.should eql(2.days.ago.midnight.to_date)
+    @project.end_date.should eql(10.days.from_now.midnight.to_date)
+  end
+
+  it "should return nil when there is no sprints in project" do
+    @project = Project.create valid_project_attributes
+    @project.start_date.should be_nil
+    @project.end_date.should be_nil
+  end
+end
